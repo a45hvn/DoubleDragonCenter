@@ -1,5 +1,5 @@
--- 1. 관리자 ? 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - a. 일괄 조회 및 수정
--- 번호 학생명 교사명 과정명 연락처 학과 출석률 상담요청일시 상담요청 내용(출석률이면 정상만 취급하는지? 조퇴나 이런건 빼고? 아직 안정함, 출석률 빼는걸 권장)
+-- 1. 관리자 ? 7. 지원관리 및 조회 - a. 지원내역 - a. 일괄 조회 및 수정
+-- 번호 학생명 교사명 과정명 연락처 출석률 지원일시 상담요청 내용(출석률이면 정상만 취급하는지? 조퇴나 이런건 빼고? 아직 안정함, 출석률 빼는걸 권장)
 SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as courselistName, stu.tel as studentTel,  Ass.asdate as callasDate, Ass.asService as callasService
     FROM tblAs ass
         INNER JOIN tblRegiCourse rc
@@ -14,8 +14,9 @@ SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as course
                                             ON tc.teacher_seq = t.teacher_seq
                                                 INNER JOIN tblStudent stu
                                                     ON rc.student_seq = stu.student_seq;
-
--- 상담요청 번호 저장(배열)
+select * from tblsubjectrating;
+select *from tblattendance;
+-- 지원요청 번호 저장(배열)
 SELECT as_seq FROM tblas;
 
 -- 수정하기와 삭제하기는 해당 요청날짜가 현재시간 이전은 불가능
@@ -31,7 +32,7 @@ DELETE FROM tblas WHERE as_seq = '배열[입력한번호-1]';
 
 
 
--- 1. 관리자 ? 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - b. 교사별 조회 및 수정 (53번)
+-- 1. 관리자 ? 7. 지원 관리 및 조회 - a. 지원내역 - b. 교사별 조회 및 수정 (53번)
 -- a. 개설과정기간번호(PK) 배열에 저장
 SELECT openCourse_seq FROM tblOpenCourse;
 
@@ -49,7 +50,7 @@ SELECT rownum, cl.name as courselistName, oc.startDate || '~' || oc.endDate as c
 
 select * from tblcourselist;
 
--- 1. 관리자 ? 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - b. 교사별 조회 및 수정 ? 1.선택(개설과정번호PK가 넘어옴)
+-- 1. 관리자 ? 7. 지원관리 및 조회 - a. 지원내역 - b. 교사별 조회 및 수정 ? 1.선택(개설과정번호PK가 넘어옴)
 -- 교사이름
 SELECT t.name as teacherName
     FROM tblTeacher t
@@ -122,7 +123,7 @@ SELECT ass.as_seq as asNumber
                         WHERE stu.name = '입력한 이름명';
 
 
--- 1. 관리자 ? 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 ? c. 학생별 조회 및 수정 ? 검색 ? 조회 및 수정
+-- 1. 관리자 ? 7. 지원 관리 및 조회 - a. 지원 내역 ? c. 학생별 조회 및 수정 ? 검색 ? 조회 및 수정
 -- 입력한 학생명 출력
 -- 과정명
 SELECT cl.name as courselistName

@@ -165,7 +165,9 @@ SELECT rc.regiCourse_seq as enrollmentNumbers
 -- 수정하기
 UPDATE tblattendance 
     SET state = '고칠내용'
-        WHERE workOn = to_date('입력받은 날짜','yyyy-mm-dd') and regicourse_seq = '수강 신청번호';
+        WHERE to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜' and regicourse_seq = '수강 신청번호';
+        
+        
 
 
 
@@ -212,10 +214,9 @@ select  rownum, s.name as studentName, to_char(ad.workon, 'hh24:mm') as commuteT
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
                                 where oc.opencourse_seq = 13
-                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
+                                      and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
+--                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
 --                                where oc.opencourse_seq = '입력받은 개설과정번호'
---                                    and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
-
 --                                    and ad.workOn = to_date('입력받은 조회날짜''yyyy-mm-dd');
 
 select * from tblopencourse;
@@ -235,7 +236,8 @@ select s.student_seq as stdentNumber
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
                                 where oc.opencourse_seq = '입력받은 개설과정번호'
-                                    and ad.workOn = to_date('2019-04-17','입력받은 조회날짜');
+                                    and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
+                                    
 
 --입력받은 학생 번호의 수강신청 번호(자바 변수에 저장)
 SELECT rc.regiCourse_seq as enrollmentNumbers
