@@ -1,0 +1,73 @@
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'JAVA 프로그래밍', '15');--1
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'JAVA Testing', '49');--2
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '개발환경 설정 및 JAVA 기초', '24');--3
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Java 기초', '5');--4
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Fundamental Java SE', '48');--5
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Java 응용프로젝트', '5');--6
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'JAVA 애플리케이션 구현', '18');--7
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '데이터베이스', '10');--8
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '데이터 베이스 구현', '8');--9
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Database Programming', '10');--10
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '관계형 데이터베이스', '10');--11
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Oracle DBMS', '18');--12
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Front-end 개발', '15');--13
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Front-end 웹 애플리케이션 구현', '16');--14
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Back-end 개발', '17');--15
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Back-end 웹 애플리케이션 구현', '12');--16
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Framework', '12');--17
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '자바 프레임워크', '8');--18
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Full-stack Framework 구현', '5');--19
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Spring 개발', '9');--20
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Spring framework 통합구현', '7');--21
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Spring 서버 기반의 지능형 웹과 앱 통합개발 및 구현', '9');--22
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Python', '15');--23
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹 서버 구축 실무', '3');--24
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '파이썬을 활용한 머신러닝 분석기술', '11');--25
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹 애플리케이션', '43');--26
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹 퍼블리싱', '10');--27
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹 프로그래밍', '16');--28
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹개발 프로그래밍', '46');--29
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '웹 클라이언트 프로그래밍', '15');--30
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, 'Web Programming', '64');--31
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '융합기반 웹표준 프로젝트', '24');--32
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '애플리케이션 화면 설계', '9');--33
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '구현 애플리케이션 테스트', '8');--34
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '애플리케이션 테스트 수행', '7');--35
+insert into tblSubject (subject_seq, name, period) values (Subject_seq.nextval, '애플리케이션 테스트 및 배포', '21'); --36
+--외래키 추가
+update tblSubject set book_seq=1 where name='JAVA 프로그래밍';
+update tblSubject set book_seq=2 where name='JAVA Testing';
+update tblSubject set book_seq=3 where name='개발환경 설정 및 JAVA 기초';
+update tblSubject set book_seq=4 where name='Java 기초';
+update tblSubject set book_seq=5 where name='Fundamental Java SE';
+update tblSubject set book_seq=6 where name='Java 응용프로젝트';
+update tblSubject set book_seq=7 where name='JAVA 애플리케이션 구현';
+update tblSubject set book_seq=8 where name='데이터베이스';
+update tblSubject set book_seq=9 where name='데이터 베이스 구현';
+update tblSubject set book_seq=10 where name='Database Programming';
+update tblSubject set book_seq=11 where name='관계형 데이터베이스';
+update tblSubject set book_seq=12 where name='Oracle DBMS';
+update tblSubject set book_seq=13 where name='Front-end 개발';
+update tblSubject set book_seq=14 where name='Front-end 웹 애플리케이션 구현';
+update tblSubject set book_seq=15 where name='Back-end 개발';
+update tblSubject set book_seq=16 where name='Back-end 웹 애플리케이션 구현';
+update tblSubject set book_seq=17 where name='Framework';
+update tblSubject set book_seq=18 where name='자바 프레임워크';
+update tblSubject set book_seq=19 where name='Full-stack Framework 구현';
+update tblSubject set book_seq=20 where name='Spring 개발';
+update tblSubject set book_seq=21 where name='Spring framework 통합구현';
+update tblSubject set book_seq=22 where name='Spring 서버 기반의 지능형 웹과 앱 통합개발 및 구현';
+update tblSubject set book_seq=23 where name='Python';
+update tblSubject set book_seq=24 where name='웹 서버 구축 실무';
+update tblSubject set book_seq=25 where name='파이썬을 활용한 머신러닝 분석기술';
+update tblSubject set book_seq=26 where name='웹 애플리케이션';
+update tblSubject set book_seq=27 where name='웹 퍼블리싱';
+update tblSubject set book_seq=28 where name='웹 프로그래밍';
+update tblSubject set book_seq=29 where name='웹개발 프로그래밍';
+update tblSubject set book_seq=30 where name='웹 클라이언트 프로그래밍';
+update tblSubject set book_seq=31 where name='Web Programming';
+update tblSubject set book_seq=32 where name='융합기반 웹표준 프로젝트';
+update tblSubject set book_seq=33 where name='애플리케이션 화면 설계';
+update tblSubject set book_seq=34 where name='구현 애플리케이션 테스트';
+update tblSubject set book_seq=35 where name='애플리케이션 테스트 수행';
+update tblSubject set book_seq=36 where name='애플리케이션 테스트 및 배포';

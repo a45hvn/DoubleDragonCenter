@@ -1,0 +1,70 @@
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 1); --1
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 8);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 13);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 15);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 17);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 1, 23);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 2);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 9);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 14);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 16);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 18);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 2, 24);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 3);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 10);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 13);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 16);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 19);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 3, 25);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 4);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 11);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 14);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 15);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 21);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 4, 32);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 5);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 12);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 13);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 16);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 22);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 5, 33);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 6);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 8);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 14);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 15);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 20);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 6, 24);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 7);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 12);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 14);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 16);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 19);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 7, 34);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 3);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 9);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 13);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 15);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 21);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 8, 34);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 3);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 12);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 14);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 15);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 18);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 9, 25);
+
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 5);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 11);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 13);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 16);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 21);
+insert into tblCourseSubject (courseSubject_seq, courseList_seq, subject_seq) values (courseSubject_seq.nextval, 10, 33);

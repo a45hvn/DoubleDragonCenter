@@ -1,0 +1,264 @@
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 1, to_date('2018-01-10','yyyy-mm-dd'), to_date('2018-02-04','yyyy-mm-dd'), 1);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 8, to_date('2018-02-05','yyyy-mm-dd'), to_date('2018-02-21','yyyy-mm-dd'), 1);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2018-02-22','yyyy-mm-dd'), to_date('2018-03-19','yyyy-mm-dd'), 1);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2018-03-20','yyyy-mm-dd'), to_date('2018-04-17','yyyy-mm-dd'), 1);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 17, to_date('2018-04-18','yyyy-mm-dd'), to_date('2018-05-07','yyyy-mm-dd'), 1);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 23, to_date('2018-05-08','yyyy-mm-dd'), to_date('2018-06-02','yyyy-mm-dd'), 1);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 2, to_date('2018-01-20','yyyy-mm-dd'), to_date('2018-03-27','yyyy-mm-dd'), 2);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 9, to_date('2018-03-28','yyyy-mm-dd'), to_date('2018-04-10','yyyy-mm-dd'), 2);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2018-04-11','yyyy-mm-dd'), to_date('2018-05-07','yyyy-mm-dd'), 2);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2018-05-08','yyyy-mm-dd'), to_date('2018-05-27','yyyy-mm-dd'), 2);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 18, to_date('2018-05-28','yyyy-mm-dd'), to_date('2018-06-10','yyyy-mm-dd'), 2);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 24, to_date('2018-06-11','yyyy-mm-dd'), to_date('2018-06-22','yyyy-mm-dd'), 2);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 3, to_date('2018-02-15','yyyy-mm-dd'), to_date('2018-03-27','yyyy-mm-dd'), 3);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 10, to_date('2018-03-28','yyyy-mm-dd'), to_date('2018-04-13','yyyy-mm-dd'), 3);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2018-04-14','yyyy-mm-dd'), to_date('2018-05-09','yyyy-mm-dd'), 3);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2018-05-10','yyyy-mm-dd'), to_date('2018-05-29','yyyy-mm-dd'), 3);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 19, to_date('2018-05-30','yyyy-mm-dd'), to_date('2018-06-13','yyyy-mm-dd'), 3);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 25, to_date('2018-06-14','yyyy-mm-dd'), to_date('2018-07-03','yyyy-mm-dd'), 3);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 4, to_date('2018-03-05','yyyy-mm-dd'), to_date('2018-03-19','yyyy-mm-dd'), 4);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 11, to_date('2018-03-20','yyyy-mm-dd'), to_date('2018-04-05','yyyy-mm-dd'), 4);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2018-04-06','yyyy-mm-dd'), to_date('2018-05-02','yyyy-mm-dd'), 4);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2018-05-03','yyyy-mm-dd'), to_date('2018-05-31','yyyy-mm-dd'), 4);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 21, to_date('2018-06-01','yyyy-mm-dd'), to_date('2018-06-12','yyyy-mm-dd'), 4);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 32, to_date('2018-06-13','yyyy-mm-dd'), to_date('2018-07-23','yyyy-mm-dd'), 4);
+
+
+
+
+---
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 5, to_date('2018-03-30','yyyy-mm-dd'), to_date('2018-06-03','yyyy-mm-dd'), 5);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 12, to_date('2018-06-04','yyyy-mm-dd'), to_date('2018-07-04','yyyy-mm-dd'), 5);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2018-07-05','yyyy-mm-dd'), to_date('2018-07-30','yyyy-mm-dd'), 5);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2018-07-31','yyyy-mm-dd'), to_date('2018-08-19','yyyy-mm-dd'), 5);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 22, to_date('2018-08-20','yyyy-mm-dd'), to_date('2018-09-03','yyyy-mm-dd'), 5);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 33, to_date('2018-09-04','yyyy-mm-dd'), to_date('2018-09-18','yyyy-mm-dd'), 5);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 6, to_date('2018-04-07','yyyy-mm-dd'), to_date('2018-04-21','yyyy-mm-dd'), 6);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 8, to_date('2018-04-22','yyyy-mm-dd'), to_date('2018-05-08','yyyy-mm-dd'), 6);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2018-05-09','yyyy-mm-dd'), to_date('2018-06-04','yyyy-mm-dd'), 6);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2018-06-05','yyyy-mm-dd'), to_date('2018-07-03','yyyy-mm-dd'), 6);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 20, to_date('2018-07-04','yyyy-mm-dd'), to_date('2018-07-18','yyyy-mm-dd'), 6);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 24, to_date('2018-07-19','yyyy-mm-dd'), to_date('2018-07-30','yyyy-mm-dd'), 6);
+
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 7, to_date('2018-06-05','yyyy-mm-dd'), to_date('2018-07-05','yyyy-mm-dd'), 7);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 12, to_date('2018-07-06','yyyy-mm-dd'), to_date('2018-08-05','yyyy-mm-dd'), 7);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2018-08-06','yyyy-mm-dd'), to_date('2018-09-01','yyyy-mm-dd'), 7);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2018-09-02','yyyy-mm-dd'), to_date('2018-09-21','yyyy-mm-dd'), 7);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 19, to_date('2018-09-22','yyyy-mm-dd'), to_date('2018-10-06','yyyy-mm-dd'), 7);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 34, to_date('2018-10-07','yyyy-mm-dd'), to_date('2018-10-20','yyyy-mm-dd'), 7);
+
+
+
+
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 3, to_date('2018-06-30','yyyy-mm-dd'), to_date('2018-08-09','yyyy-mm-dd'), 8);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 9, to_date('2018-08-10','yyyy-mm-dd'), to_date('2018-08-23','yyyy-mm-dd'), 8);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2018-08-24','yyyy-mm-dd'), to_date('2018-09-18','yyyy-mm-dd'), 8);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2018-09-19','yyyy-mm-dd'), to_date('2018-10-17','yyyy-mm-dd'), 8);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 21, to_date('2018-10-18','yyyy-mm-dd'), to_date('2018-10-29','yyyy-mm-dd'), 8);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 34, to_date('2018-10-30','yyyy-mm-dd'), to_date('2018-11-12','yyyy-mm-dd'), 8);
+
+
+
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 3, to_date('2018-07-15','yyyy-mm-dd'), to_date('2018-08-24','yyyy-mm-dd'), 9);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 12, to_date('2018-08-25','yyyy-mm-dd'), to_date('2018-09-24','yyyy-mm-dd'), 9);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2018-09-25','yyyy-mm-dd'), to_date('2018-10-21','yyyy-mm-dd'), 9);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2018-10-22','yyyy-mm-dd'), to_date('2018-11-19','yyyy-mm-dd'), 9);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 18, to_date('2018-11-20','yyyy-mm-dd'), to_date('2018-12-03','yyyy-mm-dd'), 9);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 25, to_date('2018-12-04','yyyy-mm-dd'), to_date('2018-12-22','yyyy-mm-dd'), 9);
+
+
+-----------
+
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 5, to_date('2018-08-01','yyyy-mm-dd'), to_date('2018-10-05','yyyy-mm-dd'), 10);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 11, to_date('2018-10-06','yyyy-mm-dd'), to_date('2018-10-22','yyyy-mm-dd'), 10);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2018-10-23','yyyy-mm-dd'), to_date('2018-11-17','yyyy-mm-dd'), 10);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2018-11-18','yyyy-mm-dd'), to_date('2018-12-07','yyyy-mm-dd'), 10);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 21, to_date('2018-12-08','yyyy-mm-dd'), to_date('2018-12-19','yyyy-mm-dd'), 10);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 33, to_date('2018-12-20','yyyy-mm-dd'), to_date('2019-01-04','yyyy-mm-dd'), 10);
+
+
+
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 1, to_date('2018-12-30','yyyy-mm-dd'), to_date('2019-01-24','yyyy-mm-dd'), 11);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 8, to_date('2019-01-25','yyyy-mm-dd'), to_date('2019-02-10','yyyy-mm-dd'), 11);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2019-02-11','yyyy-mm-dd'), to_date('2019-03-08','yyyy-mm-dd'), 11);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2019-03-09','yyyy-mm-dd'), to_date('2019-04-06','yyyy-mm-dd'), 11);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 17, to_date('2019-04-07','yyyy-mm-dd'), to_date('2019-04-26','yyyy-mm-dd'), 11);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 23, to_date('2019-04-27','yyyy-mm-dd'), to_date('2019-05-22','yyyy-mm-dd'), 11);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 2, to_date('2019-01-15','yyyy-mm-dd'), to_date('2019-03-22','yyyy-mm-dd'), 12);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 9, to_date('2019-03-23','yyyy-mm-dd'), to_date('2019-04-05','yyyy-mm-dd'), 12);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2019-04-06','yyyy-mm-dd'), to_date('2019-05-02','yyyy-mm-dd'), 12);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2019-05-03','yyyy-mm-dd'), to_date('2019-05-22','yyyy-mm-dd'), 12);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 18, to_date('2019-05-23','yyyy-mm-dd'), to_date('2019-06-05','yyyy-mm-dd'), 12);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 24, to_date('2019-06-06','yyyy-mm-dd'), to_date('2019-06-17','yyyy-mm-dd'), 12);
+
+
+
+
+--------------------------------------
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 1, to_date('2020-01-20','yyyy-mm-dd'), to_date('2020-02-14','yyyy-mm-dd'), 13);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 8, to_date('2020-02-15','yyyy-mm-dd'), to_date('2020-03-02','yyyy-mm-dd'), 13);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2020-03-03','yyyy-mm-dd'), to_date('2020-03-28','yyyy-mm-dd'), 13);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2020-03-29','yyyy-mm-dd'), to_date('2020-04-26','yyyy-mm-dd'), 13);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 17, to_date('2020-04-27','yyyy-mm-dd'), to_date('2020-05-16','yyyy-mm-dd'), 13);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 23, to_date('2020-05-17','yyyy-mm-dd'), to_date('2020-06-11','yyyy-mm-dd'), 13);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 2, to_date('2020-02-16','yyyy-mm-dd'), to_date('2020-04-22','yyyy-mm-dd'), 14);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 9, to_date('2020-04-23','yyyy-mm-dd'), to_date('2020-05-06','yyyy-mm-dd'), 14);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2020-05-07','yyyy-mm-dd'), to_date('2020-06-02','yyyy-mm-dd'), 14);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2020-06-03','yyyy-mm-dd'), to_date('2020-06-22','yyyy-mm-dd'), 14);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 18, to_date('2020-06-23','yyyy-mm-dd'), to_date('2020-07-06','yyyy-mm-dd'), 14);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 24, to_date('2020-07-07','yyyy-mm-dd'), to_date('2020-07-18','yyyy-mm-dd'), 14);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 3, to_date('2020-03-19','yyyy-mm-dd'), to_date('2020-04-28','yyyy-mm-dd'), 15);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 10, to_date('2020-04-29','yyyy-mm-dd'), to_date('2020-05-15','yyyy-mm-dd'), 15);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2020-05-16','yyyy-mm-dd'), to_date('2020-06-10','yyyy-mm-dd'), 15);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2020-06-11','yyyy-mm-dd'), to_date('2020-06-30','yyyy-mm-dd'), 15);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 19, to_date('2020-07-01','yyyy-mm-dd'), to_date('2020-07-15','yyyy-mm-dd'), 15);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 25, to_date('2020-07-16','yyyy-mm-dd'), to_date('2020-08-03','yyyy-mm-dd'), 15);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 4, to_date('2020-04-20','yyyy-mm-dd'), to_date('2020-05-04','yyyy-mm-dd'), 16);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 11, to_date('2020-05-05','yyyy-mm-dd'), to_date('2020-05-21','yyyy-mm-dd'), 16);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2020-05-22','yyyy-mm-dd'), to_date('2020-06-17','yyyy-mm-dd'), 16);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2020-06-18','yyyy-mm-dd'), to_date('2020-07-16','yyyy-mm-dd'), 16);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 21, to_date('2020-07-17','yyyy-mm-dd'), to_date('2020-07-28','yyyy-mm-dd'), 16);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 32, to_date('2020-07-29','yyyy-mm-dd'), to_date('2020-09-07','yyyy-mm-dd'), 16);
+
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 5, to_date('2020-05-01','yyyy-mm-dd'), to_date('2020-07-05','yyyy-mm-dd'), 17);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 12, to_date('2020-07-06','yyyy-mm-dd'), to_date('2020-08-05','yyyy-mm-dd'), 17);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 13, to_date('2020-08-06','yyyy-mm-dd'), to_date('2020-08-31','yyyy-mm-dd'), 17);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 16, to_date('2020-09-01','yyyy-mm-dd'), to_date('2020-09-20','yyyy-mm-dd'), 17);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 22, to_date('2020-09-21','yyyy-mm-dd'), to_date('2020-10-05','yyyy-mm-dd'), 17);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 33, to_date('2020-10-06','yyyy-mm-dd'), to_date('2020-10-20','yyyy-mm-dd'), 17);
+
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 6, to_date('2020-05-29','yyyy-mm-dd'), to_date('2020-06-12','yyyy-mm-dd'), 18);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 8, to_date('2020-06-13','yyyy-mm-dd'), to_date('2020-06-29','yyyy-mm-dd'), 18);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 14, to_date('2020-06-30','yyyy-mm-dd'), to_date('2020-07-26','yyyy-mm-dd'), 18);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 15, to_date('2020-07-27','yyyy-mm-dd'), to_date('2020-08-24','yyyy-mm-dd'), 18);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 20, to_date('2020-08-25','yyyy-mm-dd'), to_date('2020-09-08','yyyy-mm-dd'), 18);
+insert into tblSubjectSchedule (subjectSchedule_seq, subject_seq, startDate, endDate, openCourse_seq)
+			values (subjectSchedule_seq.nextVal, 24, to_date('2020-09-09','yyyy-mm-dd'), to_date('2020-09-20','yyyy-mm-dd'), 18);

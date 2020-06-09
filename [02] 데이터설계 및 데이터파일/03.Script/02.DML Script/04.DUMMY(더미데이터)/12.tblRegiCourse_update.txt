@@ -1,0 +1,15 @@
+tblRegiCourse
+insert 이후 update 해야하는 구문.
+
+select * from tblRegiCourse where openCourse_Seq = 13;
+
+update tblRegiCourse set finalDate = to_date('20200611','yyyymmdd'), finalState = '수료', state = '완료',asState = '취업',openCourse_seq = 13
+where regiCourse_seq in (363,365,370,373,377,379,380,383,385,387,388,390,397,400,402,403,404,406,410,415,419,428,436,458,469,470,471,472,473,474);
+
+update tblRegiCourse set finalState = '탈락',finalDate = null, state = '취소', asState = '미취업'
+where regiCourse_Seq in (400,436);
+
+update tblRegiCourse set asState = '미취업'
+where regiCourse_Seq in (370,373,406,410,415);
+
+commit;

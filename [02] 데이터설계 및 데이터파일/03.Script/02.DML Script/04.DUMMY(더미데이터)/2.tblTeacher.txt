@@ -1,0 +1,10 @@
+insert into tblTeacher values(teacher_seq.nextval,'이정웅','850815-1105815', '010-2123-2892');
+insert into tblTeacher values(teacher_seq.nextval,'최예현','840515-1237435', '010-2349-1989');
+insert into tblTeacher values(teacher_seq.nextval,'강재지','720923-2767456', '010-5498-1056');
+insert into tblTeacher values(teacher_seq.nextval,'강예우','760816-1508017', '010-8547-8978');
+insert into tblTeacher values(teacher_seq.nextval,'김재웅','770312-2544126', '010-2321-1564');
+insert into tblTeacher values(teacher_seq.nextval,'유정원','790909-2975528', '010-5798-7777');
+insert into tblTeacher values(teacher_seq.nextval,'박재정','890912-2792693', '010-5246-5264');
+insert into tblTeacher values(teacher_seq.nextval,'전규현','841212-2391914', '010-5646-8798');
+insert into tblTeacher values(teacher_seq.nextval,'김대경','810101-3646883', '010-6547-2385');
+insert into tblTeacher values(teacher_seq.nextval,'유찬원','880808-1539177', '010-5264-5647');

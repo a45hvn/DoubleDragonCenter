@@ -1,0 +1,116 @@
+create table tblInterView
+(
+    interView_seq number primary key not null,
+    interviewDate date not null,
+    interviewresult varchar2(15) not null,
+    regicourse_seq number
+    
+);
+
+drop table tblinterview;
+
+create sequence interview_seq;
+
+drop sequence interview_seq;
+
+
+INSERT INTO tblInterView values (1, '2020-03-01', '불합격', null);
+INSERT INTO tblInterView values (2, '2020-03-02', '불합격', null);
+INSERT INTO tblInterView values (3, '2020-03-02', '합격', null);
+INSERT INTO tblInterView values (4, '2020-03-03', '합격', null);
+INSERT INTO tblInterView values (5, '2020-03-03', '불합격', null);
+INSERT INTO tblInterView values (6, '2020-03-03', '불합격', null);
+INSERT INTO tblInterView values (7, '2020-03-03', '합격', null);
+INSERT INTO tblInterView values (8, '2020-03-04', '합격', null);
+INSERT INTO tblInterView values (9, '2020-03-04', '불합격', null);
+INSERT INTO tblInterView values (10, '2020-03-05', '불합격', null);
+INSERT INTO tblInterView values (11, '2020-03-05', '불합격', null);
+INSERT INTO tblInterView values (12, '2020-03-06', '합격', null);
+INSERT INTO tblInterView values (13, '2020-03-07', '불합격', null);
+INSERT INTO tblInterView values (14, '2020-03-07', '합격', null);
+INSERT INTO tblInterView values (15, '2020-03-08', '합격', null);
+INSERT INTO tblInterView values (16, '2020-03-08', '불합격', null);
+INSERT INTO tblInterView values (17, '2020-03-09', '불합격', null);
+INSERT INTO tblInterView values (18, '2020-03-10', '불합격', null);
+INSERT INTO tblInterView values (19, '2020-03-11', '불합격', null);
+INSERT INTO tblInterView values (20, '2020-03-11', '합격', null);
+INSERT INTO tblInterView values (21, '2020-03-12', '합격', null);
+INSERT INTO tblInterView values (22, '2020-03-13', '합격', null);
+INSERT INTO tblInterView values (23, '2020-03-13', '불합격', null);
+INSERT INTO tblInterView values (24, '2020-03-13', '합격', null);
+INSERT INTO tblInterView values (25, '2020-03-14', '불합격', null);
+INSERT INTO tblInterView values (26, '2020-03-15', '불합격', null);
+INSERT INTO tblInterView values (27, '2020-03-16', '합격', null);
+INSERT INTO tblInterView values (28, '2020-03-18', '합격', null);
+INSERT INTO tblInterView values (29, '2020-03-21', '합격', null);
+INSERT INTO tblInterView values (30, '2020-03-22', '불합격', null);
+INSERT INTO tblInterView values (31, '2020-03-22', '합격', null);
+INSERT INTO tblInterView values (32, '2020-03-22', '불합격', null);
+INSERT INTO tblInterView values (33, '2020-03-23', '합격', null);
+INSERT INTO tblInterView values (34, '2020-03-23', '불합격', null);
+INSERT INTO tblInterView values (35, '2020-03-24', '합격', null);
+INSERT INTO tblInterView values (36, '2020-03-25', '합격', null);
+INSERT INTO tblInterView values (37, '2020-03-29', '합격', null);
+INSERT INTO tblInterView values (38, '2020-03-29', '합격', null);
+INSERT INTO tblInterView values (39, '2020-03-29', '불합격', null);
+INSERT INTO tblInterView values (40, '2020-03-30', '합격', null);
+INSERT INTO tblInterView values (41, '2020-03-31', '합격', null);
+INSERT INTO tblInterView values (42, '2020-04-01', '불합격', null);
+INSERT INTO tblInterView values (43, '2020-04-01', '불합격', null);
+INSERT INTO tblInterView values (44, '2020-04-02', '합격', null);
+INSERT INTO tblInterView values (45, '2020-04-02', '불합격', null);
+INSERT INTO tblInterView values (46, '2020-04-03', '불합격', null);
+INSERT INTO tblInterView values (47, '2020-04-04', '불합격', null);
+INSERT INTO tblInterView values (48, '2020-04-05', '불합격', null);
+INSERT INTO tblInterView values (49, '2020-04-05', '합격', null);
+INSERT INTO tblInterView values (50, '2020-04-06', '불합격', null);
+INSERT INTO tblInterView values (51, '2020-04-06', '합격', null);
+INSERT INTO tblInterView values (52, '2020-04-07', '불합격', null);
+INSERT INTO tblInterView values (53, '2020-04-07', '합격', null);
+INSERT INTO tblInterView values (54, '2020-04-07', '불합격', null);
+INSERT INTO tblInterView values (55, '2020-04-08', '불합격', null);
+INSERT INTO tblInterView values (56, '2020-04-08', '불합격', null);
+INSERT INTO tblInterView values (57, '2020-04-08', '불합격', null);
+INSERT INTO tblInterView values (58, '2020-04-11', '불합격', null);
+INSERT INTO tblInterView values (59, '2020-04-12', '불합격', null);
+INSERT INTO tblInterView values (60, '2020-04-15', '불합격', null);
+INSERT INTO tblInterView values (61, '2020-04-15', '합격', null);
+INSERT INTO tblInterView values (62, '2020-04-15', '불합격', null);
+INSERT INTO tblInterView values (63, '2020-04-15', '합격', null);
+INSERT INTO tblInterView values (64, '2020-04-15', '합격', null);
+INSERT INTO tblInterView values (65, '2020-04-16', '불합격', null);
+INSERT INTO tblInterView values (66, '2020-04-16', '불합격', null);
+INSERT INTO tblInterView values (67, '2020-04-17', '합격', null);
+INSERT INTO tblInterView values (68, '2020-04-17', '불합격', null);
+INSERT INTO tblInterView values (69, '2020-04-19', '불합격', null);
+INSERT INTO tblInterView values (70, '2020-04-21', '불합격', null);
+INSERT INTO tblInterView values (71, '2020-04-21', '합격', null);
+INSERT INTO tblInterView values (72, '2020-04-23', '불합격', null);
+INSERT INTO tblInterView values (73, '2020-04-27', '합격', null);
+INSERT INTO tblInterView values (74, '2020-04-27', '불합격', null);
+INSERT INTO tblInterView values (75, '2020-04-28', '합격', null);
+INSERT INTO tblInterView values (76, '2020-04-29', '합격', null);
+INSERT INTO tblInterView values (77, '2020-04-30', '합격', null);
+INSERT INTO tblInterView values (78, '2020-04-30', '불합격', null);
+INSERT INTO tblInterView values (79, '2020-05-03', '불합격', null);
+INSERT INTO tblInterView values (80, '2020-05-04', '합격', null);
+INSERT INTO tblInterView values (81, '2020-05-04', '합격', null);
+INSERT INTO tblInterView values (82, '2020-05-05', '합격', null);
+INSERT INTO tblInterView values (83, '2020-05-10', '합격', null);
+INSERT INTO tblInterView values (84, '2020-05-10', '불합격', null);
+INSERT INTO tblInterView values (85, '2020-05-11', '합격', null);
+INSERT INTO tblInterView values (86, '2020-05-14', '합격', null);
+INSERT INTO tblInterView values (87, '2020-05-15', '합격', null);
+INSERT INTO tblInterView values (88, '2020-05-15', '합격', null);
+INSERT INTO tblInterView values (89, '2020-05-16', '불합격', null);
+INSERT INTO tblInterView values (90, '2020-05-16', '불합격', null);
+INSERT INTO tblInterView values (91, '2020-05-17', '합격', null);
+INSERT INTO tblInterView values (92, '2020-05-19', '합격', null);
+INSERT INTO tblInterView values (93, '2020-05-22', '불합격', null);
+INSERT INTO tblInterView values (94, '2020-05-22', '불합격', null);
+INSERT INTO tblInterView values (95, '2020-05-23', '불합격', null);
+INSERT INTO tblInterView values (96, '2020-05-23', '불합격', null);
+INSERT INTO tblInterView values (97, '2020-05-24', '불합격', null);
+INSERT INTO tblInterView values (98, '2020-05-24', '합격', null);
+INSERT INTO tblInterView values (99, '2020-05-26', '불합격', null);
+INSERT INTO tblInterView values (100, '2020-05-26', '불합격', null);

@@ -1,0 +1,83 @@
+
+
+
+----** insert에 마지막 빈칸은 과정번호를 아직 몰라서 놔뒀어요!
+
+
+CREATE TABLE tblItem
+(
+	item_seq number primary key,
+	name varchar2(12) not null,
+	itemqty number not null,
+    room_seq number not null references tblRoom(room_seq),
+    courseList_seq number not null references tblCourseList(courseList_seq)
+);
+
+CREATE SEQUENCE item_seq;
+
+DROP TABLE tblItem;
+DROP SEQUENCE item_seq;
+
+insert into tblItem values (item_seq.nextval, '마우스',35,1, );
+insert into tblItem values (item_seq.nextval, '키보드',30,1, );
+insert into tblItem values (item_seq.nextval, '모니터',28,1, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',27,1, );
+insert into tblItem values (item_seq.nextval, '에어컨',2,1, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',2,1, );
+insert into tblItem values (item_seq.nextval, '보드마커',5,1, );
+insert into tblItem values (item_seq.nextval, '책상',30,1, );
+insert into tblItem values (item_seq.nextval, '의자',30,1, );
+
+insert into tblItem values (item_seq.nextval, '마우스',33,2, );
+insert into tblItem values (item_seq.nextval, '키보드',30,2, );
+insert into tblItem values (item_seq.nextval, '모니터',30,2, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',30,2, );
+insert into tblItem values (item_seq.nextval, '에어컨',2,1, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',2,2, );
+insert into tblItem values (item_seq.nextval, '보드마커',5,2, );
+insert into tblItem values (item_seq.nextval, '책상',30,2, );
+insert into tblItem values (item_seq.nextval, '의자',30,2, );
+
+insert into tblItem values (item_seq.nextval, '마우스',31,3, );
+insert into tblItem values (item_seq.nextval, '키보드',30,3, );
+insert into tblItem values (item_seq.nextval, '모니터',30,3, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',28,3, );
+insert into tblItem values (item_seq.nextval, '에어컨',2,3, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',1,3, );
+insert into tblItem values (item_seq.nextval, '보드마커',6,3, );
+insert into tblItem values (item_seq.nextval, '책상',29,3, );
+insert into tblItem values (item_seq.nextval, '의자',30,3, );
+
+insert into tblItem values (item_seq.nextval, '마우스',28,4, );
+insert into tblItem values (item_seq.nextval, '키보드',27,4, );
+insert into tblItem values (item_seq.nextval, '모니터',28,4, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',26,4, );
+insert into tblItem values (item_seq.nextval, '에어컨',2,4, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',2,4, );
+insert into tblItem values (item_seq.nextval, '보드마커',0,4, );
+insert into tblItem values (item_seq.nextval, '책상',29,4, );
+insert into tblItem values (item_seq.nextval, '의자',29,4, );
+
+insert into tblItem values (item_seq.nextval, '마우스',25,5, );
+insert into tblItem values (item_seq.nextval, '키보드',27,5, );
+insert into tblItem values (item_seq.nextval, '모니터',27,5, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',26,5, );
+insert into tblItem values (item_seq.nextval, '에어컨',2,5, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',1,5, );
+insert into tblItem values (item_seq.nextval, '보드마커',5,5, );
+insert into tblItem values (item_seq.nextval, '책상',30,5, );
+insert into tblItem values (item_seq.nextval, '의자',30,5, );
+
+insert into tblItem values (item_seq.nextval, '마우스',30,6, );
+insert into tblItem values (item_seq.nextval, '키보드',24,6, );
+insert into tblItem values (item_seq.nextval, '모니터',24,6, );
+insert into tblItem values (item_seq.nextval, '컴퓨터 본체',27,6, );
+insert into tblItem values (item_seq.nextval, '에어컨',1,6, );
+insert into tblItem values (item_seq.nextval, '보드 지우개',3,6, );
+insert into tblItem values (item_seq.nextval, '보드마커',3,6, );
+insert into tblItem values (item_seq.nextval, '책상',25,6, );
+insert into tblItem values (item_seq.nextval, '의자',25,6, );
+
+
+
+select * from tblItem;

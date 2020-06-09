@@ -1,0 +1,21 @@
+CREATE TABLE tblRoom
+(
+	room_seq number primary key,
+	name varchar2(12) not null,
+	count number not null
+)
+
+CREATE SEQUENCE room_seq;
+
+insert into tblRoom values (room_seq.nextval,'강의실 1',30);
+insert into tblRoom values (room_seq.nextval,'강의실 2',30);
+insert into tblRoom values (room_seq.nextval,'강의실 3',30);
+insert into tblRoom values (room_seq.nextval,'강의실 4',26);
+insert into tblRoom values (room_seq.nextval,'강의실 5',26);
+insert into tblRoom values (room_seq.nextval,'강의실 6',26);
+
+
+select * from tblRoom;
+
+drop table tblroom;
+drop sequence room_seq;

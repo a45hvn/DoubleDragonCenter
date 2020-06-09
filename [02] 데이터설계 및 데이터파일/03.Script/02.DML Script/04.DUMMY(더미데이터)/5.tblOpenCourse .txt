@@ -1,0 +1,33 @@
+create table tblOpenCourse
+(
+    openCourse_seq number primary key not null,
+    courseList_seq number not null,
+    startDate date not null,
+    endDate date not null,
+    countStudent number not null,
+    room_seq number not null
+);
+
+create SEQUENCE openCourse_seq;
+
+drop table tblopencourse;
+drop sequence opencourse_seq;
+
+insert into tblOpenCourse values (openCourse_seq.nextVal,1, to_date('2018-01-10','yyyy-mm-dd'), to_date('2018-06-02','yyyy-mm-dd'),30,1);
+insert into tblOpenCourse values (openCourse_seq.nextVal,2,to_date('2018-01-20','yyyy-mm-dd'),to_date('2018-06-22','yyyy-mm-dd'),30,2);
+insert into tblOpenCourse values (openCourse_seq.nextVal,3,to_date('2018-02-15','yyyy-mm-dd'),to_date('2018-07-02','yyyy-mm-dd'),30,3);
+insert into tblOpenCourse values (openCourse_seq.nextVal,4,to_date('2018-03-05','yyyy-mm-dd'),to_date('2018-07-23','yyyy-mm-dd'),27,4);
+insert into tblOpenCourse values (openCourse_seq.nextVal,5,to_date('2018-03-30','yyyy-mm-dd'),to_date('2018-09-18','yyyy-mm-dd'),27,5);
+insert into tblOpenCourse values (openCourse_seq.nextVal,6,to_date('2018-04-07','yyyy-mm-dd'),to_date('2018-07-30','yyyy-mm-dd'),27,6);
+insert into tblOpenCourse values (openCourse_seq.nextVal,7,to_date('2018-06-05','yyyy-mm-dd'),to_date('2018-10-20','yyyy-mm-dd'),30,1);
+insert into tblOpenCourse values (openCourse_seq.nextVal,8,to_date('2018-06-30','yyyy-mm-dd'),to_date('2018-11-12','yyyy-mm-dd'),30,2);
+insert into tblOpenCourse values (openCourse_seq.nextVal,9,to_date('2018-07-15','yyyy-mm-dd'),to_date('2018-12-22','yyyy-mm-dd'),30,3);
+insert into tblOpenCourse values (openCourse_seq.nextVal,10,to_date('2018-08-01','yyyy-mm-dd'),to_date('2019-01-03','yyyy-mm-dd'),27,4);
+insert into tblOpenCourse values (openCourse_seq.nextVal,1,to_date('2018-12-30','yyyy-mm-dd'),to_date('2019-05-22','yyyy-mm-dd'),27,5);
+insert into tblOpenCourse values (openCourse_seq.nextVal,2,to_date('2019-01-15','yyyy-mm-dd'),to_date('2019-06-17','yyyy-mm-dd'),27,6);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,2, to_date('20200120','yymmdd'), to_date('20200611','yymmdd'), 30, 2);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,3, to_date('20200216','yymmdd'), to_date('20200718','yymmdd'), 30, 3);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,4, to_date('20200319','yymmdd'), to_date('20200803','yymmdd'), 27, 4);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,5, to_date('20200420','yymmdd'), to_date('20200907','yymmdd'), 27, 5);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,6, to_date('20200501','yymmdd'), to_date('20201020','yymmdd'), 27, 6);
+insert into tblOpenCourse values (OpenCourse_seq.nextval,1, to_date('20200529','yymmdd'), to_date('20200920','yymmdd'), 30, 1);

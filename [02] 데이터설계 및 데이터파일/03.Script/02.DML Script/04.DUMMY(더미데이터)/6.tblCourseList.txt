@@ -1,0 +1,10 @@
+insert into tblCourseList values (courseList_seq.nextVal,'자바(JAVA)를 활용한 풀스택 융합 SW개발자 양성과정(K)');
+insert into tblCourseList values (courseList_seq.nextVal,'JAVA기반의 스마트 웹 앱콘텐츠 양성과정');
+insert into tblCourseList values (courseList_seq.nextVal,'Java와JavaScript library을 활용한 반응형');
+insert into tblCourseList values (courseList_seq.nextVal,'자바(JAVA)를 활용한 풀스택 융합 SW개발자 양성과정(D)');
+insert into tblCourseList values (courseList_seq.nextVal,'Java기반 멀티 플랫폼 SW개발자 양성 과정');
+insert into tblCourseList values (courseList_seq.nextVal,'자바(JAVA)를 활용한 풀스택 융합 SW개발자 양성과정(B)');
+insert into tblCourseList values (courseList_seq.nextVal,'자바와 파이썬 기반 멀티 웹 개발자 양성과정(B)');
+insert into tblCourseList values (courseList_seq.nextVal,'자바(JAVA)를 활용한 풀스택 융합 SW개발자 양성과정(E)');
+insert into tblCourseList values (courseList_seq.nextVal,'Java와Python을 활용한 웹 애플리케이션 개발자 양성과정');
+insert into tblCourseList values (courseList_seq.nextVal,'자바 기반 모바일 융합SW 개발자 양성 과정');

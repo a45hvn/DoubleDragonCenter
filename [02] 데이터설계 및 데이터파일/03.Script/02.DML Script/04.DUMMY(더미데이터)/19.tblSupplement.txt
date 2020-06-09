@@ -1,0 +1,137 @@
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-02-12', 'yyyy-mm-dd'), 301);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-02-12', 'yyyy-mm-dd'), 303);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-02-12', 'yyyy-mm-dd'), 307);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-02-12', 'yyyy-mm-dd'), 308);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-02-12', 'yyyy-mm-dd'), 310);
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-03-24', 'yyyy-mm-dd'), 313);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-03-24', 'yyyy-mm-dd'), 321);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-03-24', 'yyyy-mm-dd'), 324);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-03-24', 'yyyy-mm-dd'), 325);
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-04-07', 'yyyy-mm-dd'), 326);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-04-07', 'yyyy-mm-dd'), 327);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-04-07', 'yyyy-mm-dd'), 330);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-04-07', 'yyyy-mm-dd'), 333);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-04-07', 'yyyy-mm-dd'), 334);
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-05-24', 'yyyy-mm-dd'), 340);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-05-24', 'yyyy-mm-dd'), 342);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-05-24', 'yyyy-mm-dd'), 344);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-05-24', 'yyyy-mm-dd'), 350);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-05-24', 'yyyy-mm-dd'), 352);
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-06-07', 'yyyy-mm-dd'), 359);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-06-07', 'yyyy-mm-dd'), 361);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-06-07', 'yyyy-mm-dd'), 363);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-06-07', 'yyyy-mm-dd'), 366);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2019-06-07', 'yyyy-mm-dd'), 368);
+
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-02-16', 'yyyy-mm-dd'), 510);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-02-16', 'yyyy-mm-dd'), 511);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-02-16', 'yyyy-mm-dd'), 515);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-02-16', 'yyyy-mm-dd'), 517);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 526);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 528);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 530);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 536);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 539);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-04', 'yyyy-mm-dd'), 544);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-30', 'yyyy-mm-dd'), 547);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-30', 'yyyy-mm-dd'), 551);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-03-30', 'yyyy-mm-dd'), 556);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-24', 'yyyy-mm-dd'), 571);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-24', 'yyyy-mm-dd'), 572);
+
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-28', 'yyyy-mm-dd'), 582);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-28', 'yyyy-mm-dd'), 587);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-28', 'yyyy-mm-dd'), 588);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-28', 'yyyy-mm-dd'), 592);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-04-28', 'yyyy-mm-dd'), 594);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-08', 'yyyy-mm-dd'), 601);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-08', 'yyyy-mm-dd'), 603);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-08', 'yyyy-mm-dd'), 604);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-08', 'yyyy-mm-dd'), 606);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-08', 'yyyy-mm-dd'), 609);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-18', 'yyyy-mm-dd'), 619);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-18', 'yyyy-mm-dd'), 621);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-18', 'yyyy-mm-dd'), 626);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-05-18', 'yyyy-mm-dd'), 627);
+
+
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-06-04', 'yyyy-mm-dd'), 662);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-06-04', 'yyyy-mm-dd'), 663);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-06-04', 'yyyy-mm-dd'), 665);
+insert into tblSupplement (supplement_seq, suppleDate, score_seq) 
+	values (supplement_seq.nextVal, to_date('2020-06-04', 'yyyy-mm-dd'), 667);
+
