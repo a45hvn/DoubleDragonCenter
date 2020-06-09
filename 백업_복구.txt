@@ -1,0 +1,6 @@
+D:\>exp userid=hr/java1234 file='D:\hr.dmp' 
+C:\>imp userid=hr/java1234 file='D:\hr.dmp' 
+
+
+create user hr identified by java1234;
+grant connect,resource,create view to hr;
