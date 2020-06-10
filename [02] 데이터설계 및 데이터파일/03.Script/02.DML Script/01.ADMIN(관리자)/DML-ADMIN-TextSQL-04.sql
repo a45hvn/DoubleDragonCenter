@@ -1,5 +1,5 @@
--- 1. °ü¸®ÀÚ ? 7. Áö¿ø°ü¸® ¹× Á¶È¸ - a. Áö¿ø³»¿ª - a. ÀÏ°ı Á¶È¸ ¹× ¼öÁ¤
--- ¹øÈ£ ÇĞ»ı¸í ±³»ç¸í °úÁ¤¸í ¿¬¶ôÃ³ Ãâ¼®·ü Áö¿øÀÏ½Ã »ó´ã¿äÃ» ³»¿ë(Ãâ¼®·üÀÌ¸é Á¤»ó¸¸ Ãë±ŞÇÏ´ÂÁö? Á¶Åğ³ª ÀÌ·±°Ç »©°í? ¾ÆÁ÷ ¾ÈÁ¤ÇÔ, Ãâ¼®·ü »©´Â°É ±ÇÀå)
+-- 1. ê´€ë¦¬ì ? 7. ì§€ì›ê´€ë¦¬ ë° ì¡°íšŒ - a. ì§€ì›ë‚´ì—­ - a. ì¼ê´„ ì¡°íšŒ ë° ìˆ˜ì •
+-- ë²ˆí˜¸ í•™ìƒëª… êµì‚¬ëª… ê³¼ì •ëª… ì—°ë½ì²˜ ì¶œì„ë¥  ì§€ì›ì¼ì‹œ ìƒë‹´ìš”ì²­ ë‚´ìš©(ì¶œì„ë¥ ì´ë©´ ì •ìƒë§Œ ì·¨ê¸‰í•˜ëŠ”ì§€? ì¡°í‡´ë‚˜ ì´ëŸ°ê±´ ë¹¼ê³ ? ì•„ì§ ì•ˆì •í•¨, ì¶œì„ë¥  ë¹¼ëŠ”ê±¸ ê¶Œì¥)
 SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as courselistName, stu.tel as studentTel,  Ass.asdate as callasDate, Ass.asService as callasService
     FROM tblAs ass
         INNER JOIN tblRegiCourse rc
@@ -16,27 +16,27 @@ SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as course
                                                     ON rc.student_seq = stu.student_seq;
 select * from tblsubjectrating;
 select *from tblattendance;
--- Áö¿ø¿äÃ» ¹øÈ£ ÀúÀå(¹è¿­)
+-- ì§€ì›ìš”ì²­ ë²ˆí˜¸ ì €ì¥(ë°°ì—´)
 SELECT as_seq FROM tblas;
 
--- ¼öÁ¤ÇÏ±â¿Í »èÁ¦ÇÏ±â´Â ÇØ´ç ¿äÃ»³¯Â¥°¡ ÇöÀç½Ã°£ ÀÌÀüÀº ºÒ°¡´É
-SELECT asDate FROM tblas WHERE as_seq = '¹è¿­[ÀÔ·ÂÇÑ¹øÈ£ -1]'; -- ¿äÃ»³¯Â¥
-SELECT sysdate FROM dual; -- ÇöÀç ³¯Â¥
+-- ìˆ˜ì •í•˜ê¸°ì™€ ì‚­ì œí•˜ê¸°ëŠ” í•´ë‹¹ ìš”ì²­ë‚ ì§œê°€ í˜„ì¬ì‹œê°„ ì´ì „ì€ ë¶ˆê°€ëŠ¥
+SELECT asDate FROM tblas WHERE as_seq = 'ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸ -1]'; -- ìš”ì²­ë‚ ì§œ
+SELECT sysdate FROM dual; -- í˜„ì¬ ë‚ ì§œ
 
--- ¼öÁ¤ÇÏ±â
-UPDATE tblas SET asDate = 'ÀÔ·ÂÇÑ ¿äÃ»³¯Â¥', asService = 'ÀÔ·ÂÇÑ ¿äÃ»³»¿ë'
-    WHERE as_seq = '¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+-- ìˆ˜ì •í•˜ê¸°
+UPDATE tblas SET asDate = 'ì…ë ¥í•œ ìš”ì²­ë‚ ì§œ', asService = 'ì…ë ¥í•œ ìš”ì²­ë‚´ìš©'
+    WHERE as_seq = 'ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 
--- »èÁ¦ÇÏ±â
-DELETE FROM tblas WHERE as_seq = '¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+-- ì‚­ì œí•˜ê¸°
+DELETE FROM tblas WHERE as_seq = 'ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 
 
 
--- 1. °ü¸®ÀÚ ? 7. Áö¿ø °ü¸® ¹× Á¶È¸ - a. Áö¿ø³»¿ª - b. ±³»çº° Á¶È¸ ¹× ¼öÁ¤ (53¹ø)
--- a. °³¼³°úÁ¤±â°£¹øÈ£(PK) ¹è¿­¿¡ ÀúÀå
+-- 1. ê´€ë¦¬ì ? 7. ì§€ì› ê´€ë¦¬ ë° ì¡°íšŒ - a. ì§€ì›ë‚´ì—­ - b. êµì‚¬ë³„ ì¡°íšŒ ë° ìˆ˜ì • (53ë²ˆ)
+-- a. ê°œì„¤ê³¼ì •ê¸°ê°„ë²ˆí˜¸(PK) ë°°ì—´ì— ì €ì¥
 SELECT openCourse_seq FROM tblOpenCourse;
 
--- b. Ãâ·Â±¸¹®
+-- b. ì¶œë ¥êµ¬ë¬¸
 SELECT rownum, cl.name as courselistName, oc.startDate || '~' || oc.endDate as coureseDuration, t.name as teacherName, r.Name as className
     FROM tblCourselist cl
         INNER JOIN tblOpenCourse oc
@@ -50,26 +50,26 @@ SELECT rownum, cl.name as courselistName, oc.startDate || '~' || oc.endDate as c
 
 select * from tblcourselist;
 
--- 1. °ü¸®ÀÚ ? 7. Áö¿ø°ü¸® ¹× Á¶È¸ - a. Áö¿ø³»¿ª - b. ±³»çº° Á¶È¸ ¹× ¼öÁ¤ ? 1.¼±ÅÃ(°³¼³°úÁ¤¹øÈ£PK°¡ ³Ñ¾î¿È)
--- ±³»çÀÌ¸§
+-- 1. ê´€ë¦¬ì ? 7. ì§€ì›ê´€ë¦¬ ë° ì¡°íšŒ - a. ì§€ì›ë‚´ì—­ - b. êµì‚¬ë³„ ì¡°íšŒ ë° ìˆ˜ì • ? 1.ì„ íƒ(ê°œì„¤ê³¼ì •ë²ˆí˜¸PKê°€ ë„˜ì–´ì˜´)
+-- êµì‚¬ì´ë¦„
 SELECT t.name as teacherName
     FROM tblTeacher t
         INNER JOIN tblTeacherCourse tc
             ON t.teacher_seq = tc.teacher_seq
                 INNER JOIN tblOpenCourse oc
                     ON tc.openCourse_seq = oc.openCourse_seq
-                        WHERE oc.openCourse_seq = '°³¼³°úÁ¤¹øÈ£PK°¡ ÀúÀåµÈ ¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+                        WHERE oc.openCourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸PKê°€ ì €ì¥ëœ ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 --                        WHERE oc.openCourse_seq = '1';
 
--- °úÁ¤¸í
+-- ê³¼ì •ëª…
 SELECT cl.name as courselistName
     FROM tblCourselist cl
         INNER JOIN tblOpenCourse oc
             ON cl.courselist_seq = oc.courselist_seq
-                WHERE oc.openCourse_seq = '°³¼³°úÁ¤¹øÈ£PK°¡ ÀúÀåµÈ ¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+                WHERE oc.openCourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸PKê°€ ì €ì¥ëœ ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 --                        WHERE oc.openCourse_seq = '1';                
 
--- ¹øÈ£, ÇĞ»ı¸í, ¿¬¶ôÃ³,  Áö¿øÀÏ, Áö¿ø³»¿ë
+-- ë²ˆí˜¸, í•™ìƒëª…, ì—°ë½ì²˜,  ì§€ì›ì¼, ì§€ì›ë‚´ìš©
 SELECT rownum, stu.name as studentName, stu.tel as studentTel, ass.asDate as callasDate, ass.asservice as callasservice, ass.aslist as callaslist
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
@@ -79,9 +79,9 @@ SELECT rownum, stu.name as studentName, stu.tel as studentTel, ass.asDate as cal
                         INNER JOIN tblOpenCourse oc
                             ON oc.openCourse_seq = rc.openCourse_seq
 --WHERE oc.openCourse_seq = '13';
-                                WHERE oc.openCourse_seq = '°³¼³°úÁ¤¹øÈ£PK°¡ ÀúÀåµÈ ¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+                                WHERE oc.openCourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸PKê°€ ì €ì¥ëœ ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 
--- Áö¿ø¹øÈ£(PK) ¹è¿­¿¡ ÀúÀå
+-- ì§€ì›ë²ˆí˜¸(PK) ë°°ì—´ì— ì €ì¥
 SELECT ass.as_seq as asNumber
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
@@ -91,43 +91,43 @@ SELECT ass.as_seq as asNumber
                         INNER JOIN tblOpenCourse oc
                             ON oc.openCourse_seq = rc.openCourse_seq
 --WHERE oc.openCourse_seq = '1';
-                                WHERE oc.openCourse_seq = '°³¼³°úÁ¤¹øÈ£PK°¡ ÀúÀåµÈ ¹è¿­[ÀÔ·ÂÇÑ¹øÈ£-1]';
+                                WHERE oc.openCourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸PKê°€ ì €ì¥ëœ ë°°ì—´[ì…ë ¥í•œë²ˆí˜¸-1]';
 
--- ¼öÁ¤ÇÏ±â
-UPDATE tblas SET asDate = 'ÀÔ·ÂÇÑ ¿äÃ»³¯Â¥', asservice = 'ÀÔ·ÂÇÑ ¿äÃ»³»¿ë'
-    WHERE as_seq = 'Áö¿ø¹øÈ£(PK) ¹è¿­[¼±ÅÃÇÑ¹øÈ£-1]';
+-- ìˆ˜ì •í•˜ê¸°
+UPDATE tblas SET asDate = 'ì…ë ¥í•œ ìš”ì²­ë‚ ì§œ', asservice = 'ì…ë ¥í•œ ìš”ì²­ë‚´ìš©'
+    WHERE as_seq = 'ì§€ì›ë²ˆí˜¸(PK) ë°°ì—´[ì„ íƒí•œë²ˆí˜¸-1]';
 
--- »èÁ¦ÇÏ±â
+-- ì‚­ì œí•˜ê¸°
 DELETE FROM tblas
-    WHERE as_seq = 'Áö¿ø¹øÈ£(PK) ¹è¿­[¼±ÅÃÇÑ¹øÈ£-1]';
+    WHERE as_seq = 'ì§€ì›ë²ˆí˜¸(PK) ë°°ì—´[ì„ íƒí•œë²ˆí˜¸-1]';
 
 
--- 1. °ü¸®ÀÚ ? 7. Áö¿ø °ü¸® ¹× Á¶È¸ - a. Áö¿ø ³»¿ª ? c. ÇĞ»ıº° Á¶È¸ ¹× ¼öÁ¤ - °Ë»ö
--- ÇĞ»ı¸í ÀÔ·Â¹ŞÀ½
--- ÇĞ»ı¸í ÁÖ¹Î¹øÈ£µŞÀÚ¸® ÀüÈ­¹øÈ£ µî·ÏÀÏ Áö¿ø(¿äÃ»)È½¼ö Áö¿øÈ½¼ö¶û ÇĞ»ı¹øÈ£ »©±â
+-- 1. ê´€ë¦¬ì ? 7. ì§€ì› ê´€ë¦¬ ë° ì¡°íšŒ - a. ì§€ì› ë‚´ì—­ ? c. í•™ìƒë³„ ì¡°íšŒ ë° ìˆ˜ì • - ê²€ìƒ‰
+-- í•™ìƒëª… ì…ë ¥ë°›ìŒ
+-- í•™ìƒëª… ì£¼ë¯¼ë²ˆí˜¸ë’·ìë¦¬ ì „í™”ë²ˆí˜¸ ë“±ë¡ì¼ ì§€ì›(ìš”ì²­)íšŸìˆ˜ ì§€ì›íšŸìˆ˜ë‘ í•™ìƒë²ˆí˜¸ ë¹¼ê¸°
 SELECT rownum, stu.name as studentName, stu.ssn as studentPw, stu.tel as studentTel, ass.asDate as callasDate
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
                 INNER JOIN tblAs ass
                     ON rc.regiCourse_seq = ass.regiCourse_seq
-                        WHERE stu.name = 'ÀÔ·ÂÇÑ ÀÌ¸§¸í';
+                        WHERE stu.name = 'ì…ë ¥í•œ ì´ë¦„ëª…';
                         
 select * from tblas;                        
 
--- Áö¿ø¹øÈ£(PK) ¹è¿­¿¡ ÀúÀåÇÏ±â
+-- ì§€ì›ë²ˆí˜¸(PK) ë°°ì—´ì— ì €ì¥í•˜ê¸°
 SELECT ass.as_seq as asNumber
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
                 INNER JOIN tblAs ass
                     ON rc.regiCourse_seq = ass.regiCourse_seq
-                        WHERE stu.name = 'ÀÔ·ÂÇÑ ÀÌ¸§¸í';
+                        WHERE stu.name = 'ì…ë ¥í•œ ì´ë¦„ëª…';
 
 
--- 1. °ü¸®ÀÚ ? 7. Áö¿ø °ü¸® ¹× Á¶È¸ - a. Áö¿ø ³»¿ª ? c. ÇĞ»ıº° Á¶È¸ ¹× ¼öÁ¤ ? °Ë»ö ? Á¶È¸ ¹× ¼öÁ¤
--- ÀÔ·ÂÇÑ ÇĞ»ı¸í Ãâ·Â
--- °úÁ¤¸í
+-- 1. ê´€ë¦¬ì ? 7. ì§€ì› ê´€ë¦¬ ë° ì¡°íšŒ - a. ì§€ì› ë‚´ì—­ ? c. í•™ìƒë³„ ì¡°íšŒ ë° ìˆ˜ì • ? ê²€ìƒ‰ ? ì¡°íšŒ ë° ìˆ˜ì •
+-- ì…ë ¥í•œ í•™ìƒëª… ì¶œë ¥
+-- ê³¼ì •ëª…
 SELECT cl.name as courselistName
     FROM tblCourselist cl
         INNER JOIN tblOpenCourse oc
@@ -136,9 +136,9 @@ SELECT cl.name as courselistName
                     ON oc.openCourse_seq = rc.openCourse_seq
                         INNER JOIN tblAs ass
                             ON rc.regiCourse_seq = ass.regiCourse_seq
-                                WHERE ass.consult_seq = '¹è¿­[ÀÔ·Â¹ŞÀº¹øÈ£-1]';
+                                WHERE ass.consult_seq = 'ë°°ì—´[ì…ë ¥ë°›ì€ë²ˆí˜¸-1]';
 
--- ³»¿ë Ãâ·Â, Ãâ¼®·üÀÌ¶û ÇĞ¹ø »©±â
+-- ë‚´ìš© ì¶œë ¥, ì¶œì„ë¥ ì´ë‘ í•™ë²ˆ ë¹¼ê¸°
 SELECT rownum, stu.name as studentName, stu.tel as studentTel,  ass.asDate as callasDate, ass.asservice as callasservice
     FROM tblAs ass
         INNER JOIN tblRegiCourse rc
@@ -149,15 +149,15 @@ SELECT rownum, stu.name as studentName, stu.tel as studentTel,  ass.asDate as ca
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblStudent stu
                                     ON stu.student_seq = rc.student_seq
-                                        WHERE ass.as_seq = '¹è¿­[ÀÔ·Â¹ŞÀº¹øÈ£-1]';
+                                        WHERE ass.as_seq = 'ë°°ì—´[ì…ë ¥ë°›ì€ë²ˆí˜¸-1]';
 
--- ¼öÁ¤ÇÏ±â(¿äÃ»¹øÈ£´Â »èÁ¦ÇÏ±â, ÀÌ¹Ì ¾Õ¿¡¼­ ¹Ş¾Æ¿ÔÀ½)
-UPDATE tblAs SET asDate = 'ÀÔ·Â¹ŞÀº ¿äÃ»³¯Â¥', asservice = 'ÀÔ·Â¹ŞÀº ¿äÃ»³»¿ë'
-    WHERE as_seq = '¹è¿­[ÀÔ·Â¹ŞÀº¹øÈ£-1]';
+-- ìˆ˜ì •í•˜ê¸°(ìš”ì²­ë²ˆí˜¸ëŠ” ì‚­ì œí•˜ê¸°, ì´ë¯¸ ì•ì—ì„œ ë°›ì•„ì™”ìŒ)
+UPDATE tblAs SET asDate = 'ì…ë ¥ë°›ì€ ìš”ì²­ë‚ ì§œ', asservice = 'ì…ë ¥ë°›ì€ ìš”ì²­ë‚´ìš©'
+    WHERE as_seq = 'ë°°ì—´[ì…ë ¥ë°›ì€ë²ˆí˜¸-1]';
 
--- »èÁ¦ÇÏ±â(¿äÃ»¹øÈ£´Â »èÁ¦ÇÏ±â, ÀÌ¹Ì ¾Õ¿¡¼­ ¹Ş¾Æ¿È
+-- ì‚­ì œí•˜ê¸°(ìš”ì²­ë²ˆí˜¸ëŠ” ì‚­ì œí•˜ê¸°, ì´ë¯¸ ì•ì—ì„œ ë°›ì•„ì˜´
 DELETE FROM tblAs
-    WHERE as_seq = '¹è¿­[ÀÔ·Â¹ŞÀº¹øÈ£-1]';
+    WHERE as_seq = 'ë°°ì—´[ì…ë ¥ë°›ì€ë²ˆí˜¸-1]';
     
     
 _

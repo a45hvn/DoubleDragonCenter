@@ -1,223 +1,146 @@
----------------------------------------------------------------------------------------------------------------------------
-1. ÇĞ»ıÀº ÇĞ»ı °èÁ¤À¸·Î ·Î±×ÀÎ ÇØ¾ßÇÑ´Ù	(400¹ø ±³À°»ı °ª ÀÓÀÇ·Î ³ÖÀ½)
-*** ÀÚ¹Ù º¯¼ö¿¡ °ª ÀúÀå
+--êµìœ¡ìƒ DML
+--01. í•™ìƒì€ í•™ìƒ ê³„ì •ìœ¼ë¡œ ë¡œê·¸ì¸ í•´ì•¼í•œë‹¤	(400ë²ˆ êµìœ¡ìƒ ê°’ ì„ì˜ë¡œ ë„£ìŒ)
+*** ìë°” ë³€ìˆ˜ì— ê°’ ì €ì¥
 ---------------------------------------------------------------------------------------------------------------------------
 select *
 from tblstudent
-where name = 'ÃÖ¹ÎÁ¤'  				 --ÀÚ¹Ù·Î ÀÌ¸§ ÀÔ·Â¹Ş±â
-    and substr(ssn,8,7) = '2598859'; 		 --ÀÚ¹Ù·Î ÁÖ¹Î¹øÈ£ µÚ 7ÀÚ¸® ¹Ş¾Æ¿À±â 700117-2598859
-
+where name = 'ìµœë¯¼ì •'  				 --ìë°”ë¡œ ì´ë¦„ ì…ë ¥ë°›ê¸°
+    and substr(ssn,8,7) = '2598859'; 		 --ìë°”ë¡œ ì£¼ë¯¼ë²ˆí˜¸ ë’¤ 7ìë¦¬ ë°›ì•„ì˜¤ê¸° 700117-2598859
 
 ---------------------------------------------------------------------------------------------------------------------------
-2. ·Î±×ÀÎ ¼º°ø ½Ã ±³À°»ı °³ÀÎ Á¤º¸¿Í ±³À°»ıÀÌ ¼ö°­ÇÑ °úÁ¤¸í, °úÁ¤ ±â°£(½ÃÀÛ ³â¿ùÀÏ, ³¡ ³â¿ùÀÏ, °­ÀÇ½ÇÀÌ Å¸ÀÌÆ²·Î Ãâ·ÂµÈ´Ù.
-***ÀúÀåµÈ ÇĞ»ı ¹øÈ£ »ç¿ë***
+2. ë¡œê·¸ì¸ ì„±ê³µ ì‹œ êµìœ¡ìƒ ê°œì¸ ì •ë³´ì™€ êµìœ¡ìƒì´ ìˆ˜ê°•í•œ ê³¼ì •ëª…, ê³¼ì • ê¸°ê°„(ì‹œì‘ ë…„ì›”ì¼, ë ë…„ì›”ì¼, ê°•ì˜ì‹¤ì´ íƒ€ì´í‹€ë¡œ ì¶œë ¥ëœë‹¤.
+***ì €ì¥ëœ í•™ìƒ ë²ˆí˜¸ ì‚¬ìš©***
 ---------------------------------------------------------------------------------------------------------------------------
-select s.name, s.ssn, s.tel, s.regidate, list.name as °úÁ¤¸í,  o.startDate, o.endDate, room.name   from tblStudent s    --ÇĞ»ı Å×ÀÌºí
-    inner join tblRegiCourse regi   --¼ö°­ ½ÅÃ» Å×ÀÌºí
+select s.name, s.ssn, s.tel, s.regidate, list.name as ê³¼ì •ëª…,  o.startDate, o.endDate, room.name   from tblStudent s    --í•™ìƒ í…Œì´ë¸”
+    inner join tblRegiCourse regi   --ìˆ˜ê°• ì‹ ì²­ í…Œì´ë¸”
         on s.student_seq = regi.student_seq
-            inner join tblOpenCourse o  -- °³¼³ °úÁ¤ Å×ÀÌºí
+            inner join tblOpenCourse o  -- ê°œì„¤ ê³¼ì • í…Œì´ë¸”
                 on regi.opencourse_seq = o.openCourse_seq
-                    inner join tblRoom room -- °­ÀÇ½Ç Å×ÀÌºí
+                    inner join tblRoom room -- ê°•ì˜ì‹¤ í…Œì´ë¸”
                         on o.room_seq = room.room_seq
-                                inner join tblCourseList list   -- °úÁ¤ ¸ñ·Ï Å×ÀÌºí
+                                inner join tblCourseList list   -- ê³¼ì • ëª©ë¡ í…Œì´ë¸”
                                     on list.courselist_seq = o.courselist_seq
                                 where s.student_seq = 
                                   (select student_seq
                                     from tblstudent
-                                        where name = '°­¿¹Çö'   
-                                            and substr(ssn,8,7) = '1847454'); -- ·Î±×ÀÎÇÑ ÇĞ»ıÀÇ ÇĞ»ı¹øÈ£
-
-
----------------------------------------------------------------------------------------------------------------------------
-3. ¼ºÀû Á¤º¸´Â °ú¸ñº°·Î ¸ñ·Ï ÇüÅÂ·Î Ãâ·Â.
-   °ú¸ñ ¹øÈ£, °ú¸ñ¸í, °ú¸ñ ±â°£(½ÃÀÛ, ³¡), ±³Àç¸í, ±³»ç¸í, °ú¸ñº° ¹èÁ¡ Á¤º¸(Ãâ°á, ÇÊ±â, ½Ç±â ¹èÁ¡), °ú¸ñº° ¼ºÀû Á¤º¸(Ãâ°á, ÇÊ±â, ½Ç±âÁ¡¼ö)
-   , °ú¸ñº° ½ÃÇè³¯Â¥, ½ÃÇè ¹®Á¦
-   ¼ºÀûÀÌ µî·ÏµÇÁö ¾ÊÀº °ú¸ñÀÇ °æ¿ì, °ú¸ñ Á¤º¸´Â Ãâ·ÂµÇ°í Á¡¼ö´Â null°ªÀ¸·Î Ãâ·ÂµÇµµ·Ï ÇÑ´Ù.
----------------------------------------------------------------------------------------------------------------------------
-select  s.name as ÇĞ»ı¸í, score.score_seq,
-        schedule.subject_seq as °ú¸ñ¹øÈ£, sublist.name as °ú¸ñ¸í, schedule.startdate||'~'||schedule.enddate as °ú¸ñ±â°£,
-        book.name as ±³Àç¸í, teacher.name as ±³»ç¸í, spercent.percentSubjective as  "°´°ü½Ä ¹èÁ¡", spercent.percentObjective"ÁÖ°ü½Ä ¹èÁ¡"
-        , spercent.percentAtt as "Ãâ¼®¹èÁ¡",
-        nvl(score.scoresubjective, null) as "°´°ü½Ä Á¡¼ö", nvl(score.scoreobjective,null) as "ÁÖ°ü½Ä Á¡¼ö", nvl(score.scoreatt,null)as "Ãâ¼®Á¡¼ö" -- °ªÀÌ nullÀÏ °æ¿ì null Ãâ·Â
-        ,spercent.examdate,exam.question as "½ÃÇè¹®Á¦"from tblStudent s      --ÇĞ»ı Å×ÀÌºí
-    inner join tblRegiCourse regi   --¼ö°­ ½ÅÃ» Å×ÀÌºí (regi)
-        on s.student_seq = regi.student_seq
-            inner join tblOpenCourse o -- °³¼³ °úÁ¤ Å×ÀÌºí(o)
-                on regi.opencourse_seq = o.opencourse_seq
-                    inner join tblTeacherCourse tcourse -- ´ã´ç°úÁ¤ Å×ÀÌºí(tcourse)
-                        on o.opencourse_seq = tcourse.opencourse_seq
-                            inner join tblTeacher teacher       --±³»ç Å×ÀÌºí(teacher)
-                                on teacher.teacher_seq = tcourse.teacher_seq
-                                    inner join tblCourseList list      --°úÁ¤ ¸ñ·Ï Å×ÀÌºí(list)
-                                        on list.courselist_seq = o.courselist_seq
-                                            inner join tblCourseSubject subject -- °úÁ¤º° °ú¸ñ Å×ÀÌºí(subject)
-                                                on list.courseList_seq = subject.courselist_seq
-                                                    inner join tblSubject sublist   -- °ú¸ñ Å×ÀÌºí(sublist)
-                                                        on  subject.subject_seq = sublist.subject_seq
-                                                            inner join tblbook book -- ±³Àç Å×ÀÌºí(book)
-                                                                on sublist.book_seq = book.book_seq
-                                                                    inner join tblsubjectschedule schedule  --°ú¸ñ ½ºÄÉÁì Å×ÀÌºí(schedule)
-                                                                        on o.opencourse_seq = schedule.opencourse_seq
-                                                                            inner join tblScorePercent spercent --¹èÁ¡ ÀÔÃâ·Â(spercent)
-                                                                                on schedule.subjectschedule_seq = spercent.subjectschedule_seq
-                                                                                    inner join tblExam exam -- ½ÃÇèÅ×ÀÌºí(exam)
-                                                                                        on schedule.subjectschedule_seq = exam.subjectschedule_seq
-                                                                                            inner join tblScore score   --Á¡¼ö Å×ÀÌºí(score)
-                                                                                                 on regi.regicourse_seq = score.regicourse_seq
-
-
-where s.student_seq =          (select openCourse_seq from tblstudent s2
-                                    inner join tblRegiCourse regi2
-                                        on s2.student_seq = regi2.student_seq
-                                            where name = '°­¿¹Çö'
-                                                and  substr(ssn,8,7) = '1847454')and schedule.subject_seq = 8   --'ÇĞ»ı¹øÈ£°¡ µé¾îÀÖ´Â °³¼³°­ÀÇ ¹øÈ£'
-                                                            order by sublist.name;
-
-
-
-
----------------------------------------------------------------------------------------------------------------------------
-1. ÇĞ»ı ¹øÈ£·Î ¼ö°­½ÅÃ» ¹øÈ£ ±¸ÇÏ±â
----------------------------------------------------------------------------------------------------------------------------
-select * from tblstudent s
-	inner join tblregicourse regi
-		on s.student_seq = regi.student_seq
-			where s.seq = 1;			--1¹ø ÇĞ»ıÀÇ ¼ö°­¹øÈ£ ±¸ÇÏ±â
-
-
----------------------------------------------------------------------------------------------------------------------------
-2. ÇĞ»ı, ¼ö°­½ÅÃ», Á¡¼ö ÆäÀÌÁö inner join Table
----------------------------------------------------------------------------------------------------------------------------
-select * from tblstudent s
-    inner join tblregicourse regi
-        on s.student_seq = regi.student_seq
-            inner join tblScore score
-                on regi.regicourse_seq = score.regicourse_seq 
-                    where s.student_seq = 1;
-
----------------------------------------------------------------------------------------------------------------------------
-3. °³¼³°úÁ¤, ´ã´ç°úÁ¤, ±³»ç, °¡´É°ú¸ñ inner join Table
----------------------------------------------------------------------------------------------------------------------------
-select distinct ocourse.courselist_seq from tblopencourse ocourse
-    inner join tblteachercourse tcourse
-        on ocourse.opencourse_seq = tcourse.opencourse_seq
-            inner join tblTeacher t
-                on tcourse.teacher_seq = t.teacher_seq
-                    inner join tblavlsubject able
-                        on t.teacher_seq = able.teacher_seq
-                           
-                           --ÇĞ»ı ¹øÈ£°¡ 1ÀÎ ÇĞ»ıÀÌ ¼Ò¼ÓµÈ °³¼³ °úÁ¤ ¹øÈ£ --> ÇĞ»ı¹øÈ£´Â ÀÚ¹Ù¿¡¼­ ¹Ş¾Æ¿È
-                            where ocourse.opencourse_seq=(select regi.opencourse_seq from tblstudent s
-                                               inner join tblregicourse regi
-                                                  on s.student_seq = regi.student_seq
-                                                        where s.student_seq = 1);
-
----------------------------------------------------------------------------------------------------------------------------
-4. °¡´É°ú¸ñ, °ú¸ñ, °úÁ¤º° °ú¸ñ, °úÁ¤¸ñ·Ï, ±³Àç inner join Table
----------------------------------------------------------------------------------------------------------------------------
-***** ÇĞ»ı¹øÈ£°¡ 1ÀÎ ÇĞ½ÌÀÌ µî·ÏÇÑ °úÁ¤ÀÇ °úÁ¤¸ñ·Ï¹øÈ£, °úÁ¤¸í, °úÁ¤º° °ú¸ñ ¹øÈ£, °ú¸ñ¹øÈ£..
-
-select DISTINCT list.courselist_seq as °úÁ¤¸ñ·Ï¹øÈ£, list.name as °úÁ¤¸í, csubject.coursesubject_seq as °úÁ¤º°°ú¸ñ¹øÈ£, sub.name as °ú¸ñ¹øÈ£,sub.subject_seq from tblavlsubject avl
-    inner join tblsubject sub
-        on sub.subject_seq = avl.subject_seq
-            inner join tblbook book
-                on sub.book_seq = book.book_seq
-                    inner join tblcoursesubject csubject
-                        on csubject.subject_seq = sub.subject_seq
-                            inner join tblcourselist list
-                                on list.courselist_seq = csubject.courselist_seq
-
-				 --°úÁ¤¹øÈ£°¡ ÇĞ»ı¹øÈ£ 1ÀÎ ÇĞ»ıÀÌ ¼Ò¼ÓµÈ ¹øÈ£ÀÎ °úÁ¤¸ñ·Ï
-                                   where list.courselist_seq = (select distinct ocourse.courselist_seq from tblopencourse ocourse
-                                      inner join tblteachercourse tcourse
-                                        on ocourse.opencourse_seq = tcourse.opencourse_seq
-                                            inner join tblTeacher t
-                                              on tcourse.teacher_seq = t.teacher_seq
-                                                  inner join tblavlsubject able
-                                                      on t.teacher_seq = able.teacher_seq
-				
-							where ocourse.opencourse_seq=(select regi.opencourse_seq from tblstudent s
-                                               inner join tblregicourse regi
-                                                  on s.student_seq = regi.student_seq
-                                                        where s.student_seq = 1));
-
----------------------------------------------------------------------------------------------------------------------------
-5. °ú¸ñ½ºÄÉÁì, ¹èÁ¡ÀÔÃâ·Â, ½ÃÇè, ¼ºÀû inner join Table
----------------------------------------------------------------------------------------------------------------------------
-select * from tblsubjectschedule schedule
-    inner join tblscorepercent spercent
-        on schedule.subjectschedule_seq = spercent.subjectschedule_seq
-            inner join tblExam exam
-                on schedule.subjectschedule_seq = exam.subjectschedule_seq
-                    inner join tblScore score
-                        on schedule.subjectschedule_seq = score.subjectschedule_seq
-                            where schedule.opencourse_seq = 1;  --ÀÚ¹Ù¿¡¼­ ÀÔ·Â¹Ş±â(´Ù¸¥ Å×ÀÌºí¿¡¼­ openCourse_seq°ª ¾ò¾î¿À±â)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        where name = 'ê°•ì˜ˆí˜„'   
+                                            and substr(ssn,8,7) = '1847454'); -- ë¡œê·¸ì¸í•œ í•™ìƒì˜ í•™ìƒë²ˆí˜¸
+
+
+
+--02. ì„±ì ì¡°íšŒ
+select sj.subject_seq ,sj.name as ê³¼ëª©ëª…, sc.score_seq as ì‹œí—˜ë²ˆí˜¸, sc.regicourse_seq as ìˆ˜ê°•ì‹ ì²­ë²ˆí˜¸,
+scp.percentsubjective as í•„ê¸°ë°°ì , scp.percentobjective as ì‹¤ê¸°ë°°ì , scp.percentatt as ì¶œê²°ë°°ì , sc.scoresubjective as í•„ê¸°ì ìˆ˜,
+sc.scoreobjective as ì‹¤ê¸°ì ìˆ˜, sc.scoreatt as ì¶œê²°ì ìˆ˜, sc.scoreresult as ê²°ê³¼, ss.enddate as ì‹œí—˜ë‚ ì§œ, ex.question as ì‹œí—˜ë¬¸ì œ
+    from tblscore sc 
+        inner join tblscorepercent scp --ë°°ì 
+                on scp.subjectschedule_seq = sc.subjectschedule_seq
+                    inner join tblsubjectschedule ss
+                        on ss.subjectschedule_seq = sc.subjectschedule_seq
+                        inner join tblsubject sj --ê³¼ëª©
+                            on sj.subject_seq = ss.subject_seq
+                                inner join tblexam ex --ì‹œí—˜ë¬¸ì œ
+                                    on ex.subjectschedule_seq = ss.subjectschedule_seq
+                                        where sc.regicourse_seq = 50 
+--                                          where sc.regicourse_seq = 'ë¡œê·¸ì¸ì‹œ ê°€ì§€ëŠ” í•™ìƒë²ˆí˜¸';                                        
+                                                and sj.subject_seq = 17;                                                                              
+--                                                and sj.subject_seq = 'ëª©ë¡ì—ì„œ ë³´ê³ ì‹¶ì€ ë²ˆí˜¸ ì…ë ¥';
+
+
+--ê³¼ëª©ë²ˆí˜¸, ê³¼ëª©ëª…, ê³¼ëª©ê¸°ê°„, êµì¬ëª…, êµì‚¬ëª…,
+select sj.subject_seq as ê³¼ëª©ë²ˆí˜¸,sj.name as ê³¼ëª©ëª…, ss.startdate || '~' || ss.enddate as ê³¼ëª©ê¸°ê°„, b.name as êµì¬ëª… , t.name as êµì‚¬ëª…
+    
+    from tblscore sc         
+        inner join tblscorepercent scp --ë°°ì 
+                on scp.subjectschedule_seq = sc.subjectschedule_seq
+                    inner join tblsubjectschedule ss
+                        on ss.subjectschedule_seq = sc.subjectschedule_seq
+                        inner join tblsubject sj --ê³¼ëª©
+                            on sj.subject_seq = ss.subject_seq
+                                inner join tblbook b
+                                    on b.book_seq = sj.book_seq
+                                        inner join tblregicourse rc
+                                            on rc.regicourse_seq = sc.regicourse_seq
+                                                inner join tblopencourse oc
+                                                    on oc.opencourse_seq = rc.opencourse_seq
+                                                        inner join tblteachercourse tc
+                                                            on tc.opencourse_seq = oc.opencourse_seq
+                                                                inner join tblteacher t
+                                                                    on t.teacher_seq = tc.teacher_seq
+                                                                        where sc.regicourse_seq = 50
+--                                                                        where sc.regicourse_seq = 'ë¡œê·¸ì¸ì‹œ ê°€ì§€ëŠ” í•™ìƒë²ˆí˜¸';
+
+
+
+--03. êµìœ¡ìƒ ì¶œê²°
+
+--êµìœ¡ìƒ ì¶œê·¼ ì…ë ¥
+select * from tblAttendance;
+insert into tblAttendance (attendance_seq, regiCourse_Seq, workon, workoff, state)
+    values (attendance_seq.nextVal, 'í•™ìƒë²ˆí˜¸', to_date('ì¶œê·¼ë‚ ì§œ+ì‹œê°„','yyyy-mm-dd hh24:mi'), null, 
+        case when to_date('ì¶œê·¼ë‚ ì§œì‹œê°„','yyyymmddhh24:mi') > to_date('ì¶œê·¼ë‚ ì§œ09:00','yyyymmddhh24:mi') then 'ì§€ê°'
+            else 'ê²°ì„' end);
+
+--êµìœ¡ìƒ í‡´ê·¼ ì…ë ¥
+update tblAttendacne set workoff = to_date('í‡´ê·¼ë‚ ì§œ+ì‹œê°„','yyyy-mm-dd hh24:mi'), 
+    state = case when to_date('í‡´ê·¼ë‚ ì§œ+ì‹œê°„','yyyymmddhh24:mi') > to_date('ë‚ ì§œ18:00','yyyymmddhh24:mi') then 'ì •ìƒì¶œì„'
+        else 'ì¡°í‡´' end
+            where workon=to_date('ì¶œê·¼ë‚ ì§œ+ì‹œê°„','yyyy-mm-dd hh24:mi') and regicourse_seq='í•™ìƒë²ˆí˜¸';
+
+--ì¶œê²° ì „ì²´ ì¡°íšŒ
+select ad.workon as ì¶œê·¼ì‹œê°„, ad.workoff as í‡´ê·¼ì‹œê°„, ad.state as ì¶œê²°ìƒíƒœ
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq
+    inner join tblAttendance ad on rc.regicourse_seq = ad.regicourse_seq
+where s.student_seq = 'í•™ìƒë²ˆí˜¸';
+--where s.student_seq = 471;
+
+--ì¶œê²° ê¸°ê°„ë³„ ì¡°íšŒ(ì›”,ì¼)
+select ad.workon as ì¶œê·¼ì‹œê°„, ad.workoff as í‡´ê·¼ì‹œê°„, ad.state as ì¶œê²°ìƒíƒœ
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq
+    inner join tblAttendance ad on rc.regicourse_seq = ad.regicourse_seq
+where s.student_seq = '471' and to_char(ad.workOn, 'mmdd') = 'ì›”ì¼';
+--where s.student_seq = '471' and to_char(ad.workOn, 'mmdd') = '0127';
+
+--04. ê³¼ëª©í‰ê°€----------------------------
+--procAddSubjectRating
+--(ê³¼ëª© ì ìˆ˜ì…ë ¥, ê³¼ëª©í‰ê°€ë‚´ìš© ì…ë ¥, ê°œì„¤ê³¼ì •ë²ˆí˜¸ ì…ë ¥, ê³¼ëª©ìŠ¤ì¼€ì¥´ë²ˆí˜¸ì…ë ¥)
+--
+--------------------------------------------------------
+create or replace procedure procAddSubjectRating
+(
+    pratingScore number,
+    pRatingContents varchar2,
+    pregiCourse_seq number,
+    psubjectSchedule_seq number
+)
+is
+begin
+    insert into tblsubjectrating values((select max(subjectRating_seq)+1 from tblsubjectrating),pratingscore,pratingcontents,pregicourse_seq,psubjectschedule_seq);
+end;
+--------------------------------------------------------
+
+--------------ê³¼ëª©í‰ê°€ ì¡°íšŒ----------------------------
+--procSearchRating
+--(í•™ìƒë²ˆí˜¸ ì…ë ¥)
+--------------------------------------------------------
+                            
+create or replace procedure procSearchRating
+(
+    pstudent_seq number,
+    vresult out sys_refcursor
+)
+is
+begin
+    open vresult for
+   select sub.name,sr.ratingscore,sr.ratingcontents from tblSubjectRating sr
+    inner join tblRegiCourse rc
+        on sr.regiCourse_seq=rc.regiCourse_seq
+            inner join tblStudent st
+                on st.student_seq=rc.student_seq
+                    inner join tblSubjectSchedule sch
+                        on sch.subjectSchedule_seq=sr.subjectSchedule_seq
+                            inner join tblSubject sub
+                                on sub.subject_seq=sch.subject_seq
+    where rc.regiCourse_seq=pstudent_seq;
+end;
 
