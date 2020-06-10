@@ -59,6 +59,7 @@ SELECT t.name as teacherName
                 INNER JOIN tblOpenCourse oc
                     ON tc.openCourse_seq = oc.openCourse_seq
                         WHERE oc.openCourse_seq = '개설과정번호PK가 저장된 배열[입력한번호-1]';
+--                        WHERE oc.openCourse_seq = '1';
 
 -- 과정명
 SELECT cl.name as courselistName
@@ -66,6 +67,7 @@ SELECT cl.name as courselistName
         INNER JOIN tblOpenCourse oc
             ON cl.courselist_seq = oc.courselist_seq
                 WHERE oc.openCourse_seq = '개설과정번호PK가 저장된 배열[입력한번호-1]';
+--                        WHERE oc.openCourse_seq = '1';                
 
 -- 번호, 학생명, 연락처,  지원일, 지원내용
 SELECT rownum, stu.name as studentName, stu.tel as studentTel, ass.asDate as callasDate, ass.asservice as callasservice, ass.aslist as callaslist

@@ -123,7 +123,7 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselist
                                         
 select * from tblstudent;                                        
 
--- 학생번호 변수에 저장
+-- 학생번호 변수에 저장 학생 번호 조회
 SELECT s.student_seq as studentNumber
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
@@ -135,6 +135,7 @@ SELECT s.student_seq as studentNumber
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
                                         WHERE s.name = '입력받은 학생명';
+--                                        WHERE s.name = '강예현';                                        
 
 
 -- 1. 관리자 ? 5. 출결 관리 및 출결조회 - a. 학생별 조회 ? 학생 선택시(앞에서 학생번호와 조회기간 시작일, 종료일을 받아옴)
