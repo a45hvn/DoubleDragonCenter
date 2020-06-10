@@ -6,5 +6,5 @@ insert into tblTeacher values(teacher_seq.nextval,'김재웅','770312-2544126', 
 insert into tblTeacher values(teacher_seq.nextval,'유정원','790909-2975528', '010-5798-7777');
 insert into tblTeacher values(teacher_seq.nextval,'박재정','890912-2792693', '010-5246-5264');
 insert into tblTeacher values(teacher_seq.nextval,'전규현','841212-2391914', '010-5646-8798');
-insert into tblTeacher values(teacher_seq.nextval,'김대경','810101-3646883', '010-6547-2385');
+insert into tblTeacher values(teacher_seq.nextval,'김대경','810101-1646883', '010-6547-2385');
 insert into tblTeacher values(teacher_seq.nextval,'유찬원','880808-1539177', '010-5264-5647');
