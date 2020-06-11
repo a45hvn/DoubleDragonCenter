@@ -7,7 +7,9 @@ SELECT name, ssn, tel, regiDate,
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
                     WHERE s.student_seq = '자바에서for문으로 변수돌림') as numberCourseRequests
-                        FROM tblStudent;
+                        FROM tblStudent
+                            where student_seq = '자바에서for문으로 변수돌림';
+
 
 -- 자바에서 for문 변수 범위
 -- DTO_Student
@@ -108,7 +110,7 @@ DELETE FROM tblStudent WHERE student_seq = '받아온번호값';
 
 ----------------------------------------------------------
 -- 1. 관리자 ? 5. 출결 관리 및 출결조회 - a. 학생별 조회 및 수정
-SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselistName, oc.startDate || '~' || oc.endDate as courseDuration, r.Name as className
+SELECT rc.regicourse_seq, s.name as studentName, s.ssn as studentssn, cl.name as courselistName, oc.startDate || '~' || oc.endDate as courseDuration, r.Name as className
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
@@ -118,8 +120,8 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselist
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
-                                        WHERE s.name = '학생명 입력 : ';
---                                        WHERE s.name = '강예현';
+--                                        where s.student_seq = '학생번호';
+                                        where s.student_seq = 1;
                                         
 select * from tblstudent;                                        
 
@@ -134,8 +136,8 @@ SELECT s.student_seq as studentNumber
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
-                                        WHERE s.name = '입력받은 학생명';
---                                        WHERE s.name = '강예현';                                        
+--                                        WHERE s.name = '입력받은 학생명';
+                                        WHERE s.name = '강예현';                                        
 
 
 -- 1. 관리자 ? 5. 출결 관리 및 출결조회 - a. 학생별 조회 ? 학생 선택시(앞에서 학생번호와 조회기간 시작일, 종료일을 받아옴)
@@ -169,6 +171,13 @@ UPDATE tblattendance
         WHERE to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜' and regicourse_seq = '수강 신청번호';
         
         
+--교육생 세부 정보
+select rc.openCourse_seq, cll.name, oc.startdate||'~'||oc.enddate, oc.room_seq||'강의실', rc.finalstate, rc.finalDate
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq
+inner join tblOpenCourse oc on rc.openCourse_seq = oc.opencourse_seq
+inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
+where rc.regicourse_seq = 363;
+
 
 
 
@@ -249,6 +258,15 @@ SELECT rc.regiCourse_seq as enrollmentNumbers
                     ON oc.openCourse_seq = rc.openCourse_seq
                         WHERE s.student_seq = '입력받은 학생 번호' 
                             AND oc.openCourse_seq = '입력받은 개설과정번호';
+                            
+
+
+--교육생 면접 조회
+select s.name,s.regidate, i.interviewdate, i.interviewresult, cll.name as 과정이름, rc.finalstate
+from tblInterview i inner join tblRegiCourse rc on i.regicourse_seq = rc.regicourse_seq
+inner join tblStudent s on rc.student_seq = s.student_seq
+inner join tblOpenCourse oc on rc.opencourse_seq = oc.opencourse_seq
+inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq;
                             
                             
 

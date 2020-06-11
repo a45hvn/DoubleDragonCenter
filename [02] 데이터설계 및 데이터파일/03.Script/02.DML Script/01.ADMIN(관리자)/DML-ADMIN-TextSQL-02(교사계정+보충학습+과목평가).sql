@@ -80,13 +80,21 @@ update tblTeacher set teacher_seq = -teacher_seq where teacher_seq = '삭제할 
 insert into tblTeacher (teacher_seq,name,ssn,tel) values (teacher_seq.nextVal, '이름','주민번호','전화');
 
 --2. 과목 평가
+--과정리스트 보여주기
+select oc.openCourse_seq, cll.name, oc.startDate||'~'||oc.endDate, t.name
+from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq
+inner join tblOpenCourse oc on tc.openCourse_seq = oc.openCourse_seq
+inner join tblCourseList cll on oc.courseList_seq = cll.courseList_seq
+order by openCourse_Seq;
+
+
 --개설과정별 과목 보여주기
 select cll.name as 과정명, s.name as 과목명
 from tblOpenCourse oc inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
     inner join tblCourseSubject cs on cll.courselist_seq = cs.courselist_seq
         inner join tblSubject s on cs.subject_seq = s.subject_seq
-            where oc.opencourse_seq = '개설과정번호';
---            where oc.opencourse_seq = 13;
+--            where oc.opencourse_seq = '개설과정번호';
+            where oc.opencourse_seq = 13;
 
 --2-1 과목평가 조회 + 평균 점수
 select s.name,round(avg(sr.ratingScore),1) as 평균
