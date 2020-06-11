@@ -1,5 +1,52 @@
 package com.test.DDC;
 
-public class DDCmain {
+import java.util.Scanner;
 
+public class DDCmain {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		Scanner scan = new Scanner(System.in);
+		;
+		Boolean loop = true;
+		
+		System.out.println();
+		
+		
+		System.out.println();
+		System.out.println("\t\t\t\t――――――――――――――――――――――――――");
+		System.out.println("\t\t\t\t[1] 관리자 모드");
+		System.out.println("\t\t\t\t[2] 학생 모드");
+		System.out.println("\t\t\t\t[3] 교사 모드");
+		System.out.println("\t\t\t\t[0] 프로그램 종료");
+		System.out.println("\t\t\t\t――――――――――――――――――――――――――");
+		System.out.print("\t\t\t\t선택 : ");
+		String select = scan.nextLine();
+		
+		while(loop) {
+			
+			
+			switch(select) {
+				case "1" : // 관리자모드
+					
+					break;
+				case "2" : // 학생 모드
+					
+					break;
+				case "3" : // 교사 모드
+					
+					break;
+
+				case "0" : // 프로그램 종료
+					
+					break;
+					
+			}	
+			loop = false;
+			
+		}	
+		
+	}
 }
+
+
