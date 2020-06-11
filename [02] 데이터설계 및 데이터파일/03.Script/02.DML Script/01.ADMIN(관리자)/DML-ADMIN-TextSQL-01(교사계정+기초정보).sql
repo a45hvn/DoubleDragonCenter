@@ -1,5 +1,8 @@
 --관리자는 교사 계정 관리 및 개설 과정, 개설 과목에 사용하게될 기초 정보를 등록 및 관리할 수 있어야 한다.
 
+select *
+from tblTeacher;
+
 --교사 계정(tblTeacher)
 --1. 교사 계정 검색
 select * from tblTeacher;
