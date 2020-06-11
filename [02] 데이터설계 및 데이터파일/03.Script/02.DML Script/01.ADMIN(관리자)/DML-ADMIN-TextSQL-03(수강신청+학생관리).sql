@@ -1,34 +1,34 @@
--- 1. °ü¸®ÀÚ - 3. ÇĞ»ı °ü¸® - a. ÇĞ»ı Á¤º¸ ÀüÃ¼º¸±â
--- a. ÇĞ»ı¸í, ÁÖ¹Î¹øÈ£, ÀüÈ­¹øÈ£, µî·ÏÀÏ, ¼ö°­½ÅÃ»È½¼ö
+-- 1. ê´€ë¦¬ì - 3. í•™ìƒ ê´€ë¦¬ - a. í•™ìƒ ì •ë³´ ì „ì²´ë³´ê¸°
+-- a. í•™ìƒëª…, ì£¼ë¯¼ë²ˆí˜¸, ì „í™”ë²ˆí˜¸, ë“±ë¡ì¼, ìˆ˜ê°•ì‹ ì²­íšŸìˆ˜
 -- DTO_Student
 SELECT name, ssn, tel, regiDate,
     (SELECT COUNT(*) 
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = 'ÀÚ¹Ù¿¡¼­for¹®À¸·Î º¯¼öµ¹¸²') as numberCourseRequests
+                    WHERE s.student_seq = 'ìë°”ì—ì„œforë¬¸ìœ¼ë¡œ ë³€ìˆ˜ëŒë¦¼') as numberCourseRequests
                         FROM tblStudent;
 
--- ÀÚ¹Ù¿¡¼­ for¹® º¯¼ö ¹üÀ§
+-- ìë°”ì—ì„œ forë¬¸ ë³€ìˆ˜ ë²”ìœ„
 -- DTO_Student
 SELECT COUNT(*) as numberStudent FROM tblStudent;
 
--- 1. °ü¸®ÀÚ ? 3. ÇĞ»ı °ü¸® - b. ÇĞ»ı Á¤º¸ µî·Ï (ÇĞ»ı¸í, ÁÖ¹Î¹øÈ£, ÀüÈ­¹øÈ£, µî·ÏÀÏ)
+-- 1. ê´€ë¦¬ì ? 3. í•™ìƒ ê´€ë¦¬ - b. í•™ìƒ ì •ë³´ ë“±ë¡ (í•™ìƒëª…, ì£¼ë¯¼ë²ˆí˜¸, ì „í™”ë²ˆí˜¸, ë“±ë¡ì¼)
 -- DTO_Student
 INSERT INTO tblStudent
-    VALUES(student_seq.nextval, 'ÀÔ·ÂÇÑ ÇĞ»ı¸í', 'ÀÔ·ÂÇÑ ÁÖ¹Î¹øÈ£', 'ÀÔ·ÂÇÑ ÀüÈ­¹øÈ£', sysdate);
+    VALUES(student_seq.nextval, 'ì…ë ¥í•œ í•™ìƒëª…', 'ì…ë ¥í•œ ì£¼ë¯¼ë²ˆí˜¸', 'ì…ë ¥í•œ ì „í™”ë²ˆí˜¸', sysdate);
 
--- ÇĞ»ı¸í°ú ÁÖ¹Î¹øÈ£°¡ µ¿½Ã¿¡ ÇØ´ç ÇĞ»ı Å×ÀÌºí¿¡ ¸¸Á·ÇÏ´Â°Ô ÀÖÀ¸¸é µî·Ï¾ÈµÊ
+-- í•™ìƒëª…ê³¼ ì£¼ë¯¼ë²ˆí˜¸ê°€ ë™ì‹œì— í•´ë‹¹ í•™ìƒ í…Œì´ë¸”ì— ë§Œì¡±í•˜ëŠ”ê²Œ ìˆìœ¼ë©´ ë“±ë¡ì•ˆë¨
 -- DTO_Student
 SELECT name, ssn FROM tblStudent;
 
 select * from tblattendance;
 
--- 1. °ü¸®ÀÚ ? 3. ÇĞ»ı °ü¸® - c. ÇĞ»ı Á¤º¸ °Ë»ö ¹× ¼öÁ¤ (¼±ÅÃÇÑ ÇØ´ç ÇĞ»ı PK¹øÈ£ ÀúÀåÇØ¼­ ´ÙÀ½À¸·Î ³Ñ°ÜÁÜ)
--- a. ÀÌ¸§ °Ë»ö
--- ¼ö°­½ÅÃ»
+-- 1. ê´€ë¦¬ì ? 3. í•™ìƒ ê´€ë¦¬ - c. í•™ìƒ ì •ë³´ ê²€ìƒ‰ ë° ìˆ˜ì • (ì„ íƒí•œ í•´ë‹¹ í•™ìƒ PKë²ˆí˜¸ ì €ì¥í•´ì„œ ë‹¤ìŒìœ¼ë¡œ ë„˜ê²¨ì¤Œ)
+-- a. ì´ë¦„ ê²€ìƒ‰
+-- ìˆ˜ê°•ì‹ ì²­
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = 'ÀÔ·ÂÇĞ»ı¸í'; -- º¯¼ö¿¡ ÀúÀå
+SELECT student_seq FROM tblStudent WHERE name = 'ì…ë ¥í•™ìƒëª…'; -- ë³€ìˆ˜ì— ì €ì¥
 
 -- DTO_Student
 SELECT rownum, s.name as studentName, s.ssn as studentssn, s.tel as studentTel, s.regidate as studentRegidate, 
@@ -36,28 +36,13 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, s.tel as studentTel, 
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = 'À§¿¡¼­ º¯¼ö¿¡ ÀúÀåÇÑ°ÍÀ» ÇÏ³ª¾¿ ´ëÀÔ') as numberCourseRequests
+                    WHERE s.student_seq = 'ìœ„ì—ì„œ ë³€ìˆ˜ì— ì €ì¥í•œê²ƒì„ í•˜ë‚˜ì”© ëŒ€ì…') as numberCourseRequests
                         FROM tblStudent  s
-                            WHERE name = 'ÀÔ·ÂÇĞ»ı¸í';
+                            WHERE name = 'ì…ë ¥í•™ìƒëª…';
 
--- b. ÁÖ¹Î¹øÈ£ °Ë»ö
+-- b. ì£¼ë¯¼ë²ˆí˜¸ ê²€ìƒ‰
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = 'ÀÔ·ÂÁÖ¹Î¹øÈ£'; -- º¯¼ö¿¡ ÀúÀå
-
--- DTO_Student
-SELECT student_seq, name, ssn, tel, regidate,
-    (SELECT COUNT(*) 
-        FROM tblStudent s
-            INNER JOIN tblRegiCourse rc
-                ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = 'À§¿¡¼­ º¯¼ö¿¡ ÀúÀåÇÑ°ÍÀ» ÇÏ³ª¾¿ ´ëÀÔ') as numberCourseRequests
-                        FROM tblStudent 
-                            WHERE ssn = 'ÀÔ·ÂÁÖ¹Î¹øÈ£';
-
--- c. ÀüÈ­¹øÈ£ °Ë»ö
--- ¼ö°­½ÅÃ»
--- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = 'ÀÔ·ÂÀüÈ­¹øÈ£'; -- º¯¼ö¿¡ ÀúÀå
+SELECT student_seq FROM tblStudent WHERE name = 'ì…ë ¥ì£¼ë¯¼ë²ˆí˜¸'; -- ë³€ìˆ˜ì— ì €ì¥
 
 -- DTO_Student
 SELECT student_seq, name, ssn, tel, regidate,
@@ -65,14 +50,14 @@ SELECT student_seq, name, ssn, tel, regidate,
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = 'À§¿¡¼­ º¯¼ö¿¡ ÀúÀåÇÑ°ÍÀ» ÇÏ³ª¾¿ ´ëÀÔ') as numberCourseRequests
+                    WHERE s.student_seq = 'ìœ„ì—ì„œ ë³€ìˆ˜ì— ì €ì¥í•œê²ƒì„ í•˜ë‚˜ì”© ëŒ€ì…') as numberCourseRequests
                         FROM tblStudent 
-                            WHERE tel = 'ÀÔ·ÂÀüÈ­¹øÈ£';
+                            WHERE ssn = 'ì…ë ¥ì£¼ë¯¼ë²ˆí˜¸';
 
--- d. µî·ÏÀÏ °Ë»ö
--- ¼ö°­½ÅÃ»
+-- c. ì „í™”ë²ˆí˜¸ ê²€ìƒ‰
+-- ìˆ˜ê°•ì‹ ì²­
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = 'ÀÔ·Âµî·ÏÀÏ'; -- º¯¼ö¿¡ ÀúÀå
+SELECT student_seq FROM tblStudent WHERE name = 'ì…ë ¥ì „í™”ë²ˆí˜¸'; -- ë³€ìˆ˜ì— ì €ì¥
 
 -- DTO_Student
 SELECT student_seq, name, ssn, tel, regidate,
@@ -80,34 +65,49 @@ SELECT student_seq, name, ssn, tel, regidate,
         FROM tblStudent s
             INNER JOIN tblRegiCourse rc
                 ON s.student_seq = rc.student_seq
-                    WHERE s.student_seq = 'À§¿¡¼­ º¯¼ö¿¡ ÀúÀåÇÑ°ÍÀ» ÇÏ³ª¾¿ ´ëÀÔ') as numberCourseRequests
+                    WHERE s.student_seq = 'ìœ„ì—ì„œ ë³€ìˆ˜ì— ì €ì¥í•œê²ƒì„ í•˜ë‚˜ì”© ëŒ€ì…') as numberCourseRequests
                         FROM tblStudent 
-                        WHERE regidate = 'ÀÔ·Âµî·ÏÀÏ';
+                            WHERE tel = 'ì…ë ¥ì „í™”ë²ˆí˜¸';
+
+-- d. ë“±ë¡ì¼ ê²€ìƒ‰
+-- ìˆ˜ê°•ì‹ ì²­
+-- DTO_Student
+SELECT student_seq FROM tblStudent WHERE name = 'ì…ë ¥ë“±ë¡ì¼'; -- ë³€ìˆ˜ì— ì €ì¥
+
+-- DTO_Student
+SELECT student_seq, name, ssn, tel, regidate,
+    (SELECT COUNT(*) 
+        FROM tblStudent s
+            INNER JOIN tblRegiCourse rc
+                ON s.student_seq = rc.student_seq
+                    WHERE s.student_seq = 'ìœ„ì—ì„œ ë³€ìˆ˜ì— ì €ì¥í•œê²ƒì„ í•˜ë‚˜ì”© ëŒ€ì…') as numberCourseRequests
+                        FROM tblStudent 
+                        WHERE regidate = 'ì…ë ¥ë“±ë¡ì¼';
 
 select * from tblregicourse;
 
 
 
--- a. ¼öÁ¤ÇÏ±â(¼öÁ¤ÇÏ±â À§ÇØ ÀÔ·ÂÇÑ ÇĞ»ı¸í°ú ÁÖ¹Î¹øÈ£ µÑ´Ù ÀÏÄ¡ÇÏ´Â »ç¶÷ÀÌ ÀÖÀ¸¸é ¼öÁ¤ºÒ°¡)
+-- a. ìˆ˜ì •í•˜ê¸°(ìˆ˜ì •í•˜ê¸° ìœ„í•´ ì…ë ¥í•œ í•™ìƒëª…ê³¼ ì£¼ë¯¼ë²ˆí˜¸ ë‘˜ë‹¤ ì¼ì¹˜í•˜ëŠ” ì‚¬ëŒì´ ìˆìœ¼ë©´ ìˆ˜ì •ë¶ˆê°€)
 -- DTO_Student
-SELECT name, ssn FROM tblStudent; -- ¹è¿­ÀÌ³ª ¸®½ºÆ®¿¡ ³Ö°í ÇÏ³ª¾¿ ºñ±³
+SELECT name, ssn FROM tblStudent; -- ë°°ì—´ì´ë‚˜ ë¦¬ìŠ¤íŠ¸ì— ë„£ê³  í•˜ë‚˜ì”© ë¹„êµ
 
--- Á¶°Ç¿¡ ¸¸Á·ÇÏ¸é
+-- ì¡°ê±´ì— ë§Œì¡±í•˜ë©´
 -- DTO_Student
 UPDATE tblStudent 
-    SET name = 'ÀÔ·ÂÇÑÀÌ¸§', ssn = 'ÀÔ·ÂÇÑ ÁÖ¹Î¹øÈ£', tel = 'ÀÔ·ÂÇÑÀüÈ­¹øÈ£'
-        WHERE student_seq = '¹Ş¾Æ¿Â¹øÈ£°ª';
+    SET name = 'ì…ë ¥í•œì´ë¦„', ssn = 'ì…ë ¥í•œ ì£¼ë¯¼ë²ˆí˜¸', tel = 'ì…ë ¥í•œì „í™”ë²ˆí˜¸'
+        WHERE student_seq = 'ë°›ì•„ì˜¨ë²ˆí˜¸ê°’';
 
 
---  1. °ü¸®ÀÚ ? 3. ÇĞ»ı °ü¸® - c. ÇĞ»ı Á¤º¸ °Ë»ö ¹× ¼öÁ¤ ? (°Ë»öÈÄ) ? »èÁ¦ ¼±ÅÃ½Ã
--- b. »èÁ¦ÇÏ±â
+--  1. ê´€ë¦¬ì ? 3. í•™ìƒ ê´€ë¦¬ - c. í•™ìƒ ì •ë³´ ê²€ìƒ‰ ë° ìˆ˜ì • ? (ê²€ìƒ‰í›„) ? ì‚­ì œ ì„ íƒì‹œ
+-- b. ì‚­ì œí•˜ê¸°
 -- DTO_Student
-DELETE FROM tblStudent WHERE student_seq = '¹Ş¾Æ¿Â¹øÈ£°ª';
+DELETE FROM tblStudent WHERE student_seq = 'ë°›ì•„ì˜¨ë²ˆí˜¸ê°’';
 
 
 
 ----------------------------------------------------------
--- 1. °ü¸®ÀÚ ? 5. Ãâ°á °ü¸® ¹× Ãâ°áÁ¶È¸ - a. ÇĞ»ıº° Á¶È¸ ¹× ¼öÁ¤
+-- 1. ê´€ë¦¬ì ? 5. ì¶œê²° ê´€ë¦¬ ë° ì¶œê²°ì¡°íšŒ - a. í•™ìƒë³„ ì¡°íšŒ ë° ìˆ˜ì •
 SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselistName, oc.startDate || '~' || oc.endDate as courseDuration, r.Name as className
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
@@ -118,12 +118,12 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselist
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
-                                        WHERE s.name = 'ÇĞ»ı¸í ÀÔ·Â : ';
---                                        WHERE s.name = '°­¿¹Çö';
+                                        WHERE s.name = 'í•™ìƒëª… ì…ë ¥ : ';
+--                                        WHERE s.name = 'ê°•ì˜ˆí˜„';
                                         
 select * from tblstudent;                                        
 
--- ÇĞ»ı¹øÈ£ º¯¼ö¿¡ ÀúÀå
+-- í•™ìƒë²ˆí˜¸ ë³€ìˆ˜ì— ì €ì¥ í•™ìƒ ë²ˆí˜¸ ì¡°íšŒ
 SELECT s.student_seq as studentNumber
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
@@ -134,38 +134,39 @@ SELECT s.student_seq as studentNumber
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
-                                        WHERE s.name = 'ÀÔ·Â¹ŞÀº ÇĞ»ı¸í';
+                                        WHERE s.name = 'ì…ë ¥ë°›ì€ í•™ìƒëª…';
+--                                        WHERE s.name = 'ê°•ì˜ˆí˜„';                                        
 
 
--- 1. °ü¸®ÀÚ ? 5. Ãâ°á °ü¸® ¹× Ãâ°áÁ¶È¸ - a. ÇĞ»ıº° Á¶È¸ ? ÇĞ»ı ¼±ÅÃ½Ã(¾Õ¿¡¼­ ÇĞ»ı¹øÈ£¿Í Á¶È¸±â°£ ½ÃÀÛÀÏ, Á¾·áÀÏÀ» ¹Ş¾Æ¿È)
--- ±â°£ : ÀÔ·Â¹ŞÀº ½ÃÀÛÀÏ ~ ÀÔ·Â¹ŞÀº Á¾·áÀÏ
--- ÀÌ¸§
+-- 1. ê´€ë¦¬ì ? 5. ì¶œê²° ê´€ë¦¬ ë° ì¶œê²°ì¡°íšŒ - a. í•™ìƒë³„ ì¡°íšŒ ? í•™ìƒ ì„ íƒì‹œ(ì•ì—ì„œ í•™ìƒë²ˆí˜¸ì™€ ì¡°íšŒê¸°ê°„ ì‹œì‘ì¼, ì¢…ë£Œì¼ì„ ë°›ì•„ì˜´)
+-- ê¸°ê°„ : ì…ë ¥ë°›ì€ ì‹œì‘ì¼ ~ ì…ë ¥ë°›ì€ ì¢…ë£Œì¼
+-- ì´ë¦„
 SELECT name
     FROM tblStudent
-        WHERE student_seq = '¹Ş¾Æ¿Â ÇĞ»ı¹øÈ£';
+        WHERE student_seq = 'ë°›ì•„ì˜¨ í•™ìƒë²ˆí˜¸';
 
 select * from tblattendance;
--- ³¯Â¥, Ãâ±Ù½Ã°£, Åğ±Ù½Ã°£, ±ÙÅÂ»óÈ²
+-- ë‚ ì§œ, ì¶œê·¼ì‹œê°„, í‡´ê·¼ì‹œê°„, ê·¼íƒœìƒí™©
 SELECT am.workOn as attendanceDay, to_char(am.workOn, 'hh24:mi') as commuteTime, to_char(am.workOff, 'hh24:mi') as quittingTime, am.state as attendanceSituation
     FROM tblAttendance am
         INNER JOIN tblRegiCourse rc
             ON am.regiCourse_seq = rc.regiCourse_seq
-                WHERE rc.student_seq = '¹Ş¾Æ¿Â ÇĞ»ı¹øÈ£' AND workOn BETWEEN to_date('¹Ş¾Æ¿Â ½ÃÀÛÀÏ','yyyy-mm-dd') AND to_date('¹Ş¾Æ¿Â Á¾·áÀÏ','yyyy-mm-dd');
+                WHERE rc.student_seq = 'ë°›ì•„ì˜¨ í•™ìƒë²ˆí˜¸' AND workOn BETWEEN to_date('ë°›ì•„ì˜¨ ì‹œì‘ì¼','yyyy-mm-dd') AND to_date('ë°›ì•„ì˜¨ ì¢…ë£Œì¼','yyyy-mm-dd');
 
---ÀÔ·Â¹ŞÀº ÇĞ»ı ¹øÈ£ÀÇ ¼ö°­½ÅÃ» ¹øÈ£(ÀÚ¹Ù º¯¼ö¿¡ ÀúÀå)
+--ì…ë ¥ë°›ì€ í•™ìƒ ë²ˆí˜¸ì˜ ìˆ˜ê°•ì‹ ì²­ ë²ˆí˜¸(ìë°” ë³€ìˆ˜ì— ì €ì¥)
 SELECT rc.regiCourse_seq as enrollmentNumbers
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
                 INNER JOIN tblOpenCourse oc
                     ON oc.openCourse_seq = rc.openCourse_seq
-                        WHERE s.student_seq = 'ÀÔ·Â¹ŞÀº ÇĞ»ı ¹øÈ£' 
-                            AND oc.openCourse_seq = 'ÀÔ·Â¹ŞÀº °³¼³°úÁ¤¹øÈ£';
+                        WHERE s.student_seq = 'ì…ë ¥ë°›ì€ í•™ìƒ ë²ˆí˜¸' 
+                            AND oc.openCourse_seq = 'ì…ë ¥ë°›ì€ ê°œì„¤ê³¼ì •ë²ˆí˜¸';
 
--- ¼öÁ¤ÇÏ±â
+-- ìˆ˜ì •í•˜ê¸°
 UPDATE tblattendance 
-    SET state = '°íÄ¥³»¿ë'
-        WHERE to_char(ad.workon, 'YYYY-MM-DD') = 'ÀÔ·Â¹ŞÀº Á¶È¸³¯Â¥' and regicourse_seq = '¼ö°­ ½ÅÃ»¹øÈ£';
+    SET state = 'ê³ ì¹ ë‚´ìš©'
+        WHERE to_char(ad.workon, 'YYYY-MM-DD') = 'ì…ë ¥ë°›ì€ ì¡°íšŒë‚ ì§œ' and regicourse_seq = 'ìˆ˜ê°• ì‹ ì²­ë²ˆí˜¸';
         
         
 
@@ -173,8 +174,8 @@ UPDATE tblattendance
 
 
 select * from tblteachercourse;
--- 1. °ü¸®ÀÚ ? 5. Ãâ°á °ü¸® ¹× Ãâ°áÁ¶È¸ - b. °úÁ¤º° Á¶È¸
--- a. °úÁ¤¹øÈ£ °úÁ¤¸í °úÁ¤±â°£ ±³»ç¸í °­ÀÇ½Ç(°³¼³°úÁ¤¹øÈ£,Á¶È¸±â°£ ÀÔ·Â¹Ş¾Æ ³Ñ°ÜÁÜ)
+-- 1. ê´€ë¦¬ì ? 5. ì¶œê²° ê´€ë¦¬ ë° ì¶œê²°ì¡°íšŒ - b. ê³¼ì •ë³„ ì¡°íšŒ
+-- a. ê³¼ì •ë²ˆí˜¸ ê³¼ì •ëª… ê³¼ì •ê¸°ê°„ êµì‚¬ëª… ê°•ì˜ì‹¤(ê°œì„¤ê³¼ì •ë²ˆí˜¸,ì¡°íšŒê¸°ê°„ ì…ë ¥ë°›ì•„ ë„˜ê²¨ì¤Œ)
 select rownum, cl.name as courselistName, oc.startdate || ' ~ ' || oc.enddate as courseDuration, t.name as teacherName, r.name as className 
     from tblopencourse oc
         inner join tblteachercourse tc
@@ -187,7 +188,7 @@ select rownum, cl.name as courselistName, oc.startdate || ' ~ ' || oc.enddate as
                                     on r.room_seq = oc.room_seq;
 select * from tblcourselist;
 
---°úÁ¤¹øÈ£ ÀÔ·ÂÀ» À§ÇØ ÀúÀåÇÒ °³¼³°úÁ¤¹øÈ£(ÀÚ¹Ù¿¡ ÀúÀå)
+--ê³¼ì •ë²ˆí˜¸ ì…ë ¥ì„ ìœ„í•´ ì €ì¥í•  ê°œì„¤ê³¼ì •ë²ˆí˜¸(ìë°”ì— ì €ì¥)
 select oc.courselist_seq as openingCourseNumber
     from tblopencourse oc
         inner join tblteachercourse tc
@@ -199,12 +200,12 @@ select oc.courselist_seq as openingCourseNumber
                                 inner join tblroom r
                                     on r.room_seq = oc.room_seq;
 
---ÀÔ·Â¹ŞÀ» ³¯Â¥(ÀÚ¹Ù º¯¼ö¿¡ ÀúÀåÇØ¾ßÇÔ)
+--ì…ë ¥ë°›ì„ ë‚ ì§œ(ìë°” ë³€ìˆ˜ì— ì €ì¥í•´ì•¼í•¨)
 
 
---ÀÔ·Â¹ŞÀº ³¯Â¥¿¡ ´ëÇÑ Ãâ°á Á¤º¸
---ÇĞ¹ø ÇĞ»ı¸í Ãâ±Ù½Ã°£ Åğ±Ù½Ã°£ ±ÙÅÂ»óÈ²(¼öÁ¤¿¡¼­ ÇĞ»ıÀÌ¸§Àº °ãÄ¥ ¼ö ÀÖ±â¶§¹®¿¡ ÇĞ»ı¹øÈ£·Î ¹Ù²ã¾ßµÊ)
---*********************************Å×ÀÌºí ¼öÁ¤ÈÄ ´Ù½ÃÁøÇà *****************************************
+--ì…ë ¥ë°›ì€ ë‚ ì§œì— ëŒ€í•œ ì¶œê²° ì •ë³´
+--í•™ë²ˆ í•™ìƒëª… ì¶œê·¼ì‹œê°„ í‡´ê·¼ì‹œê°„ ê·¼íƒœìƒí™©(ìˆ˜ì •ì—ì„œ í•™ìƒì´ë¦„ì€ ê²¹ì¹  ìˆ˜ ìˆê¸°ë•Œë¬¸ì— í•™ìƒë²ˆí˜¸ë¡œ ë°”ê¿”ì•¼ë¨)
+--*********************************í…Œì´ë¸” ìˆ˜ì •í›„ ë‹¤ì‹œì§„í–‰ *****************************************
 select  rownum, s.name as studentName, to_char(ad.workon, 'hh24:mm') as commuteTime, to_char(ad.workoff, 'hh24:mm') as quittingTime, ad.state as attendanceSituation
     from tblstudent s
         inner join tblregicourse rc
@@ -214,10 +215,10 @@ select  rownum, s.name as studentName, to_char(ad.workon, 'hh24:mm') as commuteT
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
                                 where oc.opencourse_seq = 13
-                                      and to_char(ad.workon, 'YYYY-MM-DD') = 'ÀÔ·Â¹ŞÀº Á¶È¸³¯Â¥';
+                                      and to_char(ad.workon, 'YYYY-MM-DD') = 'ì…ë ¥ë°›ì€ ì¡°íšŒë‚ ì§œ';
 --                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
---                                where oc.opencourse_seq = 'ÀÔ·Â¹ŞÀº °³¼³°úÁ¤¹øÈ£'
---                                    and ad.workOn = to_date('ÀÔ·Â¹ŞÀº Á¶È¸³¯Â¥''yyyy-mm-dd');
+--                                where oc.opencourse_seq = 'ì…ë ¥ë°›ì€ ê°œì„¤ê³¼ì •ë²ˆí˜¸'
+--                                    and ad.workOn = to_date('ì…ë ¥ë°›ì€ ì¡°íšŒë‚ ì§œ''yyyy-mm-dd');
 
 select * from tblopencourse;
 
@@ -226,7 +227,7 @@ select * from tblstudent;
 select * from tblattendance order by attendance_seq;
  
 
---ÀÔ·Â¹ŞÀº ÇĞ»ı¹øÈ£(ÀÚ¹Ù º¯¼ö¿¡ ÀúÀå)
+--ì…ë ¥ë°›ì€ í•™ìƒë²ˆí˜¸(ìë°” ë³€ìˆ˜ì— ì €ì¥)
 select s.student_seq as stdentNumber
     from tblstudent s
         inner join tblregicourse rc
@@ -235,19 +236,19 @@ select s.student_seq as stdentNumber
                     on oc.opencourse_seq = rc.opencourse_seq
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
-                                where oc.opencourse_seq = 'ÀÔ·Â¹ŞÀº °³¼³°úÁ¤¹øÈ£'
-                                    and to_char(ad.workon, 'YYYY-MM-DD') = 'ÀÔ·Â¹ŞÀº Á¶È¸³¯Â¥';
+                                where oc.opencourse_seq = 'ì…ë ¥ë°›ì€ ê°œì„¤ê³¼ì •ë²ˆí˜¸'
+                                    and to_char(ad.workon, 'YYYY-MM-DD') = 'ì…ë ¥ë°›ì€ ì¡°íšŒë‚ ì§œ';
                                     
 
---ÀÔ·Â¹ŞÀº ÇĞ»ı ¹øÈ£ÀÇ ¼ö°­½ÅÃ» ¹øÈ£(ÀÚ¹Ù º¯¼ö¿¡ ÀúÀå)
+--ì…ë ¥ë°›ì€ í•™ìƒ ë²ˆí˜¸ì˜ ìˆ˜ê°•ì‹ ì²­ ë²ˆí˜¸(ìë°” ë³€ìˆ˜ì— ì €ì¥)
 SELECT rc.regiCourse_seq as enrollmentNumbers
     FROM tblStudent s
         INNER JOIN tblRegiCourse rc
             ON s.student_seq = rc.student_seq
                 INNER JOIN tblOpenCourse oc
                     ON oc.openCourse_seq = rc.openCourse_seq
-                        WHERE s.student_seq = 'ÀÔ·Â¹ŞÀº ÇĞ»ı ¹øÈ£' 
-                            AND oc.openCourse_seq = 'ÀÔ·Â¹ŞÀº °³¼³°úÁ¤¹øÈ£';
+                        WHERE s.student_seq = 'ì…ë ¥ë°›ì€ í•™ìƒ ë²ˆí˜¸' 
+                            AND oc.openCourse_seq = 'ì…ë ¥ë°›ì€ ê°œì„¤ê³¼ì •ë²ˆí˜¸';
                             
                             
 
