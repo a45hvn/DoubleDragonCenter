@@ -1,14 +1,14 @@
---°ü¸®ÀÚ DML
+--ê´€ë¦¬ì DML
 
---°ü¸®ÀÚ´Â ±³»ç °èÁ¤ °ü¸® ¹× °³¼³ °úÁ¤, °³¼³ °ú¸ñ¿¡ »ç¿ëÇÏ°ÔµÉ ±âÃÊ Á¤º¸¸¦ µî·Ï ¹× °ü¸®ÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
---±âÃÊ Á¤º¸¿¡´Â °úÁ¤¸í, °ú¸ñ¸í, °­ÀÇ½Ç¸í(Á¤¿ø Æ÷ÇÔ), ±³Àç¸í(ÃâÆÇ»ç¸í Æ÷ÇÔ) µîÀÌ Æ÷ÇÔµÈ´Ù.
+--ê´€ë¦¬ìëŠ” êµì‚¬ ê³„ì • ê´€ë¦¬ ë° ê°œì„¤ ê³¼ì •, ê°œì„¤ ê³¼ëª©ì— ì‚¬ìš©í•˜ê²Œë  ê¸°ì´ˆ ì •ë³´ë¥¼ ë“±ë¡ ë° ê´€ë¦¬í•  ìˆ˜ ìˆì–´ì•¼ í•œë‹¤.
+--ê¸°ì´ˆ ì •ë³´ì—ëŠ” ê³¼ì •ëª…, ê³¼ëª©ëª…, ê°•ì˜ì‹¤ëª…(ì •ì› í¬í•¨), êµì¬ëª…(ì¶œíŒì‚¬ëª… í¬í•¨) ë“±ì´ í¬í•¨ëœë‹¤.
 
---1. ±³»ç °èÁ¤ °ü¸®(id:ÀÌ¸§, pw:ÁÖ¹Î¹øÈ£µŞÀÚ¸®)
+--1. êµì‚¬ ê³„ì • ê´€ë¦¬(id:ì´ë¦„, pw:ì£¼ë¯¼ë²ˆí˜¸ë’·ìë¦¬)
 select * from tblTeacher;
---1-1. ±³»ç Á¤º¸´Â ±³»ç ÀÌ¸§, ÁÖ¹Î¹øÈ£ µŞÀÚ¸®, ÀüÈ­¹øÈ£, °­ÀÇ °¡´É °ú¸ñÀ» ±âº»À¸·Î µî·ÏÇÏ°í, ÁÖ¹Î¹øÈ£ µŞÀÚ¸®´Â ±³»ç º»ÀÎÀÌ ·Î±×ÀÎ½Ã ÆĞ½º¿öµå·Î »ç¿ëµÇµµ·Ï ÇÑ´Ù.
-insert into tblTeacher values (teacher_seq.nextVal,'ÀÌ¸§','ÁÖ¹Î¹øÈ£','ÀüÈ­¹øÈ£');
---1-2. ±³»çÀÇ °­ÀÇ °¡´É °ú¸ñÀº ±âÃÊ Á¤º¸ °ú¸ñ¸íÀ» ÀÌ¿ëÇØ¼­ ¼±ÅÃÀûÀ¸·Î Ãß°¡ÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
-select * from tblSubject; --±âÃÊ Á¤º¸ °ú¸ñ¸í
+--1-1. êµì‚¬ ì •ë³´ëŠ” êµì‚¬ ì´ë¦„, ì£¼ë¯¼ë²ˆí˜¸ ë’·ìë¦¬, ì „í™”ë²ˆí˜¸, ê°•ì˜ ê°€ëŠ¥ ê³¼ëª©ì„ ê¸°ë³¸ìœ¼ë¡œ ë“±ë¡í•˜ê³ , ì£¼ë¯¼ë²ˆí˜¸ ë’·ìë¦¬ëŠ” êµì‚¬ ë³¸ì¸ì´ ë¡œê·¸ì¸ì‹œ íŒ¨ìŠ¤ì›Œë“œë¡œ ì‚¬ìš©ë˜ë„ë¡ í•œë‹¤.
+insert into tblTeacher values (teacher_seq.nextVal,'ì´ë¦„','ì£¼ë¯¼ë²ˆí˜¸','ì „í™”ë²ˆí˜¸');
+--1-2. êµì‚¬ì˜ ê°•ì˜ ê°€ëŠ¥ ê³¼ëª©ì€ ê¸°ì´ˆ ì •ë³´ ê³¼ëª©ëª…ì„ ì´ìš©í•´ì„œ ì„ íƒì ìœ¼ë¡œ ì¶”ê°€í•  ìˆ˜ ìˆì–´ì•¼ í•œë‹¤.
+select * from tblSubject; --ê¸°ì´ˆ ì •ë³´ ê³¼ëª©ëª…
 create or replace procedure procAddAvlSubject(
     pteacherNum number,
     psubjectName varchar2
@@ -21,10 +21,10 @@ begin
 end;
 
 begin
-    procAddAvlSubjet(±³»ç¹øÈ£,'°ú¸ñÀÌ¸§');
+    procAddAvlSubjet(êµì‚¬ë²ˆí˜¸,'ê³¼ëª©ì´ë¦„');
 end;
 
---1-3.a ±³»ç Á¤º¸ Ãâ·Â½Ã ±³»ç ÀüÃ¼ ¸í´ÜÀÇ ±³»ç¸í, ÁÖ¹Î¹øÈ£ µŞÀÚ¸®, ÀüÈ­¹øÈ£, °­ÀÇ °¡´É °ú¸ñÀ» Ãâ·ÂÇÏ°í, 
+--1-3.a êµì‚¬ ì •ë³´ ì¶œë ¥ì‹œ êµì‚¬ ì „ì²´ ëª…ë‹¨ì˜ êµì‚¬ëª…, ì£¼ë¯¼ë²ˆí˜¸ ë’·ìë¦¬, ì „í™”ë²ˆí˜¸, ê°•ì˜ ê°€ëŠ¥ ê³¼ëª©ì„ ì¶œë ¥í•˜ê³ , 
 SELECT teacher_seq,name, substr(ssn,8), tel,(SELECT LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) as tAvlSubject
     FROM tblTeacher t
         INNER JOIN tblAvlSubject a
@@ -34,18 +34,18 @@ SELECT teacher_seq,name, substr(ssn,8), tel,(SELECT LISTAGG(s.name, ',') WITHIN 
                                 where t.teacher_Seq = 1)
         FROM tblTeacher;
 
---1-3.b Æ¯Á¤ ±³»ç¸¦ ¼±ÅÃÇÑ °æ¿ì ¹èÁ¤µÈ °³¼³ °ú¸ñ¸í, °³¼³ °ú¸ñ±â°£(½ÃÀÛ ³â¿ùÀÏ, ³¡ ³â¿ùÀÏ), °úÁ¤¸í, °³¼³ °úÁ¤±â°£(½ÃÀÛ ³â¿ùÀÏ, ³¡ ³â¿ùÀÏ), 
---±³Àç¸í, °­ÀÇ½Ç, °­ÀÇÁøÇà¿©ºÎ(°­ÀÇ ¿¹Á¤, °­ÀÇÁß, °­ÀÇÁ¾·á)¸¦ È®ÀÎÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
---°­ÀÇÁøÇà¿©ºÎ´Â ³¯Â¥¸¦ ±âÁØÀ¸·Î È®ÀÎÇÑ´Ù.
---°úÁ¤¸í
+--1-3.b íŠ¹ì • êµì‚¬ë¥¼ ì„ íƒí•œ ê²½ìš° ë°°ì •ëœ ê°œì„¤ ê³¼ëª©ëª…, ê°œì„¤ ê³¼ëª©ê¸°ê°„(ì‹œì‘ ë…„ì›”ì¼, ë ë…„ì›”ì¼), ê³¼ì •ëª…, ê°œì„¤ ê³¼ì •ê¸°ê°„(ì‹œì‘ ë…„ì›”ì¼, ë ë…„ì›”ì¼), 
+--êµì¬ëª…, ê°•ì˜ì‹¤, ê°•ì˜ì§„í–‰ì—¬ë¶€(ê°•ì˜ ì˜ˆì •, ê°•ì˜ì¤‘, ê°•ì˜ì¢…ë£Œ)ë¥¼ í™•ì¸í•  ìˆ˜ ìˆì–´ì•¼ í•œë‹¤.
+--ê°•ì˜ì§„í–‰ì—¬ë¶€ëŠ” ë‚ ì§œë¥¼ ê¸°ì¤€ìœ¼ë¡œ í™•ì¸í•œë‹¤.
+--ê³¼ì •ëª…
 select rownum, cll.name, oc.startDate, oc.endDate, oc.countStudent, oc.room_seq
     from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq
         inner join tblOpenCourse oc on tc.opencourse_seq = oc.opencourse_seq
             inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
-                where t.teacher_seq = '±³»ç¹øÈ£';
+                where t.teacher_seq = 'êµì‚¬ë²ˆí˜¸';
 --where t.teacher_seq = '1';
 
---°ú¸ñ¸í
+--ê³¼ëª©ëª…
 select s.name as subjectName, ss.startdate, ss.enddate, b.name
     from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq
         inner join tblOpenCourse oc on tc.opencourse_seq = oc.opencourse_seq
@@ -54,35 +54,35 @@ select s.name as subjectName, ss.startdate, ss.enddate, b.name
                     inner join tblSubject s on cs.subject_seq = s.subject_seq
                         inner join tblbook b on s.book_seq = b.book_seq
                             inner join tblSubjectSchedule ss on s.subject_seq = ss.subject_seq
-                                where t.teacher_seq = '±³»ç¹øÈ£' and cll.courselist_seq = '¼±ÅÃÇÑ °úÁ¤¹øÈ£' and oc.opencourse_seq= '°³¼³°úÁ¤¹øÈ£'
+                                where t.teacher_seq = 'êµì‚¬ë²ˆí˜¸' and cll.courselist_seq = 'ì„ íƒí•œ ê³¼ì •ë²ˆí˜¸' and oc.opencourse_seq= 'ê°œì„¤ê³¼ì •ë²ˆí˜¸'
                                 --where t.teacher_seq = '1' and cll.courselist_seq = '1' and oc.opencourse_seq= '11'
                                      and oc.enddate>=ss.enddate and oc.startdate<=ss.startdate;
 
---1-4.±³»ç Á¤º¸¿¡ ´ëÇÑ ÀÔ·Â, Ãâ·Â, ¼öÁ¤, »èÁ¦ ±â´ÉÀ» »ç¿ëÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
---±³»ç Á¤º¸ Ãâ·Â
-select * from tblTeacher where teacher_seq = 'ÀÔ·Â¹ŞÀº ¹øÈ£' ;
---±³»ç Á¤º¸ ¼öÁ¤
-update tblTeacher set name='°ª',ssn='°ª',tel='°ª' where teacher_seq = '¼öÁ¤ÇÒ ¹øÈ£';
---±³»ç Á¤º¸ »èÁ¦
-delete from tblTeacher where teacher_seq = '»èÁ¦ÇÒ ±³»ç¹øÈ£';
---±³»ç Á¤º¸ ÀÔ·Â
-insert into tblTeacher (teacher_seq,name,ssn,tel) values (teacher_seq.nextVal, 'ÀÌ¸§','ÁÖ¹Î¹øÈ£','ÀüÈ­');
+--1-4.êµì‚¬ ì •ë³´ì— ëŒ€í•œ ì…ë ¥, ì¶œë ¥, ìˆ˜ì •, ì‚­ì œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ìˆì–´ì•¼ í•œë‹¤.
+--êµì‚¬ ì •ë³´ ì¶œë ¥
+select * from tblTeacher where teacher_seq = 'ì…ë ¥ë°›ì€ ë²ˆí˜¸' ;
+--êµì‚¬ ì •ë³´ ìˆ˜ì •
+update tblTeacher set name='ê°’',ssn='ê°’',tel='ê°’' where teacher_seq = 'ìˆ˜ì •í•  ë²ˆí˜¸';
+--êµì‚¬ ì •ë³´ ì‚­ì œ
+delete from tblTeacher where teacher_seq = 'ì‚­ì œí•  êµì‚¬ë²ˆí˜¸';
+--êµì‚¬ ì •ë³´ ì…ë ¥
+insert into tblTeacher (teacher_seq,name,ssn,tel) values (teacher_seq.nextVal, 'ì´ë¦„','ì£¼ë¯¼ë²ˆí˜¸','ì „í™”');
 
---2. °ú¸ñ Æò°¡
---°³¼³°úÁ¤º° °ú¸ñ º¸¿©ÁÖ±â
-select cll.name as °úÁ¤¸í, s.name as °ú¸ñ¸í
+--2. ê³¼ëª© í‰ê°€
+--ê°œì„¤ê³¼ì •ë³„ ê³¼ëª© ë³´ì—¬ì£¼ê¸°
+select cll.name as ê³¼ì •ëª…, s.name as ê³¼ëª©ëª…
 from tblOpenCourse oc inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
     inner join tblCourseSubject cs on cll.courselist_seq = cs.courselist_seq
         inner join tblSubject s on cs.subject_seq = s.subject_seq
-            where oc.opencourse_seq = '°³¼³°úÁ¤¹øÈ£';
+            where oc.opencourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸';
 --            where oc.opencourse_seq = 13;
 
---2-1 °ú¸ñÆò°¡ Á¶È¸ + Æò±Õ Á¡¼ö
-select s.name,round(avg(sr.retingScore),1) as Æò±Õ
+--2-1 ê³¼ëª©í‰ê°€ ì¡°íšŒ + í‰ê·  ì ìˆ˜
+select s.name,round(avg(sr.retingScore),1) as í‰ê· 
     from tblSubjectRating sr inner join tblsubjectschedule ss on sr.subjectschedule_seq = ss.subjectschedule_seq
         inner join tblSubject s on ss.subject_seq = s.subject_seq
---            where s.name = '°ú¸ñ¸í'
---            where s.name = 'Back-end °³¹ß'
+--            where s.name = 'ê³¼ëª©ëª…'
+--            where s.name = 'Back-end ê°œë°œ'
                 group by s.name;
 
 select avg(retingScore) from tblSubjectRating;
@@ -91,11 +91,11 @@ select * from tblSubjectRating;
 
 
 select * from tblSubjectSchedule;
---2-2 °úÁ¤Æò°¡ Á¶È¸ + Æò±Õ Á¡¼ö
+--2-2 ê³¼ì •í‰ê°€ ì¡°íšŒ + í‰ê·  ì ìˆ˜
 
 create or replace view viewCourseRating
 as
-select cll.name, round(avg(sr.retingScore),1) as Æò±Õ
+select cll.name, round(avg(sr.retingScore),1) as í‰ê· 
     from tblSubjectRating sr inner join tblsubjectschedule ss on sr.subjectschedule_seq = ss.subjectschedule_seq
         inner join tblOpenCourse oc on ss.opencourse_seq = oc.opencourse_seq
             inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
@@ -106,30 +106,30 @@ from tblOpenCourse oc inner join tblCourseList cll on oc.courselist_seq = cll.co
 
 select * from tblCourseList;
 
---3. º¸ÃæÇĞ½À
---3-1. º¸ÃæÇĞ½À Á¶È¸
+--3. ë³´ì¶©í•™ìŠµ
+--3-1. ë³´ì¶©í•™ìŠµ ì¡°íšŒ
 select * from tblsupplement;
 
 select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
-where sc.scoreresult = '°ú¶ô';
+where sc.scoreresult = 'ê³¼ë½';
 
---3.2 Æ¯Á¤ ±³À°»ı ¼ºÀû Ãâ·Â½Ã º¸ÃæÇĞ½À ¿©ºÎ
+--3.2 íŠ¹ì • êµìœ¡ìƒ ì„±ì  ì¶œë ¥ì‹œ ë³´ì¶©í•™ìŠµ ì—¬ë¶€
 select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
-where s.student_seq = '±³À°»ı¹øÈ£' and sc.scoreresult = '°ú¶ô';
---where s.student_seq = 21 and sc.scoreresult = '°ú¶ô';
+where s.student_seq = 'êµìœ¡ìƒë²ˆí˜¸' and sc.scoreresult = 'ê³¼ë½';
+--where s.student_seq = 21 and sc.scoreresult = 'ê³¼ë½';
 
---3.2 Æ¯Á¤ °³¼³°úÁ¤ ¼±ÅÃ½Ã º¸ÃæÇĞ½ÀÇÑ ÇĞ»ıµé Á¶È¸
+--3.2 íŠ¹ì • ê°œì„¤ê³¼ì • ì„ íƒì‹œ ë³´ì¶©í•™ìŠµí•œ í•™ìƒë“¤ ì¡°íšŒ
 select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
-where sc.scoreresult = '°ú¶ô' and rc.opencourse_seq = '°³¼³°úÁ¤¹øÈ£';
---where sc.scoreresult = '°ú¶ô' and rc.opencourse_seq = 1;
+where sc.scoreresult = 'ê³¼ë½' and rc.opencourse_seq = 'ê°œì„¤ê³¼ì •ë²ˆí˜¸';
+--where sc.scoreresult = 'ê³¼ë½' and rc.opencourse_seq = 1;
 
 
