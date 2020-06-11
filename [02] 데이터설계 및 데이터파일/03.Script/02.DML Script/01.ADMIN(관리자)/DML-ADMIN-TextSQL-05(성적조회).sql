@@ -1,7 +1,7 @@
--- 1. °ü¸®ÀÚ ? 4. ¼ºÀû Á¶È¸
+-- 1. ê´€ë¦¬ì ? 4. ì„±ì  ì¡°íšŒ
 
--- 1. °ü¸®ÀÚ - 4. ¼ºÀû Á¶È¸ - a. °úÁ¤º° ¼ºÀû Á¶È¸
--- a. °³¼³°úÁ¤ º¸¿©ÁÜ(°³¼³°úÁ¤ PK¸¦ ³Ñ±è)
+-- 1. ê´€ë¦¬ì - 4. ì„±ì  ì¡°íšŒ - a. ê³¼ì •ë³„ ì„±ì  ì¡°íšŒ
+-- a. ê°œì„¤ê³¼ì • ë³´ì—¬ì¤Œ(ê°œì„¤ê³¼ì • PKë¥¼ ë„˜ê¹€)
 -- DTO_ViewOpenCourse
 SELECT oc.openCourse_seq as openCourse_seq, rownum, cl.name as courselistName, oc.startDate || '~' || oc.endDate as courseDuration, t.name as teacherName, r.Name as className
     FROM tblCourselist cl
@@ -15,7 +15,7 @@ SELECT oc.openCourse_seq as openCourse_seq, rownum, cl.name as courselistName, o
                                     ON tc.teacher_seq = t.teacher_seq;
                                     
 
--- b. °³¼³°úÁ¤ ¾ÈÀÇ °³¼³°ú¸ñÀ» º¸¿©ÁÜ,°³¼³°ú¸ñ¹øÈ£(PK)¸¦ ³Ñ°ÜÁÜ , ¼ºÀûµî·Ï¿©ºÎ¸¦ ¾î¶»°Ô ÇÒÁö?(grade°¡ µé¾î°¡´Â ¼ø°£ 250°³·Î ³ª¿È)
+-- b. ê°œì„¤ê³¼ì • ì•ˆì˜ ê°œì„¤ê³¼ëª©ì„ ë³´ì—¬ì¤Œ,ê°œì„¤ê³¼ëª©ë²ˆí˜¸(PK)ë¥¼ ë„˜ê²¨ì¤Œ , ì„±ì ë“±ë¡ì—¬ë¶€ë¥¼ ì–´ë–»ê²Œ í• ì§€?(gradeê°€ ë“¤ì–´ê°€ëŠ” ìˆœê°„ 250ê°œë¡œ ë‚˜ì˜´)
 -- DTO_ViewOpenSubject
 SELECT ss.subjectschedule_seq as openSubject_seq, rownum, s.name as subjectName, ss.startDate || '~' || ss.endDate as subjectDuration
 --    CASE
@@ -29,23 +29,23 @@ SELECT ss.subjectschedule_seq as openSubject_seq, rownum, s.name as subjectName,
                         ON ss.subject_seq = s.subject_seq
 --                            INNER JOIN tblGrade g
 --                                ON g.openSubjectMgmt_seq = osm.openSubjectMgmt_seq
---                                    WHERE oc.openCourse_seq = '¹Ş¾Æ¿Â°³¼³°úÁ¤¹øÈ£';
+--                                    WHERE oc.openCourse_seq = 'ë°›ì•„ì˜¨ê°œì„¤ê³¼ì •ë²ˆí˜¸';
                                     WHERE oc.openCourse_seq = 1;
                                     
                                     
                                     
 -- ***************************************************************
--- b. °³¼³°úÁ¤ ¾ÈÀÇ °³¼³°ú¸ñÀ» º¸¿©ÁÜ,°³¼³°ú¸ñ¹øÈ£(PK)¸¦ ³Ñ°ÜÁÜ , ¼ºÀûµî·Ï¿©ºÎ¸¦ ¾î¶»°Ô ÇÒÁö?(grade°¡ µé¾î°¡´Â ¼ø°£ 250°³·Î ³ª¿È)
+-- b. ê°œì„¤ê³¼ì • ì•ˆì˜ ê°œì„¤ê³¼ëª©ì„ ë³´ì—¬ì¤Œ,ê°œì„¤ê³¼ëª©ë²ˆí˜¸(PK)ë¥¼ ë„˜ê²¨ì¤Œ , ì„±ì ë“±ë¡ì—¬ë¶€ë¥¼ ì–´ë–»ê²Œ í• ì§€?(gradeê°€ ë“¤ì–´ê°€ëŠ” ìˆœê°„ 250ê°œë¡œ ë‚˜ì˜´)
 -- DTO_ViewOpenSubject
 SELECT  DISTINCT ss.subjectschedule_seq as openSubject_seq, s.name as subjectName, ss.startDate || '~' || ss.endDate as subjectDuration,
     CASE
             WHEN sc.scoresubjective is not null then 'O'
             WHEN sc.scoresubjective is null then 'X'
-    END as ¼ºÀûµî·Ï¿©ºÎ    ,
+    END as ì„±ì ë“±ë¡ì—¬ë¶€    ,
     CASE
             WHEN e.question is not null then 'O'
             WHEN e.question is null then 'X'
-    END as ½ÃÇèµî·Ï¿©ºÎ
+    END as ì‹œí—˜ë“±ë¡ì—¬ë¶€
         FROM tblOpenCourse oc
             INNER JOIN tblsubjectschedule ss
                 ON oc.openCourse_seq = ss.openCourse_seq
@@ -55,7 +55,7 @@ SELECT  DISTINCT ss.subjectschedule_seq as openSubject_seq, s.name as subjectNam
                                 ON sc.subjectschedule_seq = ss.subjectschedule_seq
                                     INNER JOIN tblexam e
                                         on e.subjectschedule_seq = ss.subjectschedule_seq
---                                    WHERE oc.openCourse_seq = '¹Ş¾Æ¿Â°³¼³°úÁ¤¹øÈ£';
+--                                    WHERE oc.openCourse_seq = 'ë°›ì•„ì˜¨ê°œì„¤ê³¼ì •ë²ˆí˜¸';
                                     WHERE oc.openCourse_seq = 12;
                                     
                                     
@@ -66,9 +66,9 @@ SELECT  DISTINCT ss.subjectschedule_seq as openSubject_seq, s.name as subjectNam
                                     
                                     
                                     
--- c. °ú¸ñ¿¡ ÇØ´çÇÏ´Â ÇĞ»ıµéÀÇ ¼ºÀûº¸¿©ÁÖ±â
+-- c. ê³¼ëª©ì— í•´ë‹¹í•˜ëŠ” í•™ìƒë“¤ì˜ ì„±ì ë³´ì—¬ì£¼ê¸°
 -- DTO_StudentGradesSubject
-SELECT s.name as °ú¸ñ¸í, oc.startDate || '~' || oc.endDate as courseDuration, oc.room_seq as °­ÀÇ½Ç¸í, t.name as ±³»ç¸í, b.name as ±³Àç¸í, stu.name as studentName, stu.ssn as ÁÖ¹Î¹øÈ£, sc.scoresubjective as ÇÊ±â, sc.scoreobjective as ½Ç±â 
+SELECT s.name as ê³¼ëª©ëª…, oc.startDate || '~' || oc.endDate as courseDuration, oc.room_seq as ê°•ì˜ì‹¤ëª…, t.name as êµì‚¬ëª…, b.name as êµì¬ëª…, stu.name as studentName, stu.ssn as ì£¼ë¯¼ë²ˆí˜¸, sc.scoresubjective as í•„ê¸°, sc.scoreobjective as ì‹¤ê¸° 
     FROM tblOpenCourse oc
             INNER JOIN tblsubjectschedule ss
                 ON oc.openCourse_seq = ss.openCourse_seq
@@ -89,12 +89,12 @@ SELECT s.name as °ú¸ñ¸í, oc.startDate || '~' || oc.endDate as courseDuration, oc
                                                                             INNER JOIN tblbook b
                                                                                 on b.book_seq = s.book_seq
                                                                             
---                                                    WHERE oc.openCourse_seq = '¹Ş¾Æ¿Â°³¼³°úÁ¤¹øÈ£' and osm.openSubjectMgmt_seq = '¹Ş¾Æ¿Â°³¼³°ú¸ñ¹øÈ£';
+--                                                    WHERE oc.openCourse_seq = 'ë°›ì•„ì˜¨ê°œì„¤ê³¼ì •ë²ˆí˜¸' and osm.openSubjectMgmt_seq = 'ë°›ì•„ì˜¨ê°œì„¤ê³¼ëª©ë²ˆí˜¸';
                                                     WHERE oc.openCourse_seq = '13' and ss.subjectschedule_seq = '77';
 
--- 1. °ü¸®ÀÚ - 4. ¼ºÀû Á¶È¸ - b. ÇĞ»ıº° ¼ºÀû Á¶È¸(ÇØ´ç ¹øÈ£ ÂóÂó, ÇĞ»ı¸íÀ¸·Î ÇÏÀÚ´Ï ¼ö°­À»2°³ÀÌ»óÇÏ¸é ¹øÈ£°¡ °ãÄ¡°í, ¼ö°­¹øÈ£·Î ÇÏÀÚ´Ï °Ç³Ê¶Ù´Â ¹øÈ£°¡ ³ª¿È,
--- ÀÚ¹Ù¿¡¼­ ¹øÈ£ º¸¿©ÁÖ°í ÇØ´ç ÇĞ»ı¹øÈ£¸¦ ¹è¿­¿¡ ³Ö¾î¼­ º¸¿©ÁàµµµÊ)
--- ÇĞ»ıº° ¼ö°­°úÁ¤ ¸ñ·ÏÀ» º¸¿©ÁÖ±â
+-- 1. ê´€ë¦¬ì - 4. ì„±ì  ì¡°íšŒ - b. í•™ìƒë³„ ì„±ì  ì¡°íšŒ(í•´ë‹¹ ë²ˆí˜¸ ì°ì°, í•™ìƒëª…ìœ¼ë¡œ í•˜ìë‹ˆ ìˆ˜ê°•ì„2ê°œì´ìƒí•˜ë©´ ë²ˆí˜¸ê°€ ê²¹ì¹˜ê³ , ìˆ˜ê°•ë²ˆí˜¸ë¡œ í•˜ìë‹ˆ ê±´ë„ˆë›°ëŠ” ë²ˆí˜¸ê°€ ë‚˜ì˜´,
+-- ìë°”ì—ì„œ ë²ˆí˜¸ ë³´ì—¬ì£¼ê³  í•´ë‹¹ í•™ìƒë²ˆí˜¸ë¥¼ ë°°ì—´ì— ë„£ì–´ì„œ ë³´ì—¬ì¤˜ë„ë¨)
+-- í•™ìƒë³„ ìˆ˜ê°•ê³¼ì • ëª©ë¡ì„ ë³´ì—¬ì£¼ê¸°
 -- DTO_StudentsTakingCourses
 SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselistName, oc.startDate || '~' || oc.endDate as courseDuration, r.Name as className
     FROM tblStudent s
@@ -106,20 +106,20 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, cl.name as courselist
                             ON oc.courselist_seq = cl.courselist_seq
                                 INNER JOIN tblRoom r
                                     ON oc.room_seq = r.room_seq
---                                        WHERE s.name = 'ÀÔ·ÂÇÑÇĞ»ı¸í';
-                                        WHERE s.name = '°­¿¹Çö';
+--                                        WHERE s.name = 'ì…ë ¥í•œí•™ìƒëª…';
+                                        WHERE s.name = 'ê°•ì˜ˆí˜„';
                                         
 select * from tblstudent;                                        
 
--- 1. °ü¸®ÀÚ - 4. ¼ºÀû Á¶È¸ - b. ÇĞ»ıº° ¼ºÀû Á¶È¸ - ÇĞ»ı
--- a. ¡á ÇĞ»ıÀÌ¸§
+-- 1. ê´€ë¦¬ì - 4. ì„±ì  ì¡°íšŒ - b. í•™ìƒë³„ ì„±ì  ì¡°íšŒ - í•™ìƒ
+-- a. â–  í•™ìƒì´ë¦„
 SELECT name
     FROM tblStudent
-        WHERE student_seq = '¹Ş¾Æ¿Â ÇĞ»ı¹øÈ£';
+        WHERE student_seq = 'ë°›ì•„ì˜¨ í•™ìƒë²ˆí˜¸';
 
--- b. °ú¸ñ¸í °ú¸ñ±â°£ Á¡¼ö Ãâ·Â
+-- b. ê³¼ëª©ëª… ê³¼ëª©ê¸°ê°„ ì ìˆ˜ ì¶œë ¥
 -- DTO_StudentCourseGrades
-SELECT sj.name as subjectName, t.name as ±³»ç¸í, ss.startDate || '~' || ss.endDate as subjectDuration, sc.scoresubjective as ÇÊ±â, sc.scoreobjective as ½Ç±â 
+SELECT sj.name as subjectName, t.name as êµì‚¬ëª…, ss.startDate || '~' || ss.endDate as subjectDuration, sc.scoresubjective as í•„ê¸°, sc.scoreobjective as ì‹¤ê¸° 
     FROM tblStudent stu
         INNER JOIN tblRegiCourse rc
             ON stu.student_seq = rc.student_seq
@@ -135,7 +135,7 @@ SELECT sj.name as subjectName, t.name as ±³»ç¸í, ss.startDate || '~' || ss.endDa
                                                  on tc.opencourse_seq = oc.opencourse_seq
                                                      INNER JOIN tblteacher t
                                                           on t.teacher_seq = tc.teacher_seq                                                       
-                                                              WHERE stu.student_seq = '¹Ş¾Æ¿ÂÇĞ»ı¹øÈ£';
+                                                              WHERE stu.student_seq = 'ë°›ì•„ì˜¨í•™ìƒë²ˆí˜¸';
 --                                        WHERE stu.student_seq = '1';
 
 select * from tblscore;
