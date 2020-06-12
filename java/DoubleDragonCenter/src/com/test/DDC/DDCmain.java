@@ -2,12 +2,14 @@ package com.test.DDC;
 
 import java.util.Scanner;
 
+import com.test.DDC.admin.AdminMain;
+
 public class DDCmain {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
 		Scanner scan = new Scanner(System.in);
-		;
+		
 		Boolean loop = true;
 		
 		System.out.println();
@@ -28,7 +30,8 @@ public class DDCmain {
 			
 			switch(select) {
 				case "1" : // 관리자모드
-					
+					AdminMain admin = new AdminMain();
+					admin.adminLogin();
 					break;
 				case "2" : // 학생 모드
 					
