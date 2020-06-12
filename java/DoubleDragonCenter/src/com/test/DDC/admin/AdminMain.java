@@ -124,6 +124,8 @@ public class AdminMain {
 
 		case "1":
 			//교사계정관리
+			AdminTeacher at = new AdminTeacher();
+			at.printTeacher();
 			
 			break;
 		case "2":
@@ -142,7 +144,6 @@ public class AdminMain {
 			//시험 관리 및 성적 조회
 
 			break;
-
 		case "6":
 			//출결 관리 및 출결 조회
 
