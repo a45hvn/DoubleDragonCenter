@@ -106,11 +106,11 @@ public class AdminMain {
 		System.out.println("============================================================");
 		System.out.println("1. 교사 계정 관리");
 		System.out.println("2. 개설 과정 및 개설 과목 관리");
-		System.out.println("3. 기자재 관리");
-		System.out.println("4. 교육생 관리");
+		System.out.println("3. 교육생 관리");
+		System.out.println("4. 기자재 관리");
 		System.out.println("5. 시험 관리 및 성적 조회");
 		System.out.println("6. 출결 관리 및 출결 조회");
-		System.out.println("7. 과목 평가 관리 및 결과 조회");
+		System.out.println("7. 과목 평가 조회");
 		System.out.println("8. 취업자 조회 및 관리");
 		System.out.println();
 		System.out.println("0. 로그아웃");
@@ -133,11 +133,11 @@ public class AdminMain {
 
 			break;
 		case "3":
-			//기자재 관리
+			//교육생 관리
 
 			break;
 		case "4":
-			//교육생 관리
+			//기자재 관리
 
 			break;
 		case "5":
@@ -149,7 +149,7 @@ public class AdminMain {
 
 			break;
 		case "7":
-			//과목 평가 관리 및 결과 조회
+			//과목 평가 조회
 
 			break;
 		case "8":
