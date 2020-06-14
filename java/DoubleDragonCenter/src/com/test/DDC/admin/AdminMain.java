@@ -62,7 +62,7 @@ public class AdminMain {
 				idList.add(rs.getString("name"));
 				pwdList.add(rs.getString("ssn"));
 				
-				System.out.println(result);
+//				System.out.println(result);
 			}
 			
 			for(int i=0; i<idList.size(); i++) {
@@ -70,7 +70,7 @@ public class AdminMain {
 					if(pwdList.get(i).equals(pw)) {//pw 있을 경우
 						//로그인 성공
 						System.out.println("============================================================");
-						System.out.printf("%s 선생님으로 로그인 되었습니다.");
+						System.out.printf("%s 선생님으로 로그인 되었습니다.",idList.get(i));
 						
 						//메뉴 출력
 						menu();

@@ -31,7 +31,7 @@ public class AdminTeacher {
 			System.out.println("[교사번호]\t[교사명]\t[주민번호 뒷자리]\t[전화번호]");
 			for (int i = 0; i < teacherList.size(); i++) {
 				String[] array = teacherList.get(i).split("\t");
-				System.out.printf("%s\t%s");
+				System.out.printf("%10s\t%s\t%s\t%s\t\n",array[0],array[1],array[2],array[3]);
 			}
 			System.out.println("============================================================");
 			System.out.println("- 상세보기를 원하시면 해당 교사 번호를 입력해주세요.");
