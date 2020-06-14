@@ -12,9 +12,7 @@ import com.test.DDC.DBUtil;
 public class AdminMain {
 	
 	private static Scanner scan = new Scanner(System.in);
-//	private String id;
-//	private String pw;
-//	private DBUtil util;
+	private static String num = null;
 	
 	public static void main(String[] args) {
 		
@@ -47,6 +45,8 @@ public class AdminMain {
 		ArrayList<String> idList = new ArrayList<String>(10); //교사명 담을 list
 		ArrayList<String> pwdList = new ArrayList<String>(10); //주민번호 뒷자리 담을 list
 		
+		int flag = 0;
+		
 		try {
 			conn = util.open();
 			stat = conn.createStatement();
@@ -72,16 +72,17 @@ public class AdminMain {
 						System.out.println("============================================================");
 						System.out.printf("관리자로 로그인 되었습니다.\n");
 						
+						flag = 1;
 						//메뉴 출력
-						menu();
-						break;
+//						while(true) {
+//							menu();
+//						}
 						
 					}else {
 						System.out.println("============================================================");
 						System.out.println("비밀번호가 옳지 않습니다.");
 						break;
 					}
-					
 					
 				}else {
 					System.out.println("============================================================");
@@ -91,10 +92,22 @@ public class AdminMain {
 				
 			}
 			
-		
-
 			stat.close();
 			conn.close();
+		
+			if(flag == 1) {
+				//메뉴 출력
+				while(true) {
+					if(num == "0") {
+						break;
+					}else {
+						menu();
+						
+					}
+				}
+			}
+
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +118,7 @@ public class AdminMain {
 	private static void menu() {
 		//메인 메뉴
 		System.out.println("============================================================");
-		System.out.println("				[관리자]");
+		System.out.println("			[관리자]");
 		System.out.println("============================================================");
 		System.out.println("1. 교사 계정 관리");
 		System.out.println("2. 개설 과정 및 개설 과목 관리");
@@ -137,7 +150,8 @@ public class AdminMain {
 			break;
 		case "3":
 			//교육생 관리
-
+			AdminStudent as = new AdminStudent();
+			as.printMain();
 			break;
 		case "4":
 			//기자재 관리
@@ -153,7 +167,8 @@ public class AdminMain {
 			break;
 		case "7":
 			//과목 평가 조회
-
+			AdminRating ar = new AdminRating();
+			ar.printRating();
 			break;
 		case "8":
 			//취업자 조회 및 관리
@@ -161,7 +176,7 @@ public class AdminMain {
 			break;
 		case "0":
 			//로그아웃
-			
+			num = "0";
 			return;
 
 		}
