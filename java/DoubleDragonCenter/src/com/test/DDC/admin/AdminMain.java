@@ -31,7 +31,7 @@ public class AdminMain {
 		DBUtil util = new DBUtil();
 		
 		System.out.println("============================================================");
-		System.out.println("					[관리자 로그인]");
+		System.out.println("			[관리자 로그인]");
 		System.out.println("============================================================");
 		
 		System.out.print("id : ");
@@ -51,16 +51,16 @@ public class AdminMain {
 			conn = util.open();
 			stat = conn.createStatement();
 			
-			String sql = "select name, substr(ssn,8) as ssn from tblTeacher";
+			String sql = "select id,pwd from tblAdmin";
 			
 			rs = stat.executeQuery(sql);
 			
 			while (rs.next()) { // 교사 테이블 이름(아이디):주민번호(비밀번호) 가져오기
 				
-				String result = rs.getString("name") + "\t" + rs.getString("ssn");
+				String result = rs.getString("id") + "\t" + rs.getString("pwd");
 				
-				idList.add(rs.getString("name"));
-				pwdList.add(rs.getString("ssn"));
+				idList.add(rs.getString("id"));
+				pwdList.add(rs.getString("pwd"));
 				
 //				System.out.println(result);
 			}
@@ -70,7 +70,7 @@ public class AdminMain {
 					if(pwdList.get(i).equals(pw)) {//pw 있을 경우
 						//로그인 성공
 						System.out.println("============================================================");
-						System.out.printf("%s 선생님으로 로그인 되었습니다.",idList.get(i));
+						System.out.printf("관리자로 로그인 되었습니다.\n");
 						
 						//메뉴 출력
 						menu();

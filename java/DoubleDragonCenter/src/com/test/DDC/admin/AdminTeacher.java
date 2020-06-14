@@ -25,13 +25,13 @@ public class AdminTeacher {
 
 		while (loop) {
 			System.out.println("============================================================");
-			System.out.println("				[교사 계정 관리]");
+			System.out.println("		[교사 계정 관리]");
 			System.out.println("============================================================");
 			teacherAccount("00"); // 교사 리스트 저장
 			System.out.println("[교사번호]\t[교사명]\t[주민번호 뒷자리]\t[전화번호]");
 			for (int i = 0; i < teacherList.size(); i++) {
 				String[] array = teacherList.get(i).split("\t");
-				System.out.printf("%10s\t%s\t%s\t%s\t\n",array[0],array[1],array[2],array[3]);
+				System.out.printf("%8s\t%4s\t\t%13s\t%s\t\n",array[0],array[1],array[2],array[3]);
 			}
 			System.out.println("============================================================");
 			System.out.println("- 상세보기를 원하시면 해당 교사 번호를 입력해주세요.");
@@ -97,7 +97,7 @@ public class AdminTeacher {
 			
 			
 			System.out.println("============================================================");
-			System.out.println("				[교사 정보 삭제]");
+			System.out.println("		[교사 정보 삭제]");
 			System.out.println("============================================================");
 			System.out.println("삭제할 교사 번호 : ");
 			System.out.print("입력 : ");
@@ -179,7 +179,7 @@ public class AdminTeacher {
 			int flag = 0;
 			
 			System.out.println("============================================================");
-			System.out.println("				[교사 정보 수정]");
+			System.out.println("		[교사 정보 수정]");
 			System.out.println("============================================================");
 			System.out.println("수정할 교사 번호 : ");
 			String num = scan.nextLine();
@@ -294,7 +294,7 @@ public class AdminTeacher {
 
 			case "a": //교사 계정 등록
 				System.out.println("============================================================");
-				System.out.println("				[교사 정보 등록]");
+				System.out.println("			[교사 정보 등록]");
 				System.out.println("============================================================");
 				System.out.print("교사이름 : ");
 				String name = scan.nextLine();
