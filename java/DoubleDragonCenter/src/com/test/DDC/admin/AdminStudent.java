@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
-public class AdminTeacher {
+public class AdminStudent {
 	
 	private static Connection conn = null;
 	private static Statement stat = null;
@@ -17,28 +17,58 @@ public class AdminTeacher {
 	private static DBUtil util = new DBUtil();
 	private static Scanner scan = new Scanner(System.in);
 	
-	private static ArrayList<String> teacherList = new ArrayList<String>(10); //교사 목록 저장할 list
+	private static ArrayList<String> StudentList = new ArrayList<String>(505); //학생 목록 저장할 list
 	
-	//교사이름, 과정이름 저장할 hashMap
-	private static HashMap<String,String> mapInfo = new HashMap<String, String>();
+	public void printMain() {
+		
+		boolean loop = true;
+
+		while (loop) {
+			System.out.println("============================================================");
+			System.out.println("		[학생 관리]");
+			System.out.println("============================================================");
+			System.out.println("1. 학생 전체 보기");
+			System.out.println("2. 학생 면접 관리");
+			System.out.println();
+			System.out.println("0. 뒤로가기");
+			System.out.println("------------------------------------------------------------");
+			System.out.print("입력 : ");
+			String input = scan.nextLine();
+			
+			
+			switch(input) {
+			
+			case "1":
+				//학생 전체보기
+				printStudent();
+				
+				break;
+			case "2":
+				//학생 면접 관리
+				
+				break;
+			case "0":
+				//뒤로가기
+				return;
+			}
+
+		}//while
+		
+	}//printMain()
 	
-	private static String name = new String();
-	private static String course = new String();
-	
-	
-	public void printTeacher() {
+	private void printStudent() {
 		
 		boolean loop = true;
 		int result = 0;
 
 		while (loop) {
 			System.out.println("============================================================");
-			System.out.println("		[교사 계정 관리]");
+			System.out.println("		[학생 관리]");
 			System.out.println("============================================================");
 			teacherAccount("00"); // 교사 리스트 저장
 			System.out.println("[교사번호]\t[교사명]\t[주민번호 뒷자리]\t[전화번호]");
-			for (int i = 0; i < teacherList.size(); i++) {
-				String[] array = teacherList.get(i).split("\t");
+			for (int i = 0; i < StudentList.size(); i++) {
+				String[] array = StudentList.get(i).split("\t");
 				System.out.printf("%8s\t%4s\t\t%13s\t\t%13s\n",array[0],array[1],array[2],array[3]);
 			}
 			System.out.println("============================================================");
@@ -68,9 +98,8 @@ public class AdminTeacher {
 				// 상세보기 (맡은 과정, 과목, 강의 가능 과목)
 				
 				//교사 정보 저장
-				String[] array = teacherList.get(Integer.parseInt(input)-1).split("\t");
-				mapInfo.put("name", array[1]);
-				mapInfo.put("teacherSeq",array[0]);
+				String[] array = StudentList.get(Integer.parseInt(input)-1).split("\t");
+				
 //				name = array[1]; //교사 이름 저장
 				printCourse(input);
 				break;
@@ -279,7 +308,7 @@ public class AdminTeacher {
 			System.out.print("삭제할 교사 번호 : ");
 			String num = scan.nextLine();
 			
-			for(String s:teacherList) {
+			for(String s:StudentList) {
 				//num이 교사리스트 번호 안에 있는 번호인지 유효성 검사
 				if(s.contains(num)) { 
 					flag = 1;
@@ -363,7 +392,7 @@ public class AdminTeacher {
 			System.out.println("수정할 교사 번호 : ");
 			String num = scan.nextLine();
 			
-			for(String s:teacherList) {
+			for(String s:StudentList) {
 				//num이 교사리스트 번호 안에 있는 번호인지 유효성 검사
 				if(s.contains(num)) { 
 					flag = 1;
@@ -461,12 +490,15 @@ public class AdminTeacher {
 			
 			String sql = null;
 			
-			teacherList.clear();
-			sql = "select teacher_seq as seq, name, substr(ssn,8) as ssn, tel from tblTeacher where teacher_seq > 0";
+			StudentList.clear();
+			
+			sql = "SELECT student_seq as seq, name, substr(ssn,8), tel, regiDate" +
+					"                        FROM tblStudent" + 
+					"                            where student_seq = '자바에서for문으로 변수돌림'";
 			rs = stat.executeQuery(sql);
 			
 			while(rs.next()) {
-				teacherList.add(rs.getString("seq") + "\t" + rs.getString("name") + "\t" + rs.getString("ssn") + "\t" + rs.getString("tel"));
+				StudentList.add(rs.getString("seq") + "\t" + rs.getString("name") + "\t" + rs.getString("ssn") + "\t" + rs.getString("tel"));
 			}
 
 			switch(input) {
@@ -504,4 +536,5 @@ public class AdminTeacher {
 		
 	}//teacherAccount()
 	
+
 }
