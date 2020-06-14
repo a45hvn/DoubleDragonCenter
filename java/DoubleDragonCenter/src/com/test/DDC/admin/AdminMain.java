@@ -18,8 +18,9 @@ public class AdminMain {
 	
 	public static void main(String[] args) {
 		
-		adminLogin();
-		
+		//adminLogin();
+		ManageCourseAndSub manage=new ManageCourseAndSub();
+		manage.exe();
 	}
 	
 	//로그인
