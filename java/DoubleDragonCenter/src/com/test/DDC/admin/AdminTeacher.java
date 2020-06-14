@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
@@ -18,6 +19,13 @@ public class AdminTeacher {
 	
 	private static ArrayList<String> teacherList = new ArrayList<String>(10); //교사 목록 저장할 list
 	
+	//교사이름, 과정이름 저장할 hashMap
+	private static HashMap<String,String> mapInfo = new HashMap<String, String>();
+	
+	private static String name = new String();
+	private static String course = new String();
+	
+	
 	public void printTeacher() {
 		
 		boolean loop = true;
@@ -31,7 +39,7 @@ public class AdminTeacher {
 			System.out.println("[교사번호]\t[교사명]\t[주민번호 뒷자리]\t[전화번호]");
 			for (int i = 0; i < teacherList.size(); i++) {
 				String[] array = teacherList.get(i).split("\t");
-				System.out.printf("%8s\t%4s\t\t%13s\t%s\t\n",array[0],array[1],array[2],array[3]);
+				System.out.printf("%8s\t%4s\t\t%13s\t\t%13s\n",array[0],array[1],array[2],array[3]);
 			}
 			System.out.println("============================================================");
 			System.out.println("- 상세보기를 원하시면 해당 교사 번호를 입력해주세요.");
@@ -59,6 +67,12 @@ public class AdminTeacher {
 			case "10":
 				// 상세보기 (맡은 과정, 과목, 강의 가능 과목)
 				
+				//교사 정보 저장
+				String[] array = teacherList.get(Integer.parseInt(input)-1).split("\t");
+				mapInfo.put("name", array[1]);
+				mapInfo.put("teacherSeq",array[0]);
+//				name = array[1]; //교사 이름 저장
+				printCourse(input);
 				break;
 			case "a":
 				// 교사 계정 등록
@@ -81,6 +95,170 @@ public class AdminTeacher {
 
 	}
 	
+
+	
+	private void printCourse(String num) {
+		// 맡은 과정 출력
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		
+		//맡은 과정 목록 담을 리스트 
+		ArrayList<String> courseList = new ArrayList<String>(5);
+		//과정번호 담을 리스트
+		ArrayList<String> seqList = new ArrayList<String>(5);
+		
+
+		try {
+
+			conn = util.open();
+			stat = conn.createStatement();
+
+			System.out.println("============================================================");
+			System.out.println("		[교사 정보 상세보기]");
+			System.out.println("============================================================");
+			
+			System.out.printf("교사 %s 님의 정보입니다.",mapInfo.get("name"));
+			System.out.println();
+			
+			String sql = String.format("select oc.opencourse_seq as seq, cll.name as name, oc.startDate||'~'||oc.endDate as 과정기간, oc.countStudent as 정원, oc.room_seq as 강의실," + 
+					"    case when oc.endDate < sysdate then '강의종료'" + 
+					"         when oc.startDate < sysdate and oc.endDate > sysdate then '강의중'" + 
+					"         when oc.startDate > sysdate then '강의예정' end as 강의진행여부" + 
+					"    from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq" + 
+					"        inner join tblOpenCourse oc on tc.opencourse_seq = oc.opencourse_seq" + 
+					"            inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq" + 
+					"                where t.teacher_seq = '%s'", num);
+			
+			rs = stat.executeQuery(sql);
+			
+			while(rs.next()) { //쿼리 결과 저장하기
+				String result = rs.getString("name") + "\t"
+								+ rs.getString("과정기간") + "\t"
+								+ rs.getString("정원") + "\t"
+								+ rs.getString("강의실") + "\t"
+								+ rs.getString("강의진행여부");
+				
+				courseList.add(result);
+				seqList.add(rs.getString("seq"));
+			}
+			
+			//결과 출력
+			for(int i=0; i<seqList.size(); i++) {
+				System.out.println("[번호]\t[과정명]\t\t\t\t\t[과정기간]\t[정원]\t[강의실]\t[강의진행여부]\n");
+				
+				String[] array = courseList.get(i).split("\t");
+				
+				System.out.printf("%2d\t%s\t%s\t%s\t%s\t%s\n",i+1,array[0],array[1],array[2],array[3],array[4]);
+			}
+			
+			System.out.println();
+			System.out.println("0. 뒤로가기");
+			System.out.println();
+			System.out.println("과정별 과목을 보시려면 번호를 입력하세요.");
+			System.out.println("------------------------------------------------------------");
+			System.out.print("입력 : ");
+			String input = scan.nextLine();
+			
+			//입력 유효성 검사
+			if(seqList.indexOf(input) >= 0 || input.equals("0")) {
+				switch(input) {
+				
+				case "0":
+					//뒤로가기
+					return;
+				case "1":
+				case "2":
+				case "3":
+					//과정 정보 저장
+					String[] array = courseList.get(Integer.parseInt(input)-1).split("\t");
+					mapInfo.put("courseSeq", seqList.get(Integer.parseInt(input)-1));
+					mapInfo.put("courseName", array[0]);
+//					course = array[0];
+					//과정별 과목보기
+					System.out.println();
+					printSubject(seqList.get(Integer.parseInt(input)-1)); 
+					break;
+				}
+				
+			}else {
+				System.out.println("해당 번호는 없는 번호입니다.");
+			}
+			
+			stat.close();
+			conn.close();
+			rs.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+	private void printSubject(String courseSeq) {
+		//과정별 과목 출력하기
+		
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+
+		try {
+
+			conn = util.open();
+			stat = conn.createStatement();
+			
+			System.out.println("============================================================");
+			System.out.println("		[과정별 과목 보기]");
+			System.out.println("============================================================");
+			
+			System.out.printf("교사 %s 님의 정보입니다.",mapInfo.get("name"));
+			System.out.println();
+			System.out.printf("과정명 : %s\n",mapInfo.get("courseName"));
+			System.out.println("------------------------------------------------------------");
+			
+			String sql = String.format("select s.name as 과목명, s.period||'일' as 과목기간, b.name as 교재명" + 
+					"    from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq" + 
+					"        inner join tblOpenCourse oc on tc.opencourse_seq = oc.opencourse_seq" + 
+					"            inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq" + 
+					"                inner join tblCourseSubject cs on cll.courselist_seq = cs.courselist_seq" + 
+					"                    inner join tblSubject s on cs.subject_seq = s.subject_seq" + 
+					"                        inner join tblbook b on s.book_seq = b.book_seq" + 
+					"                            inner join tblSubjectSchedule ss on s.subject_seq = ss.subject_seq" + 
+					"                                where t.teacher_seq = %s and oc.opencourse_seq= %s" + 
+					"                                     and oc.enddate>=ss.enddate and oc.startdate<=ss.startdate"
+					, mapInfo.get("teacherSeq"), mapInfo.get("courseSeq"));
+
+			System.out.println("[과목명]\t[과목기간]\t[교재명]\n");
+			rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				System.out.printf("%13s\t%s\t%s\n",rs.getString("과목명"),rs.getString("과목기간"),rs.getString("교재명"));
+//				System.out.println(rs.getString("과목명") + "\t" + rs.getString("과목기간") + "\t" + rs.getString("교재명"));
+			}
+			
+			System.out.println();
+			System.out.println("0. 처음으로 가기");
+			System.out.println("------------------------------------------------------------");
+			System.out.print("입력 : ");
+			String input = scan.nextLine();
+
+			stat.close();
+			conn.close();
+			rs.close();
+			
+			return;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}//printSubject()
+
 	private void teacherDelete() {
 		// 교사 정보 삭제
 		Connection conn = null;
@@ -95,12 +273,10 @@ public class AdminTeacher {
 
 			int flag = 0;
 			
-			
 			System.out.println("============================================================");
 			System.out.println("		[교사 정보 삭제]");
 			System.out.println("============================================================");
-			System.out.println("삭제할 교사 번호 : ");
-			System.out.print("입력 : ");
+			System.out.print("삭제할 교사 번호 : ");
 			String num = scan.nextLine();
 			
 			for(String s:teacherList) {
@@ -112,17 +288,20 @@ public class AdminTeacher {
 			
 			if (flag == 1) {// 유효번호 있을 경우
 
-				String sql = String.format("SELECT teacher_seq as seq,name, substr(ssn,8) as ssn, tel, (SELECT  LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) as tAvlSubject as avlSubject" + 
-						"    FROM tblTeacher t " + 
-						"        INNER JOIN tblAvlSubject a " + 
+				String sql = String.format("SELECT teacher_seq as seq,name, substr(ssn,8) as ssn, tel, (SELECT  LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) " + 
+						"    FROM tblTeacher t" + 
+						"        INNER JOIN tblAvlSubject a" + 
 						"            ON t.teacher_seq = a.teacher_seq " + 
 						"                    INNER JOIN tblSubject s" + 
 						"                        ON a.subject_seq = s.subject_seq" + 
-						"                                where t.teacher_Seq = %s)" + 
-						"        FROM tblTeacher\n" + 
-						"         where teacher_seq = %s", num,num);
+						"                             where t.teacher_Seq = %s) as AvlSubject" + 
+						"        FROM tblTeacher" + 
+						"        where teacher_seq = %s"
+						, num,num);
+
 				
 				rs = stat.executeQuery(sql);
+				rs.next();
 				
 				System.out.println("[교사번호]\t[교사명]\t[전화번호]\t[강의가능과목]");
 				String reslut = rs.getString("seq") + "\t" + rs.getString("ssn") + "\t" + rs.getString("tel") + "\t" + rs.getString("avlSubject");
@@ -140,7 +319,7 @@ public class AdminTeacher {
 
 					stat.close();
 					conn.close();
-
+					rs.close();
 					return;
 
 				} else {
@@ -317,6 +496,7 @@ public class AdminTeacher {
 
 			stat.close();
 			conn.close();
+			rs.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();

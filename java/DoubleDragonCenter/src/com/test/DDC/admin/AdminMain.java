@@ -74,16 +74,19 @@ public class AdminMain {
 						
 						//메뉴 출력
 						menu();
+						break;
 						
 					}else {
 						System.out.println("============================================================");
 						System.out.println("비밀번호가 옳지 않습니다.");
+						break;
 					}
 					
 					
 				}else {
 					System.out.println("============================================================");
 					System.out.println("없는 id입니다.");
+					break;
 				}
 				
 			}
@@ -102,7 +105,7 @@ public class AdminMain {
 	private static void menu() {
 		//메인 메뉴
 		System.out.println("============================================================");
-		System.out.println("						[관리자]");
+		System.out.println("				[관리자]");
 		System.out.println("============================================================");
 		System.out.println("1. 교사 계정 관리");
 		System.out.println("2. 개설 과정 및 개설 과목 관리");
