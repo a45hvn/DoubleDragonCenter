@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
@@ -415,13 +416,17 @@ public class Manage {
 			return null;
 		}
 	}//procSubject
-	
-	public void  procemployee() {
+	/**
+	 * 모든 취업자의 정보를 가져옵니다.
+	 * [0]수강신청번호[1]학생번호[2]학생이름[3]회사번호[4]회사이름[5]연봉[6]취직일
+	 * @return
+	 */
+	public ArrayList<String[]>  procemployee() {
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
 		DBUtil util = new DBUtil();
-
+		ArrayList<String[]> row=new ArrayList<String[]>();
 		try {
 			String sql = "{call procemployee(?) }";
 			conn = util.open();
@@ -432,16 +437,164 @@ public class Manage {
 			rs=(ResultSet)stat.getObject(1);
 			
 			while(rs.next()) {
-				
+				String[] temp= {rs.getString("수강신청번호"),
+								rs.getString("학생번호"),
+								rs.getString("학생이름"),
+								rs.getString("회사번호"),
+								rs.getString("회사이름"),
+								rs.getString("연봉"),
+								rs.getString("취직일")};
+				row.add(temp);
 			}
 
 			
 			
 			stat.close();
 			conn.close();
+			return row;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			return null;
 		}
 	}//procemployee
+	/**
+	 * 과정번호를 입력받아 과정별 취업자를 보여줍니다.
+	 * @param opencourse_seq
+	 * @return
+	 * [0]수강신청번호[1]학생번호[2]학생이름[3]회사번호[4]회사이름[5]연봉[6]취직일
+	 */
+	public ArrayList<String[]>  procempbycourse(int opencourse_seq) {
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		ArrayList<String[]> row=new ArrayList<String[]>();
+		try {
+			String sql = "{call procempbycourse(?,?) }";
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1, opencourse_seq);
+			stat.registerOutParameter(2, OracleTypes.CURSOR);
+			stat.executeQuery();
+			
+			rs=(ResultSet)stat.getObject(2);
+			
+			while(rs.next()) {
+				String[] temp= {rs.getString("수강신청번호"),
+								rs.getString("학생번호"),
+								rs.getString("학생이름"),
+								rs.getString("회사번호"),
+								rs.getString("회사이름"),
+								rs.getString("연봉"),
+								rs.getString("취직일")};
+				row.add(temp);
+			}
+
+			
+			
+			stat.close();
+			conn.close();
+			return row;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+	}//procempbycourse
+	public ArrayList<String[]>  procempbyname(String pname) {
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		ArrayList<String[]> row=new ArrayList<String[]>();
+		try {
+			String sql = "{call procempbyname(?,?) }";
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setString(1, pname);
+			stat.registerOutParameter(2, OracleTypes.CURSOR);
+			stat.executeQuery();
+			
+			rs=(ResultSet)stat.getObject(2);
+			
+			while(rs.next()) {
+				String[] temp= {rs.getString("수강신청번호"),
+								rs.getString("학생번호"),
+								rs.getString("학생이름"),
+								rs.getString("회사번호"),
+								rs.getString("회사이름"),
+								rs.getString("연봉"),
+								rs.getString("취직일")};
+				row.add(temp);
+			}
+
+			
+			
+			stat.close();
+			conn.close();
+			return row;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+	}//procempbyname
+	
+	public void procsetemp(int pregicourse_seq,int pcompany,String pday) {
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner scan=new Scanner(System.in);
+		
+		try {
+			String sql = "{call procsetemp(?,?,?,?) }";
+			conn = util.open();
+			conn.setAutoCommit(false);
+			
+			stat = conn.prepareCall(sql);
+			
+			stat.setInt(1,pregicourse_seq);
+			stat.setInt(2, pcompany);
+			stat.setString(3, pday);
+			stat.registerOutParameter(4, OracleTypes.CURSOR);
+			stat.executeQuery();
+			rs=(ResultSet)stat.getObject(4);
+			
+			while((rs.next())) {
+				String[] temp= {
+						rs.getString("학생번호"),
+						rs.getString("학생이름"),
+						rs.getString("회사번호"),
+						rs.getString("회사이름"),
+						rs.getString("연봉"),
+						rs.getString("취직일")};
+				String line= String.format("%s   %s   %s   %s          %s             %s",
+						("학생번호"),
+						("학생이름"),
+						("회사번호"),
+						("회사이름"),
+						("연봉"),
+						("취직일"));
+				System.out.println(line);
+				System.out.printf(" %s    %s     %s   %s     %,d만원     %s\n",temp[0],temp[1],temp[2],temp[3],Integer.parseInt(temp[4])/10000,temp[5]);
+			}
+			
+			System.out.print("y 를 누르면 입력이 완료됩니다. (y/n) ");
+			String check=scan.nextLine();
+			if(check.toLowerCase().equals("y")) {
+			System.out.println("입력을 완료했습니다.");
+			}else {
+				conn.rollback();
+				System.out.println("입력을 취소했습니다.");
+			}
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("입력을 실패했습니다.");
+		}
+	}//procsetemp
 }
