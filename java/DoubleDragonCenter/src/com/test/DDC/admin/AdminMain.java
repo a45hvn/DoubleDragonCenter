@@ -73,7 +73,7 @@ public class AdminMain {
 						System.out.println("============================================================");
 						System.out.printf("관리자로 로그인 되었습니다.\n");
 						
-//						flag = 1;
+						flag = 1;
 						menu();
 						break;
 						
@@ -94,17 +94,17 @@ public class AdminMain {
 			stat.close();
 			conn.close();
 		
-//			if(flag == 1) {
-//				//메뉴 출력
-//				while(true) {
-//					if(num == "0") {
-//						break;
-//					}else {
-//						menu();
-//						
-//					}
-//				}
-//			}
+			if(flag == 1) {
+				//메뉴 출력
+				while(true) {
+					if(num == "0") {
+						break;
+					}else {
+						menu();
+						
+					}
+				}
+			}
 
 			
 
@@ -159,11 +159,13 @@ public class AdminMain {
 			break;
 		case "5":
 			//시험 관리 및 성적 조회
-
+			AdminExamScore aes = new AdminExamScore();
+			aes.printExamScore();
 			break;
 		case "6":
 			//출결 관리 및 출결 조회
-
+			AdminAttandance aad = new AdminAttandance();
+			aad.printAttandance();
 			break;
 		case "7":
 			//과목 평가 조회
