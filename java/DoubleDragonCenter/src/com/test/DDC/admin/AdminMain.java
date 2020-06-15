@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.test.DDC.DBUtil;
+
 
 public class AdminMain {
 	
@@ -14,11 +16,7 @@ public class AdminMain {
 	
 	public static void main(String[] args) {
 		
-		//adminLogin();
-		ManageCourseAndSub manage=new ManageCourseAndSub();
-		ManageEmp manageE=new ManageEmp();
-//		manage.exe();
-		manageE.exe();
+		adminLogin();
 		
 	}
 	
@@ -30,6 +28,7 @@ public class AdminMain {
 		String pw;
 		DBUtil util = new DBUtil();
 		
+		while(true) {
 		System.out.println("============================================================");
 		System.out.println("			[관리자 로그인]");
 		System.out.println("============================================================");
@@ -44,8 +43,8 @@ public class AdminMain {
 		Statement stat = null;
 		ResultSet rs = null;
 		
-		ArrayList<String> idList = new ArrayList<String>(10); //교사명 담을 list
-		ArrayList<String> pwdList = new ArrayList<String>(10); //주민번호 뒷자리 담을 list
+		ArrayList<String> idList = new ArrayList<String>(3); //id 담을 list
+		ArrayList<String> pwdList = new ArrayList<String>(3); //pwd 담을 list
 		
 		int flag = 0;
 		
@@ -57,7 +56,7 @@ public class AdminMain {
 			
 			rs = stat.executeQuery(sql);
 			
-			while (rs.next()) { // 교사 테이블 이름(아이디):주민번호(비밀번호) 가져오기
+			while (rs.next()) { // 관리자 테이블 id,pwd 가져오기
 				
 				String result = rs.getString("id") + "\t" + rs.getString("pwd");
 				
@@ -74,11 +73,9 @@ public class AdminMain {
 						System.out.println("============================================================");
 						System.out.printf("관리자로 로그인 되었습니다.\n");
 						
-						flag = 1;
-						//메뉴 출력
-//						while(true) {
-//							menu();
-//						}
+//						flag = 1;
+						menu();
+						break;
 						
 					}else {
 						System.out.println("============================================================");
@@ -92,28 +89,29 @@ public class AdminMain {
 					break;
 				}
 				
-			}
+			}//for
 			
 			stat.close();
 			conn.close();
 		
-			if(flag == 1) {
-				//메뉴 출력
-				while(true) {
-					if(num == "0") {
-						break;
-					}else {
-						menu();
-						
-					}
-				}
-			}
+//			if(flag == 1) {
+//				//메뉴 출력
+//				while(true) {
+//					if(num == "0") {
+//						break;
+//					}else {
+//						menu();
+//						
+//					}
+//				}
+//			}
 
 			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		}//while
 		
 	}
 
@@ -145,7 +143,7 @@ public class AdminMain {
 			AdminTeacher at = new AdminTeacher();
 			at.printTeacher();
 			
-			break;
+			return;
 		case "2":
 			//개설 과정 및 개설 과목 관리
 
