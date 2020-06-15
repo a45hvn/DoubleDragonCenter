@@ -9,15 +9,30 @@ public class ManageEmp {
 		//getAllEmployee();// 모든 취업자 검색
 		//getEmpByname();//이름으로 검색
 		//getEmpByCourse();//과정번호로 검색
-		setEmp();
+		//setEmp();//새로운 취업자 추가
+		//setDelEmp();
+		setUpEmp();
+		
+//		Scanner scan=new Scanner(System.in);
+//		System.out.println("===========================================================");
+//		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 등록하기");
+//		System.out.println("===========================================================");
 		
 	}//exe
+	private void setUpEmp() {
+		// TODO Auto-generated method stub
+		m.procupdateemp();
+	}
+	private void setDelEmp() {
+		// TODO Auto-generated method stub
+		m.procdeleteemp();
+	}
 	private void setEmp() {
 		// TODO Auto-generated method stub
 		//학생 정보와 회사 정보를 보여줘야하지 않나?
 		Scanner scan=new Scanner(System.in);
 		System.out.println("===========================================================");
-		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 등록하기");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 신규 취업자 정보 등록");
 		System.out.println("===========================================================");
 		//수강신청번호를 입력하기 전에 이름을 검색하면 동명이인 찾아주기?
 		System.out.print("1. 수강신청번호를 입력하세요 : ");
@@ -29,13 +44,13 @@ public class ManageEmp {
 		scan.skip("\r\n");
 		String pday=scan.nextLine();
 
-		
 		m.procsetemp(pregicourse_seq, pcompany, pday);
 	}
+	
 	private void getEmpByCourse() {
 		// TODO Auto-generated method stub
 		System.out.println("===========================================================");
-		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능(과정번호로 검색)");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 c.과정번호로 정보 검색");
 		System.out.println("===========================================================");
 		String header=String.format("[%s] [%s] [%s] [%s] [%s]   [%s]      [%s]","번호","수강신청번호","학생이름","회사번호","회사이름","연봉","취업일");
 		
@@ -85,7 +100,7 @@ public class ManageEmp {
 	private void getEmpByname() {
 		// TODO Auto-generated method stub
 		System.out.println("===========================================================");
-		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능(이름으로 검색)");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 b.취업자 이름으로 정보 검색");
 		System.out.println("===========================================================");
 		String header=String.format("[%s] [%s] [%s] [%s] [%s]   [%s]      [%s]","번호","수강신청번호","학생이름","회사번호","회사이름","연봉","취업일");
 		
@@ -126,7 +141,7 @@ public class ManageEmp {
 	}
 	private void getAllEmployee() {
 		System.out.println("===========================================================");
-		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능  a.취업자 조회");
 		System.out.println("===========================================================");
 		String header=String.format("[%s] [%s] [%s] [%s] [%s]   [%s]      [%s]","번호","수강신청번호","학생이름","회사번호","회사이름","연봉","취업일");
 		System.out.println(header);

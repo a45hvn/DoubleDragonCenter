@@ -6,8 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.test.DDC.DBUtil;
-
 
 public class AdminMain {
 	
@@ -18,7 +16,10 @@ public class AdminMain {
 		
 		//adminLogin();
 		ManageCourseAndSub manage=new ManageCourseAndSub();
-		manage.exe();
+		ManageEmp manageE=new ManageEmp();
+//		manage.exe();
+		manageE.exe();
+		
 	}
 	
 	//로그인

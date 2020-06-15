@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
-
-import com.test.DDC.DBUtil;
-
+import java.sql.*;
 import oracle.jdbc.OracleTypes;
+import oracle.jdbc.oracore.OracleType;
 
 public class Manage {
 	
@@ -597,4 +596,85 @@ public class Manage {
 			System.out.println("입력을 실패했습니다.");
 		}
 	}//procsetemp
+	/**
+	 * 메소드 내에서 취업번호를 입력받아 데이터를 삭제합니다.
+	 * @return
+	 */
+	public boolean procdeleteemp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("삭제할 취업번호를 입력하세요 : ");
+		int pemployment_seq=scan.nextInt();
+		try {
+			String sql = String.format("{call procdeleteemp(?)}");
+			
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1,pemployment_seq);
+			
+			stat.executeQuery();
+
+			stat.close();
+			conn.close();
+			System.out.printf("취업번호 %d의 정보가 삭제되었습니다.",pemployment_seq);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
+	}//procdeleteemp
+	
+	/**
+	 * 메소드 내에서 정보를 입력받아 데이터를 수정합니다.
+	 * 입력한 정보는 수정되고 입력하지 않은 부분은 기존 값을 유지합니다.
+	 * @return
+	 */
+	public boolean procupdateemp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("1.취업번호를 입력하세요 : ");
+		String pemployment_seq=scan.nextLine();
+		
+		
+		System.out.print("2.수정할 수강신청번호를 입력하세요 : ");
+		String pregicourse_seq=scan.nextLine();
+		
+		System.out.println("3.수정할 취업일을 입력하세요 : (yyyymmdd 형식)");
+		String pemploymentdate=scan.nextLine();
+		
+		System.out.print("4.수정할 회사번호를 입력하세요");
+		String pcompany_seq=scan.nextLine();
+		
+		try {
+			String sql = String.format("{call procupdateemp(?,?,?,?)}");
+
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1, Integer.parseInt(pemployment_seq));
+			stat.setInt(2, pregicourse_seq.equals("")? 0:Integer.parseInt(pregicourse_seq));
+			stat.setString(3, pemploymentdate.equals("")? "default":pemploymentdate);
+			stat.setInt(4, pcompany_seq.equals("")? 0:Integer.parseInt(pcompany_seq));
+			stat.executeQuery();
+
+			stat.close();
+			conn.close();
+			
+			System.out.printf("취업번호 %d의 데이터가 수정되었습니다.",pemployment_seq);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("데이터 수정에 실패했습니다.");
+			return false;
+		}
+	}//procupdateemp
+	
 }
