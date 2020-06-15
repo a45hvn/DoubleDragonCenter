@@ -155,7 +155,8 @@ public class AdminMain {
 			break;
 		case "4":
 			//기자재 관리
-
+			AdminItem ai = new AdminItem();
+			ai.printItem();
 			break;
 		case "5":
 			//시험 관리 및 성적 조회
