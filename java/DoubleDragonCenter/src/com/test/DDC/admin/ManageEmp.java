@@ -11,7 +11,8 @@ public class ManageEmp {
 		//getEmpByCourse();//과정번호로 검색
 		//setEmp();//새로운 취업자 추가
 		//setDelEmp();
-		setUpEmp();
+		//setUpEmp();
+		getCmpData();
 		
 //		Scanner scan=new Scanner(System.in);
 //		System.out.println("===========================================================");
@@ -19,12 +20,26 @@ public class ManageEmp {
 //		System.out.println("===========================================================");
 		
 	}//exe
-	private void setUpEmp() {
+	private void getCmpData() {
 		// TODO Auto-generated method stub
+		System.out.println("===========================================================");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 연계 업체 정보");
+		System.out.println("===========================================================");
+		m.getCmpData();
+	}
+	private void setUpEmp() {//정보를 입력받아 데이터 수정
+		// TODO Auto-generated method stub
+		System.out.println("===========================================================");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 취업자 정보 수정");
+		System.out.println("===========================================================");
 		m.procupdateemp();
 	}
 	private void setDelEmp() {
 		// TODO Auto-generated method stub
+		System.out.println("===========================================================");
+		System.out.println("1. 관리자 -8.취업자 조회 및 관리 기능 - 취업자 정보 삭제");
+		System.out.println("===========================================================");
+		//
 		m.procdeleteemp();
 	}
 	private void setEmp() {
@@ -173,6 +188,7 @@ public class ManageEmp {
 				if(i<31&&page==2) {
 					System.out.println("이전 페이지가 없습니다.");
 					System.out.println("다음 페이지를 검색합니다.");
+					System.out.println("-----------------------------------------------------------");
 					i++;
 					continue;
 				}

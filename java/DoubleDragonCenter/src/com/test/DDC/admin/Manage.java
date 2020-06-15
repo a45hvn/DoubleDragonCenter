@@ -676,5 +676,70 @@ public class Manage {
 			return false;
 		}
 	}//procupdateemp
-	
+
+	public void getCmpData() {
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner scan=new Scanner(System.in);
+		try {
+			conn = util.open();
+			stat = conn.createStatement();
+			String sql = String.format("select*from tblCompany where company_seq>0");
+			
+			stat.executeQuery(sql);
+			
+			rs=stat.executeQuery(sql);
+			ArrayList<String[]> row= new ArrayList<String[]>();
+			while(rs.next()) {
+				String[] temp=String.format("%s-%s-%s-%s-%s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5).replace("-", "")).split("-");
+				
+				row.add(temp);
+			}
+			int i=0;
+			
+			String header=String.format(" %s  %s    %s   %s       %s                    %s", "번호","회사번호","회사명","연봉","번호" ,"주소");
+			System.out.println(header);
+			while(i<row.size()) {
+				//row[0] 회사번호 [1]사명 [2]연봉 [3]주소 [4]전화번호
+				String temp=String.format("%3d  %3s  %4s  %s  %6s  %s"
+												,i+1
+												,row.get(i)[0]
+												,row.get(i)[1]
+												,Integer.parseInt(row.get(i)[2])/10000
+												,row.get(i)[4]
+												,row.get(i)[3]);
+				System.out.println(temp);
+				
+				if((i+1)%30==0) {
+					System.out.println("-----------------------------------------------------------");
+					System.out.printf("\t\t\t%d 쪽/%d쪽 \n",(i/31)+1,((row.size()+1)/30)+1);
+					System.out.println("1. 다음 페이지");
+					System.out.println("2. 이전 페이지");
+					System.out.println("3. 이전 메뉴로");//구현해야됨
+					System.out.println("-----------------------------------------------------------");
+					System.out.print("번호 입력 : ");
+					int page=scan.nextInt();//1이면 다음 5개,아니면 이전 5개
+					if(i<31&&page==2) {
+						System.out.println("이전 페이지가 없습니다.");
+						System.out.println("다음 페이지를 검색합니다.");
+						System.out.println("-----------------------------------------------------------");
+						i++;
+						continue;
+						
+					}
+					if(page==2) {
+						i=i-60;
+					}
+				}
+				i++;
+			}//while
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 }
