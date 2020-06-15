@@ -54,11 +54,12 @@ public class AdminExamScore {
 					
 					
 					System.out.println(result);
+					
 //					System.out.println("---------------------------------------------------------");
 						
 					
 				}
-				
+				System.out.println("0\t 뒤로가기");
 				System.out.print("입력 : ");
 				String num = scan.nextLine();
 				
@@ -67,7 +68,7 @@ public class AdminExamScore {
 				conn.close();
 				stat.close();
 				
-				
+				if (Integer.parseInt(num)<19 && Integer.parseInt(num)>0 ) {
 					try {
 						conn = util.open();
 						stat = conn.createStatement();
@@ -102,14 +103,16 @@ public class AdminExamScore {
 							
 							
 							System.out.println(result);
+							
 //							System.out.println("---------------------------------------------------------");
 								
 							
 						}
 						rs.close();
+						
 						System.out.print("입력 : ");
 						String num2 = scan.nextLine();
-						System.out.println();
+						System.out.println();						
 						System.out.println();
 						conn.close();
 						stat.close();
@@ -169,13 +172,15 @@ public class AdminExamScore {
 						e.printStackTrace();
 						// TODO: handle exception
 					}
-					
-//				} else if (Integer.parseInt(num) == 0) {
-//					loop = false;
-//				} else {
-//					System.out.println("올바른 번호를 입력해주세요");
-//					loop = false;
-//				}
+				} else if (Integer.parseInt(num) == 0) {
+					loop = false;
+				} else {
+					System.out.println("올바른 번호를 입력해주세요");
+					System.out.println();
+					System.out.print("계속하시려면 엔터를 눌러주세요");						
+					String num3 = scan.nextLine();
+					loop = false;
+				}
 				
 				
 				
