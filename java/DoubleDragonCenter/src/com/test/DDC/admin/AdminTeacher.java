@@ -22,7 +22,7 @@ public class AdminTeacher {
 	//교사이름, 과정이름 저장할 hashMap
 	private static HashMap<String,String> mapInfo = new HashMap<String, String>();
 	
-	private static String name = new String();
+	private static String teacherName = new String();
 	private static String course = new String();
 	
 	
@@ -196,8 +196,6 @@ public class AdminTeacher {
 		
 	}
 
-
-
 	private void printSubject(String courseSeq) {
 		//과정별 과목 출력하기
 		
@@ -360,13 +358,17 @@ public class AdminTeacher {
 			System.out.println("============================================================");
 			System.out.println("		[교사 정보 수정]");
 			System.out.println("============================================================");
-			System.out.println("수정할 교사 번호 : ");
+			System.out.print("수정할 교사 번호 : ");
 			String num = scan.nextLine();
 			
-			for(String s:teacherList) {
+			for(int i=0; i<teacherList.size(); i++) {
 				//num이 교사리스트 번호 안에 있는 번호인지 유효성 검사
-				if(s.contains(num)) { 
+
+				String[] array = teacherList.get(i).split("\t");
+				
+				if(array[0].equals(num)) { 
 					flag = 1;
+					teacherName = array[1];
 				}
 			}
 			
@@ -377,72 +379,97 @@ public class AdminTeacher {
 				System.out.println("2. 주민번호");
 				System.out.println("3. 전화번호");
 				System.out.println("4. 등록일");
-				System.out.println("5. 수료여부");
+				System.out.println("5. 강의 가능 과목");
 				System.out.println("------------------------------------------------------------");
 				System.out.print("입력 : ");
 				String input = scan.nextLine();
+				
 				System.out.println("------------------------------------------------------------");
-				System.out.print("수정할 값을 입력하세요.");
+				System.out.println("수정할 값을 입력하세요.");
 				
 				if(input.equals("2")) {
 					System.out.println("주민번호는 '-'를 붙여서 입력해주세요.");
+					inputModify(input, num);
 				}else if(input.equals("3")) {
 					System.out.println("전화번호는 '-'를 붙여서 입력해주세요.");
+					inputModify(input, num);
 				}else if(input.equals("4")) {
 					System.out.println("등록일은 YYYY-MM-DD 형식으로 기입해주세요.");
-				}else {
-					System.out.println("수료여부는 수료/탈락 두가지 형식중 하나만 입력하세요.");
-				}
-				
-				System.out.println();
-				System.out.print("입력 : ");
-				String modify = scan.nextLine();
-				
-				//수정할 값 유효성 검사
-				if(input.equals("2") && !modify.contains("-") && modify.length() != 14) {
-					System.out.println("주민번호 기입이 올바르지 않습니다.");
-					return;
-				}else if(input.equals("3") && !modify.contains("-")) {
-					System.out.println("전화번호 기입이 올바르지 않습니다.");
-					return;
-				} else if (input.equals("4") && !modify.contains("-") && modify.length() != 10) {
-					System.out.println("등록일 형식이 올바르지 않습니다.");
-					return;
-				} else {
-					String sql = null;
-					switch (input) {
-					case "1":
-						sql = String.format("update tblTeacher set name='%s' where teacher_seq = '%s'", modify, num);
-						stat.executeUpdate(sql);
-						break;
-					case "2":
-						sql = String.format("update tblTeacher set ssn='%s' where teacher_seq = '%s'", modify, num);
-						stat.executeUpdate(sql);
-						break;
-					case "3":
-						sql = String.format("update tblTeacher set tel='%s' where teacher_seq = '%s'", modify, num);
-						stat.executeUpdate(sql);
-						break;
-					case "4":
-						sql = String.format(
-								"update tblTeacher set regiDate=to_date('%s','yyyy-mm-dd') where teacher_seq = '%s'",
-								modify, num);
-						stat.executeUpdate(sql);
-						break;
-					}
-				}
-				
-				System.out.println("------------------------------------------------------------");
-				System.out.println("수정이 완료되었습니다.");
-				
-				stat.close();
-				conn.close();
+					inputModify(input, num);
+				}else { //강의 가능 과목 추가
+					
+					//현재 강의 가능 과목 담을 리스트
+					ArrayList<String> subList = new ArrayList<String>();
+					
+					//현재 강의 가능 과목 출력
+					System.out.println("------------------------------------------------------------");
+					System.out.printf("%s님의 현재 강의 가능 과목 목록입니다.\n",mapInfo.get("name"));
+					
+					System.out.println("num : " + num); //**
 
+					String sql = String.format(
+							"SELECT  LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) as sublist " + 
+							"    FROM tblTeacher t" + 
+							"        INNER JOIN tblAvlSubject a" + 
+							"            ON t.teacher_seq = a.teacher_seq " + 
+							"                    INNER JOIN tblSubject s" + 
+							"                        ON a.subject_seq = s.subject_seq" + 
+							"                             where t.teacher_Seq = %s", num);
+					
+					rs = stat.executeQuery(sql);
+					
+					rs.next();
+					
+					subList.add(rs.getString("sublist"));
+
+					String[] array = subList.get(0).split(",");
+
+					for(int i=0; i<array.length; i++) {
+						System.out.printf("%s\n", array[i]);
+					}
+						
+					System.out.println("------------------------------------------------------------");
+					
+					//과목 전체 출력
+					System.out.println("추가할 과목을 입력하세요.");
+					System.out.println("[번호]\t[과목명]\n");
+					
+					sql = "select subject_seq as seq, name as sname from tblSubject";
+					rs = stat.executeQuery(sql);
+					
+					while(rs.next()) {
+						//중복 거르기_해당 교사의 강의 가능 과목이면 출력X
+						if(subList.get(0).contains(rs.getString("sname"))) {
+							continue;
+						}else {
+							System.out.printf("%s\t%s\n",rs.getString("seq"),rs.getString("sname"));
+						}
+					}//while
+					
+					System.out.println("------------------------------------------------------------");
+					System.out.print("입력 : ");
+					String snum = scan.nextLine();
+					
+					sql = String.format("insert into tblAvlSubject values (avlSubject_seq.nextVal, %s, %s)"
+							,num,snum);
+					stat.executeUpdate(sql);
+					
+					System.out.println("------------------------------------------------------------");
+					System.out.println("과목이 추가 되었습니다.");
+					
+					
+				}
+				
+				
 			} else {
 				System.out.println("------------------------------------------------------------");
 				System.out.println("없는 교사 번호입니다. 이전 화면으로 돌아갑니다.");
 				return;
 			}	
+
+				
+			stat.close();
+			conn.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -451,6 +478,70 @@ public class AdminTeacher {
 	}//teacherModify()
 	
 	
+	private void inputModify(String input,String num) {
+		// 수정
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+
+		try {
+
+			conn = util.open();
+			stat = conn.createStatement();
+
+			System.out.println();
+			System.out.print("입력 : ");
+			String modify = scan.nextLine();
+			
+			//수정할 값 유효성 검사
+			if(input.equals("2") && !modify.contains("-") && modify.length() != 14) {
+				System.out.println("주민번호 기입이 올바르지 않습니다.");
+				return;
+			}else if(input.equals("3") && !modify.contains("-")) {
+				System.out.println("전화번호 기입이 올바르지 않습니다.");
+				return;
+			} else if (input.equals("4") && !modify.contains("-") && modify.length() != 10) {
+				System.out.println("등록일 형식이 올바르지 않습니다.");
+				return;
+			} else {
+				String sql = null;
+				switch (input) {
+				case "1":
+					sql = String.format("update tblTeacher set name='%s' where teacher_seq = '%s'", modify, num);
+					stat.executeUpdate(sql);
+					break;
+				case "2":
+					sql = String.format("update tblTeacher set ssn='%s' where teacher_seq = '%s'", modify, num);
+					stat.executeUpdate(sql);
+					break;
+				case "3":
+					sql = String.format("update tblTeacher set tel='%s' where teacher_seq = '%s'", modify, num);
+					stat.executeUpdate(sql);
+					break;
+				case "4":
+					sql = String.format(
+							"update tblTeacher set regiDate=to_date('%s','yyyy-mm-dd') where teacher_seq = '%s'",
+							modify, num);
+					stat.executeUpdate(sql);
+					break;
+				}
+			}
+			
+			System.out.println("------------------------------------------------------------");
+			System.out.println("수정이 완료되었습니다.");
+			
+			stat.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
 	private void teacherAccount(String input) {
 		//교사 계정 관리 + 등록
 		

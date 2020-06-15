@@ -28,6 +28,7 @@ public class AdminMain {
 		String pw;
 		DBUtil util = new DBUtil();
 		
+		while(true) {
 		System.out.println("============================================================");
 		System.out.println("			[관리자 로그인]");
 		System.out.println("============================================================");
@@ -74,6 +75,7 @@ public class AdminMain {
 						
 //						flag = 1;
 						menu();
+						break;
 						
 					}else {
 						System.out.println("============================================================");
@@ -109,6 +111,7 @@ public class AdminMain {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		}//while
 		
 	}
 
@@ -140,7 +143,7 @@ public class AdminMain {
 			AdminTeacher at = new AdminTeacher();
 			at.printTeacher();
 			
-			break;
+			return;
 		case "2":
 			//개설 과정 및 개설 과목 관리
 

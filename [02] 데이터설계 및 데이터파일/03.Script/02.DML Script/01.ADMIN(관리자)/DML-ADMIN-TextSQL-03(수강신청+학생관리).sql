@@ -15,6 +15,9 @@ SELECT name, ssn, tel, regiDate,
 -- DTO_Student
 SELECT COUNT(*) as numberStudent FROM tblStudent;
 
+--학생 시퀀스 끌어오기
+select student_seq as seq from tblStudent;
+
 -- 1. 관리자 ? 3. 학생 관리 - b. 학생 정보 등록 (학생명, 주민번호, 전화번호, 등록일)
 -- DTO_Student
 INSERT INTO tblStudent
