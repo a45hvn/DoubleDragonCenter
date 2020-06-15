@@ -160,13 +160,59 @@ public class AdminExamScore {
 								
 								
 							}
-							rs.close();
+							
 							conn.close();
 							stat.close();
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
+						
+						System.out.println("1. 보충학습 대상 확인");
+						System.out.println("0. 메인으로");
+						System.out.print("입력 : ");
+						String num5 = scan.nextLine();
+						System.out.println();						
+						System.out.println();
+						
+						if (num5.equals("1")) {
+							try {
+								conn = util.open();
+								stat = conn.createStatement();
+								rs = null;
+																
+								String sql4 = "select sp.suppledate as 보충날짜, sc.scoreresult as 보충여부,s.name as 학생명" + 
+										" from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq" + 
+										" inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq" + 
+										" inner join tblStudent s on rc.student_seq = s.student_seq" + 
+										" where sc.scoreresult = '과락' and rc.opencourse_seq = '13'";
+														
+								rs = stat.executeQuery(sql4);
+								System.out.println("과목명\t과목기간\t강의실명");
+								while (rs.next()) {//보충날짜, 보충여부, 이름
+									
+									String result3 = rs.getString("보충날짜") + "\t" + rs.getString("보충여부") + "\t" + rs.getString("학생명");
+									
+									
+									System.out.println(result3);
+//									System.out.println("---------------------------------------------------------");
+									
+									
+								}
+								rs.close();
+								conn.close();
+								stat.close();
+							} catch (Exception e) {
+								e.printStackTrace();
+								
+							}
+							
+						} else if (num5.equals("0")) {
+							loop = false;
+						}
+						
 						loop = false;
+						
+						
 						
 						System.out.println();
 						System.out.print("계속하시려면 엔터를 눌러주세요");						
