@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
-
-import com.test.DDC.DBUtil;
-
+import java.sql.*;
 import oracle.jdbc.OracleTypes;
+import oracle.jdbc.oracore.OracleType;
 
 public class Manage {
 	
@@ -597,4 +596,150 @@ public class Manage {
 			System.out.println("입력을 실패했습니다.");
 		}
 	}//procsetemp
+	/**
+	 * 메소드 내에서 취업번호를 입력받아 데이터를 삭제합니다.
+	 * @return
+	 */
+	public boolean procdeleteemp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("삭제할 취업번호를 입력하세요 : ");
+		int pemployment_seq=scan.nextInt();
+		try {
+			String sql = String.format("{call procdeleteemp(?)}");
+			
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1,pemployment_seq);
+			
+			stat.executeQuery();
+
+			stat.close();
+			conn.close();
+			System.out.printf("취업번호 %d의 정보가 삭제되었습니다.",pemployment_seq);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
+	}//procdeleteemp
+	
+	/**
+	 * 메소드 내에서 정보를 입력받아 데이터를 수정합니다.
+	 * 입력한 정보는 수정되고 입력하지 않은 부분은 기존 값을 유지합니다.
+	 * @return
+	 */
+	public boolean procupdateemp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("1.취업번호를 입력하세요 : ");
+		String pemployment_seq=scan.nextLine();
+		
+		
+		System.out.print("2.수정할 수강신청번호를 입력하세요 : ");
+		String pregicourse_seq=scan.nextLine();
+		
+		System.out.println("3.수정할 취업일을 입력하세요 : (yyyymmdd 형식)");
+		String pemploymentdate=scan.nextLine();
+		
+		System.out.print("4.수정할 회사번호를 입력하세요");
+		String pcompany_seq=scan.nextLine();
+		
+		try {
+			String sql = String.format("{call procupdateemp(?,?,?,?)}");
+
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1, Integer.parseInt(pemployment_seq));
+			stat.setInt(2, pregicourse_seq.equals("")? 0:Integer.parseInt(pregicourse_seq));
+			stat.setString(3, pemploymentdate.equals("")? "default":pemploymentdate);
+			stat.setInt(4, pcompany_seq.equals("")? 0:Integer.parseInt(pcompany_seq));
+			stat.executeQuery();
+
+			stat.close();
+			conn.close();
+			
+			System.out.printf("취업번호 %d의 데이터가 수정되었습니다.",pemployment_seq);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("데이터 수정에 실패했습니다.");
+			return false;
+		}
+	}//procupdateemp
+
+	public void getCmpData() {
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner scan=new Scanner(System.in);
+		try {
+			conn = util.open();
+			stat = conn.createStatement();
+			String sql = String.format("select*from tblCompany where company_seq>0");
+			
+			stat.executeQuery(sql);
+			
+			rs=stat.executeQuery(sql);
+			ArrayList<String[]> row= new ArrayList<String[]>();
+			while(rs.next()) {
+				String[] temp=String.format("%s-%s-%s-%s-%s", rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5).replace("-", "")).split("-");
+				
+				row.add(temp);
+			}
+			int i=0;
+			
+			String header=String.format(" %s  %s    %s   %s       %s                    %s", "번호","회사번호","회사명","연봉","번호" ,"주소");
+			System.out.println(header);
+			while(i<row.size()) {
+				//row[0] 회사번호 [1]사명 [2]연봉 [3]주소 [4]전화번호
+				String temp=String.format("%3d  %3s  %4s  %s  %6s  %s"
+												,i+1
+												,row.get(i)[0]
+												,row.get(i)[1]
+												,Integer.parseInt(row.get(i)[2])/10000
+												,row.get(i)[4]
+												,row.get(i)[3]);
+				System.out.println(temp);
+				
+				if((i+1)%30==0) {
+					System.out.println("-----------------------------------------------------------");
+					System.out.printf("\t\t\t%d 쪽/%d쪽 \n",(i/31)+1,((row.size()+1)/30)+1);
+					System.out.println("1. 다음 페이지");
+					System.out.println("2. 이전 페이지");
+					System.out.println("3. 이전 메뉴로");//구현해야됨
+					System.out.println("-----------------------------------------------------------");
+					System.out.print("번호 입력 : ");
+					int page=scan.nextInt();//1이면 다음 5개,아니면 이전 5개
+					if(i<31&&page==2) {
+						System.out.println("이전 페이지가 없습니다.");
+						System.out.println("다음 페이지를 검색합니다.");
+						System.out.println("-----------------------------------------------------------");
+						i++;
+						continue;
+						
+					}
+					if(page==2) {
+						i=i-60;
+					}
+				}
+				i++;
+			}//while
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 }
