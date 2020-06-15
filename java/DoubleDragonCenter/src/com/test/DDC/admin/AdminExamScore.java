@@ -46,7 +46,7 @@ public class AdminExamScore {
 						"                                        order by oc.opencourse_seq";
 				
 				rs = stat.executeQuery(sql);
-				System.out.println("과정번호\t\t과정명\t\t\t\t\t  과정기간\t\t교사명\t강의실");
+				System.out.println("과정번호\t\t\t\t과정명\t\t\t\t\t과정기간\t\t교사명\t\t강의실");
 				while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 					
 //					String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
@@ -97,9 +97,9 @@ public class AdminExamScore {
 								"                                            WHERE oc.openCourse_seq = %s", num);
 												
 						rs = stat.executeQuery(sql2);
-						System.out.println("과목번호\t과목명\t\t과목기간\t성적등록여부\t시험등록여부");
+						System.out.println("과목번호\t과목명\t\t과목기간\t  성적등록여부\t  시험등록여부");
 						while (rs.next()) { //과목번호, 과목명, 과목기간, 성적등록여부, 시험등록여부
-							String result = String.format("%-5s\t\t%-6s\t%-6s\t%-5s\t%-5s",rs.getString("과목번호"),rs.getString("과목명"),rs.getString("과목기간")
+							String result = String.format("%-5s\t\t%-6s\t%-6s\t%-5s\t\t%-5s",rs.getString("과목번호"),rs.getString("과목명"),rs.getString("과목기간")
 						,rs.getString("성적등록여부"),rs.getString("시험등록여부"));
 //							String result = rs.getString("과목번호") + "\t" + rs.getString("과목명") + "\t" + rs.getString("과목기간")
 //							+ "\t" + rs.getString("성적등록여부") + "\t"+ rs.getString("시험등록여부");

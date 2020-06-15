@@ -48,7 +48,7 @@ public class AdminAttandance {
 							"                                        order by oc.opencourse_seq";
 					
 					rs = stat.executeQuery(sql);
-					System.out.println("과정번호\t\t과정명\t\t\t\t\t  과정기간\t\t교사명\t강의실");
+					System.out.println("과정번호\t\t\t\t과정명\t\t\t\t\t과정기간\t\t교사명\t\t강의실");
 					while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 						
 //						String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
@@ -92,6 +92,7 @@ public class AdminAttandance {
 							System.out.println("학번\t학생명\t출근\t퇴근\t근태");
 							while (rs.next()) { //학번, 학생명, 출근시간, 퇴근시간, 근태
 								
+							
 								String result = rs.getString("학번") + "\t" + rs.getString("학생명") + "\t" + rs.getString("출근시간")
 								+ "\t" + rs.getString("퇴근시간") + "\t"+ rs.getString("근태");
 								
