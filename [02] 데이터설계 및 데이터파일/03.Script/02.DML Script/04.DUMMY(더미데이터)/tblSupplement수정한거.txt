@@ -1,0 +1,2 @@
+insert into tblSupplement values (58, to_date('2020-03-04','yyyy-mm-dd'), 720);
+insert into tblSupplement values (59, to_date('2020-04-28','yyyy-mm-dd'), 780);

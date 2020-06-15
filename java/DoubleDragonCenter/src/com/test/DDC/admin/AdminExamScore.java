@@ -187,10 +187,10 @@ public class AdminExamScore {
 										" where sc.scoreresult = '과락' and rc.opencourse_seq = '13'";
 														
 								rs = stat.executeQuery(sql4);
-								System.out.println("과목명\t과목기간\t강의실명");
+								System.out.println("보충날짜\t\t보충여부\t이름");
 								while (rs.next()) {//보충날짜, 보충여부, 이름
 									
-									String result3 = rs.getString("보충날짜") + "\t" + rs.getString("보충여부") + "\t" + rs.getString("학생명");
+									String result3 = rs.getString("보충날짜") + "\t" + rs.getString("보충여부") + "\t\t" + rs.getString("학생명");
 									
 									
 									System.out.println(result3);
