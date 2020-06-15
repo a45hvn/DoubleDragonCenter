@@ -128,6 +128,7 @@ public class AdminMain {
 		System.out.println("6. 출결 관리 및 출결 조회");
 		System.out.println("7. 과목 평가 조회");
 		System.out.println("8. 취업자 조회 및 관리");
+		System.out.println("9. 지원활동 조회 및 관리");
 		System.out.println();
 		System.out.println("0. 로그아웃");
 		System.out.println("============================================================");
@@ -175,6 +176,12 @@ public class AdminMain {
 			break;
 		case "8":
 			//취업자 조회 및 관리
+
+			break;
+		case "9":
+			//지원활동 조회 및 관리
+			AdminAs aas = new AdminAs();
+			aas.printAs();
 
 			break;
 		case "0":
