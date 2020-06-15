@@ -51,8 +51,10 @@ public class AdminAttandance {
 					System.out.println("과정번호\t\t과정명\t\t\t\t\t  과정기간\t\t교사명\t강의실");
 					while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 						
-						String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
-						+ "\t" + rs.getString("교사명") + "\t"+ rs.getString("강의실");
+//						String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
+//						+ "\t" + rs.getString("교사명") + "\t"+ rs.getString("강의실");
+						String result = String.format("%-5s\t\t%-43s\t%-15s\t%-6s\t%-6s",rs.getString("과정번호"),rs.getString("과정명"),rs.getString("과정기간")
+								,rs.getString("교사명"),rs.getString("강의실"));
 						
 						
 						System.out.println(result);
