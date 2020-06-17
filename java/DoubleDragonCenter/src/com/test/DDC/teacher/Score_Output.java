@@ -11,6 +11,11 @@ import com.test.DDC.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 성적 입출력에 관한 클래스입니다.
+ * @author 유민정
+ *
+ */
 public class Score_Output {
 	
 	private static Connection conn = null;
@@ -24,6 +29,10 @@ public class Score_Output {
 	ArrayList<String> stuScoreList = new ArrayList<String>();	//학생 ArrayList
 	ArrayList<Integer> scorePercent = new ArrayList<Integer>();	//배점 ArrayList
 	
+	/**
+	 * 교사번호를 입력받아 성적 입출력을 하는 메소드입니다.
+	 * @param 교사번호
+	 */
 	public void printSubject(String tnum) {
 		
 		boolean loop = true;

@@ -4,8 +4,17 @@ import java.util.Scanner;
 
 import com.test.DDC.DDCmain;
 
+/**
+ * 교사 로그인 시 출력되는 메인 화면입니다.
+ * @author 강경원
+ *
+ */
 public class Main {
 
+	/**
+	 * 교사가 로그인 했을 때 출력되는 메인화면입니다.
+	 * @param 교사번호
+	 */
 	public void mainView(String tnum) {
 
 		Scanner scan = new Scanner(System.in);

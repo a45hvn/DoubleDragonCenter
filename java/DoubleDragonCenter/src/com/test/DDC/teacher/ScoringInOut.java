@@ -374,6 +374,11 @@ import com.test.DDC.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 배점 입출력을 하는 클래스입니다.
+ * @author 강경원
+ *
+ */
 public class ScoringInOut {
 	
 	private void paging(int page, ArrayList<String> list) {
@@ -464,6 +469,10 @@ public class ScoringInOut {
 
 	// 과목 목록 출력
 	
+	/**
+	 * 교사번호를 입력받아 배점입출력을 하는 메소드입니다.
+	 * @param 교사번호
+	 */
 	public void ScoringView(String tnum) {
 
 		Connection conn = null;
