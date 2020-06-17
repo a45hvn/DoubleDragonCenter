@@ -133,7 +133,7 @@ public class StudentMain {
 	 * [학생명, 주민번호, 전화번호, 등록일, 과정명, 시작일, 종료일, 강의실명]이 헤더로 출력된다.
 	 * 메뉴에는 [과정 및 과목 조회, 출결 조회, 성적 조회, 보충 학습 조회, 과목 평가] 가 있다.
 	 */
-	private static void menu() {
+	public static void menu() {
 		
 		DBUtil util = new DBUtil();
 		
@@ -257,7 +257,7 @@ public class StudentMain {
 	 *  번호, 날짜, 과목명, 필기점수, 실기점수
 	 */
 	
-	private static void stSup() { //보충 학습
+	public static void stSup() { //보충 학습
 		
 		
 		DBUtil util = new DBUtil();
@@ -316,7 +316,7 @@ public class StudentMain {
 	 * 학생이 수강한 과목을 평가하고 조회할 수 있는 메뉴
 	 */
 
-	private static void stRatingMenu() { //과목 평가 메뉴
+	public static void stRatingMenu() { //과목 평가 메뉴
 		boolean flag=true;
 		while(flag) {
 			System.out.println("============================================================");
@@ -363,7 +363,7 @@ public class StudentMain {
 	 * 과목스케줄번호, 평점, 평가내용을 입력 받고 그 값을 반영시킨다.
 	 */
 	
-	private static void stWrRating() { //과목 평가 하기 
+	public static void stWrRating() { //과목 평가 하기 
 		
 		DBUtil util = new DBUtil();
 		
@@ -449,7 +449,7 @@ public class StudentMain {
 	 *  과목명, 평점, 평가내용이 출력된다.
 	 */
 
-	private static void stRating() { //과목 평가 조회
+	public static void stRating() { //과목 평가 조회
 		
 		DBUtil util = new DBUtil();
 		
@@ -510,7 +510,7 @@ public class StudentMain {
 	 *  [과목번호,과목명,시험번호,학생번호,필기배점,실기배점,출결배점,필기,실기,출결,결과,시험날짜,시험문제]가 출력된다.
 	 */
 	
-	private static void stScore() { //성적 조회
+	public static void stScore() { //성적 조회
 		
 		DBUtil util = new DBUtil();
 		
@@ -576,7 +576,7 @@ public class StudentMain {
 	 *  근태 관리(입실, 퇴실)와 출결 조회를 할 수 있다.
 	 */
 
-	private static void stAttendanceMenu() { //출결 메뉴
+	public static void stAttendanceMenu() { //출결 메뉴
 		
 		boolean flag = true;
 		while(flag) {
@@ -634,7 +634,7 @@ public class StudentMain {
 	 *  일(ex.0120)을 입력 받으면 그 날짜의 출결 상태를 출력한다.
 	 */
 
-	private static void datetStAd() { //일별 출결 조회 
+	public static void datetStAd() { //일별 출결 조회 
 		
 		DBUtil util = new DBUtil();
 		
@@ -690,7 +690,7 @@ public class StudentMain {
 	 * 월(ex.01)을 입력 받으면 그 월의 출결을 전부 출력한다.
 	 */
 
-	private static void monthStAd() { //월별 출결 조회
+	public static void monthStAd() { //월별 출결 조회
 		
 		DBUtil util = new DBUtil();
 		
@@ -747,7 +747,7 @@ public class StudentMain {
 	 *  학생의 출결 상태를 전부 출력한다.
 	 */
 	
-	private static void allStAd() { //전체 출결 조회
+	public static void allStAd() { //전체 출결 조회
 		
 		DBUtil util = new DBUtil();
 		
@@ -801,7 +801,7 @@ public class StudentMain {
 	 *  학생의 입실, 퇴실과 관련된 메뉴이다.
 	 */
 	
-	private static void stAd() { //근태 관리
+	public static void stAd() { //근태 관리
 		
 		boolean flag = true;
 		while(flag) {
@@ -846,7 +846,7 @@ public class StudentMain {
 	 *  퇴실하기를 선택하면 퇴실이 됨과 동시에 결석,지각,조퇴,정상출석 중 하나로 데이터가 입력된다.
 	 */
 
-	private static void adOff() { //퇴실
+	public static void adOff() { //퇴실
 		
 			DBUtil util = new DBUtil();
 			
@@ -912,7 +912,7 @@ public class StudentMain {
 	 * 입실하기를 선택하면 학생이 현재시각으로 입실한 것이 된다.
 	 */
 	
-	private static void adOn() { //입실
+	public static void adOn() { //입실
 		
 		DBUtil util = new DBUtil();
 		
@@ -974,7 +974,7 @@ public class StudentMain {
 	 *  [학생번호, 과목번호, 과목명, 과목기간, 교재명]이 아래쪽에 추가로 출력된다.
 	 */
 
-	private static void stCourse() { //과정 및 과목 조회
+	public static void stCourse() { //과정 및 과목 조회
 		
 		DBUtil util = new DBUtil();
 		
