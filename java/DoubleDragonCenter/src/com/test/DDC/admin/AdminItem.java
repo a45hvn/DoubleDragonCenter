@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+/**
+ * 기자재 관리 클래스
+ * @author 윤대웅
+ *
+ */
 public class AdminItem {
 	
 	
@@ -17,6 +22,9 @@ public class AdminItem {
 		private static DBUtil util = new DBUtil();
 		private static Scanner scan = new Scanner(System.in);
 		
+		/**
+		 * 기자재 관리 메뉴 출력 메소드
+		 */
 		public void printItem() {
 			
 			boolean loop = true;

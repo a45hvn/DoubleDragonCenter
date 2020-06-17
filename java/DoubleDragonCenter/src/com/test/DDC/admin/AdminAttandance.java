@@ -7,6 +7,12 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+
+/**
+ * 관리자 출결 관리 클래스
+ * @author 윤대웅
+ *
+ */
 public class AdminAttandance {
 	
 	
@@ -17,6 +23,9 @@ public class AdminAttandance {
 		private static DBUtil util = new DBUtil();
 		private static Scanner scan = new Scanner(System.in);
 		
+		/**
+		 * 학생 출석 관리 출력 메소드
+		 */
 		public void printAttandance() {
 			
 			boolean loop = true;
