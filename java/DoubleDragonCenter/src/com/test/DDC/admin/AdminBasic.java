@@ -7,10 +7,18 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+/**
+ * 기초정보(과정,과목,강의실,교재)를 관리하는 클래스
+ * @author 전혜원
+ *
+ */
 public class AdminBasic {
 	
 	private static Scanner scan = new Scanner(System.in);
 
+	/**
+	 * 기초정보관리 메뉴 출력 메소드
+	 */
 	public void printBasic() {
 		
 		while (true) {
@@ -116,7 +124,7 @@ public class AdminBasic {
 			String bpub = scan.nextLine();
 			
 			String sql = String.format(
-					"update tblBook set name = '%s', publisher = '%s' where book_seq = '%s'",bname,bpub);
+					"update tblBook set name = '%s', publisher = '%s' where book_seq = '%s'",bname,bpub,bnum);
 			
 			stat.executeUpdate(sql);
 			
@@ -188,7 +196,7 @@ public class AdminBasic {
 			String pub = scan.nextLine();
 			
 			String sql = String.format(
-					"insert into tblBook values (book_seq.nextVal, '%s','%s');", bname,pub);
+					"insert into tblBook (book_seq,name,publisher) values (book_seq.nextVal, '%s','%s')", bname,pub);
 			
 			stat.executeUpdate(sql);
 			
@@ -725,7 +733,7 @@ public class AdminBasic {
 			conn = util.open();
 			stat = conn.createStatement();
 
-			String sql = "select courseList_seq as seq, name from tblCourseList where del = 'n'";
+			String sql = "select courseList_seq as seq, name from tblCourseList where del = 'n' order by courseList_seq";
 
 			rs = stat.executeQuery(sql);
 			

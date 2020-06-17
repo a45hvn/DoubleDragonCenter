@@ -9,7 +9,11 @@ import java.util.Scanner;
 import com.test.DDC.DBUtil;
 import com.test.DDC.DDCmain;
 
-
+/**
+ * 관리자 로그인 구현 클래스
+ * @author 전혜원
+ *
+ */
 public class AdminMain {
 	
 	private static Scanner scan = new Scanner(System.in);
@@ -119,9 +123,6 @@ public class AdminMain {
 		}//while
 	}
 
-	/**
-	 * 로그인 성공시 띄워주는 메인 메뉴
-	 */
 	private static void menu() {
 		//메인 메뉴
 		

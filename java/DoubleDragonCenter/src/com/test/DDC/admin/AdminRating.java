@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+/**
+ * 과목평가 메뉴를 출력하는 클래스
+ * @author 전혜원
+ *
+ */
 public class AdminRating {
 
 	private static Scanner scan = new Scanner(System.in);
@@ -18,7 +23,9 @@ public class AdminRating {
 	
 	HashMap<String, String> mapInfo = new HashMap<String, String>();
 	
-	
+	/**
+	 * 과목평가 메뉴 출력 메소드
+	 */
 	public void printRating(){
 		
 		while(true) {

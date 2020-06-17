@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+/**
+ * 교사 계정을 출력하고 등록, 수정, 삭제 가능한 클래스
+ * @author 전혜원
+ *
+ */
 public class AdminTeacher {
 	
 	private static Connection conn = null;
@@ -99,10 +104,6 @@ public class AdminTeacher {
 	}
 	
 
-	/**
-	 * 해당 교사의 
-	 * @param num 해당 교사 번호
-	 */
 	private void printCourse(String num) {
 		// 맡은 과정 출력
 		Connection conn = null;
@@ -203,10 +204,7 @@ public class AdminTeacher {
 		
 	}
 
-	/**
-	 * 과정별 과목 출력 메소드
-	 * @param courseSeq 출력할 과정 번호
-	 */
+
 	private void printSubject(String courseSeq) {
 		//과정별 과목 출력하기
 		
@@ -268,9 +266,7 @@ public class AdminTeacher {
 		
 	}//printSubject()
 
-	/**
-	 * 교사 번호를 입력받아 정보 삭제하는 메소드
-	 */
+	
 	private void teacherDelete() {
 		// 교사 정보 삭제
 		Connection conn = null;
@@ -358,9 +354,7 @@ public class AdminTeacher {
 		
 	}
 
-	/**
-	 * 교사 번호를 입력받아 정보를 수정하는 메소드
-	 */
+
 	private void teacherModify() {
 		//교사 정보 수정
 		Connection conn = null;
@@ -503,11 +497,7 @@ public class AdminTeacher {
 		
 	}//teacherModify()
 	
-	/**
-	 * 수정하는 메소드에서 어떤 필드를 수정할지(input)와 교사번호(num)을 받아 수정 쿼리 날리는 메소드.
-	 * @param input 수정할 필드의 정보를 담은 변수
-	 * @param num 교사번호
-	 */
+
 	private void inputModify(String input,String num) {
 		// 수정
 		Connection conn = null;
@@ -570,10 +560,7 @@ public class AdminTeacher {
 		
 	}
 
-	/**
-	 * 교사 리스트를 저장하고, 등록하는 메소드
-	 * @param input 등록시 받는 매개변수
-	 */
+
 	private void teacherAccount(String input) {
 		//교사 계정 관리 + 등록
 		

@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
+/**
+ * 교육생 출력, 등록, 수정, 삭제 클래스
+ * @author 전혜원
+ *
+ */
 public class AdminStudent {
 	
 	private static Connection conn = null;
@@ -70,9 +75,7 @@ public class AdminStudent {
 		
 	}//printMain()
 	
-	/**
-	 * 면접 본 학생의 정보를 출력하는 메소드
-	 */
+	
 	private void studentInterview() {
 		// 학생 면접 관리
 		Connection conn = null;
@@ -153,9 +156,6 @@ public class AdminStudent {
 		
 	}//studentInterview
 
-	/**
-	 * 해당 학생 번호를
-	 */
 	private void printStudent() {
 		
 		boolean loop = true;
@@ -503,11 +503,11 @@ public class AdminStudent {
 			
 			//결과 출력
 			for(int i=0; i<courseList.size(); i++) {
-				System.out.println("[번호]\t[과정명]\t\t\t\t\t\t[과정기간]\t\t\t[강의실]\t[수료여부]\t[수료날짜]\n");
+				System.out.println("[번호]\t[과정명]\t\t\t\t\t\t[과정기간]\t\t[강의실]\t[수료여부]\t[수료날짜]\n");
 				
 				String[] array = courseList.get(i).split("\t");
 				
-				System.out.printf("%2d\t%s\t%s\t%s\t%s\t%s\n",i+1,array[0],array[1],array[2],array[3],array[4]);
+				System.out.printf("%2d\t%s\t%s\t%s\t\t%s\t\t%s\n",i+1,array[0],array[1],array[2],array[3],array[4]);
 			}
 			
 			System.out.println();
@@ -575,10 +575,10 @@ public class AdminStudent {
 				String input = scan.nextLine();
 				
 				if(input.equals("y")) {
-					sql = String.format("update tblStudent set student_seq = -student_seq where student_seq = %s", num);
+					sql = String.format("update tblStudent set del = 'y' where student_seq = %s", num);
 					stat.executeUpdate(sql);
 					System.out.println("------------------------------------------------------------");
-					System.out.println("수정이 완료되었습니다.");
+					System.out.println("삭제가 완료되었습니다.");
 
 					stat.close();
 					conn.close();
@@ -728,7 +728,7 @@ public class AdminStudent {
 			studentList.clear();
 			
 			//학생이 총 몇명인지 구하기
-			sql = "SELECT COUNT(*) as cntStudent FROM tblStudent";
+			sql = "SELECT COUNT(*) as cntStudent FROM tblStudent where del = 'n'";
 			rs = stat.executeQuery(sql);
 			rs.next();
 			
@@ -737,7 +737,7 @@ public class AdminStudent {
 			rs.close();
 			
 			//학생번호(sequence) 따로 저장하기
-			sql = "select student_seq as seq from tblStudent";
+			sql = "select student_seq as seq from tblStudent where del = 'n' order by student_seq";
 			rs = stat.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -756,10 +756,11 @@ public class AdminStudent {
 						"                ON s.student_seq = rc.student_seq\n" + 
 						"                    WHERE s.student_seq = %d) as cntRegi" + 
 						"                        FROM tblStudent\n" + 
-						"                            where student_seq = %d and student_seq > 0"
+						"                            where student_seq = %d and del = 'n'"
 						,i,i);
 
 				rs = stat.executeQuery(sql);
+				
 				if (rs.next()) {
 				
 					studentList.add(String.format("%s\t%s\t%s\t%s\t%s\t%s",

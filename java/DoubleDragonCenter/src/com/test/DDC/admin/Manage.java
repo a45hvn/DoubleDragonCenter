@@ -71,7 +71,7 @@ public class Manage {
 				rs=(ResultSet)stat.getObject(1);
 				
 				while(rs.next()) {
-//					System.out.println(rs.getString("개설여부"));
+					System.out.println(rs.getString("개설여부"));
 					String[] temp= {rs.getString("과정번호"),rs.getString("과정명"),rs.getString("개설여부")};
 					row.add(temp);
 				}
@@ -190,7 +190,7 @@ public class Manage {
 			stat.executeQuery();
 			rs=(ResultSet)stat.getObject(1);
 			while(rs.next()) {
-				String str=String.format("%s-%s-%s-%s-%s-%s-%s-%s-%s"
+				String str=String.format("%s-%s-%s-%s-%s-%s-%s-%s"
 						,rs.getString(1)//PK
 						,rs.getString(2)//개설과정번호
 						,rs.getString(3)//과정명
@@ -198,8 +198,7 @@ public class Manage {
 						,rs.getString(5)//수강생
 						,rs.getString(6).substring(0,10).replace("-", "")//시작일
 						,rs.getString(7).substring(0,10).replace("-", "")//종료일
-						,rs.getString(8)//기간
-						,rs.getString(9).substring(0,10).replace("-", ""));//수료일
+						,rs.getString(8));//기간
 				String[] a=str.split("-");
 				row.add(a);
 				
