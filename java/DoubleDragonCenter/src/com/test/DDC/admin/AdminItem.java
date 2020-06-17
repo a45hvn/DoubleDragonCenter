@@ -28,11 +28,15 @@ public class AdminItem {
 				System.out.println("============================================================");
 				System.out.println("1 : 		[과정별 기자재 관리]");
 				System.out.println("2 : 		[강의실별 기자재 관리]");
+				
 				Connection conn = null;
 				Statement stat = null;
 				ResultSet rs = null;
+				
+				System.out.println("---------------------------------------------------------");
 				System.out.print("입력 : ");
 				String sel = scan.nextLine();
+				
 				if (sel.equals("1")) {
 				try {
 					conn = util.open();
@@ -51,7 +55,8 @@ public class AdminItem {
 							"                                        order by oc.opencourse_seq";
 					
 					rs = stat.executeQuery(sql);
-					System.out.println("과정번호\t\t\t\t과정명\t\t\t\t\t과정기간\t\t교사명\t\t강의실");
+					System.out.println("================================================================================================================================");
+					System.out.println("[과정번호]\t\t\t\t[과정명]\t\t\t\t[과정기간]\t\t[교사명]\t[강의실]");
 					while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 						
 						String result = String.format("%-5s\t\t%-43s\t%-15s\t%-6s\t%-6s",rs.getString("과정번호"),rs.getString("과정명"),rs.getString("과정기간")
@@ -59,12 +64,10 @@ public class AdminItem {
 //						String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
 //						+ "\t" + rs.getString("교사명") + "\t"+ rs.getString("강의실");
 						
-						
 						System.out.println(result);
-//						System.out.println("---------------------------------------------------------");
-							
 						
 					}
+					System.out.println("================================================================================================================================");
 					
 					System.out.print("기자재조회과정 : ");
 					String num = scan.nextLine();
@@ -89,7 +92,8 @@ public class AdminItem {
 									"                        WHERE cl.courselist_seq = %s ", num);
 													
 							rs = stat.executeQuery(sql2);
-							System.out.println("기자재번호\t기자재명\t기자재수량\t\t\t과정명");
+							System.out.println("================================================================================================================================");
+							System.out.println("[기자재번호]\t[기자재명]\t[기자재수량]\t\t\t[과정명]");
 							while (rs.next()) { //기자재번호, 기자재명, 기자재수량, 과정명
 								
 								String result = String.format("%-5s\t\t%-6s\t%-6s\t\t%-20s", rs.getString("기자재번호"),  rs.getString("기자재명"), rs.getString("기자재수량")
@@ -104,6 +108,7 @@ public class AdminItem {
 									
 								
 							}
+							System.out.println("========================================================================================================================");
 							rs.close();							
 							conn.close();
 							stat.close();
@@ -130,13 +135,15 @@ public class AdminItem {
 					e.printStackTrace();
 				}
 				} else if (sel.equals("2")) {
+					
+					System.out.println("---------------------------------------------------------");
 					System.out.println("1 : 		[1 강의실]");
 					System.out.println("2 : 		[2 강의실]");
 					System.out.println("3 : 		[3 강의실]");
 					System.out.println("4 : 		[4 강의실]");
 					System.out.println("5 : 		[5 강의실]");
 					System.out.println("6 : 		[6 강의실]");
-					
+					System.out.println("---------------------------------------------------------");
 					System.out.print("기자재조회강의실 : ");
 					String num2 = scan.nextLine();
 					
@@ -154,21 +161,19 @@ public class AdminItem {
 								"                        WHERE ti.room_seq = %s ", num2);
 												
 						rs = stat.executeQuery(sql);
-						System.out.println("기자재번호\t기자재명\t기자재수량\t강의실");
+						System.out.println("============================================================");
+						System.out.println("[기자재번호]\t[기자재명]\t[기자재수량]\t[강의실]");
 						while (rs.next()) { //기자재번호, 기자재명, 기자재수량, 강의실
 							
 //							String result = String.format("%5s\t\t%6s\t%6s\t\t%5s", rs.getString("기자재번호"),  rs.getString("기자재명"), rs.getString("기자재수량")
 //							,rs.getString("강의실"));
 							String result = String.format("%-5s\t\t%-6s\t%-6s\t\t%-5s", rs.getString("기자재번호"),  rs.getString("기자재명"), rs.getString("기자재수량")
 							,rs.getString("강의실"));
-							
-							
 					
 							System.out.println(result);
-//							System.out.println("---------------------------------------------------------");
 								
-							
 						}
+						System.out.println("============================================================");
 						rs.close();							
 						conn.close();
 						stat.close();

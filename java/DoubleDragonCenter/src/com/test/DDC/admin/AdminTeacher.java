@@ -25,23 +25,26 @@ public class AdminTeacher {
 	private static String teacherName = new String();
 	private static String course = new String();
 	
-	
+	/**
+	 * 교사계정관리
+	 * 교사 리스트를 출력하고, 메뉴를 출력
+	 */
 	public void printTeacher() {
 		
 		boolean loop = true;
 		int result = 0;
 
 		while (loop) {
-			System.out.println("============================================================");
-			System.out.println("		[교사 계정 관리]");
-			System.out.println("============================================================");
+			System.out.println("===========================================================================");
+			System.out.println("\t\t\t[교사 계정 관리]");
+			System.out.println("===========================================================================");
 			teacherAccount("00"); // 교사 리스트 저장
 			System.out.println("[교사번호]\t[교사명]\t[주민번호 뒷자리]\t[전화번호]");
 			for (int i = 0; i < teacherList.size(); i++) {
 				String[] array = teacherList.get(i).split("\t");
 				System.out.printf("%8s\t%4s\t\t%13s\t\t%13s\n",array[0],array[1],array[2],array[3]);
 			}
-			System.out.println("============================================================");
+			System.out.println("===========================================================================");
 			System.out.println("- 상세보기를 원하시면 해당 교사 번호를 입력해주세요.");
 			System.out.println();
 			System.out.println("a. 교사 정보 등록");
@@ -49,7 +52,7 @@ public class AdminTeacher {
 			System.out.println("c. 교사 정보 삭제");
 			System.out.println();
 			System.out.println("0. 뒤로가기");
-			System.out.println("============================================================");
+			System.out.println("===========================================================================");
 			System.out.print("입력 : ");
 			String input = scan.nextLine();
 
@@ -88,7 +91,7 @@ public class AdminTeacher {
 				break;
 			case "0":
 				// 뒤로가기
-				loop=false;
+//				loop=false;
 				return;
 			}
 		} // while
@@ -96,7 +99,10 @@ public class AdminTeacher {
 	}
 	
 
-	
+	/**
+	 * 해당 교사의 
+	 * @param num 해당 교사 번호
+	 */
 	private void printCourse(String num) {
 		// 맡은 과정 출력
 		Connection conn = null;
@@ -115,9 +121,9 @@ public class AdminTeacher {
 			conn = util.open();
 			stat = conn.createStatement();
 
-			System.out.println("============================================================");
+			System.out.println("========================================================================================================================");
 			System.out.println("		[교사 정보 상세보기]");
-			System.out.println("============================================================");
+			System.out.println("========================================================================================================================");
 			
 			System.out.printf("교사 %s 님의 정보입니다.",mapInfo.get("name"));
 			System.out.println();
@@ -145,19 +151,20 @@ public class AdminTeacher {
 			}
 			
 			//결과 출력
+			System.out.println("[번호]\t\t[과정명]\t\t\t\t\t[과정기간]\t\t[정원]\t[강의실]\t[강의진행여부]\n");
+			
 			for(int i=0; i<seqList.size(); i++) {
-				System.out.println("[번호]\t[과정명]\t\t\t\t\t[과정기간]\t[정원]\t[강의실]\t[강의진행여부]\n");
 				
 				String[] array = courseList.get(i).split("\t");
 				
-				System.out.printf("%2d\t%s\t%s\t%s\t%s\t%s\n",i+1,array[0],array[1],array[2],array[3],array[4]);
+				System.out.printf("%2d\t%s\t%s\t%s\t%s\t\t%s\n",i+1,array[0],array[1],array[2],array[3],array[4]);
 			}
 			
 			System.out.println();
 			System.out.println("0. 뒤로가기");
 			System.out.println();
 			System.out.println("과정별 과목을 보시려면 번호를 입력하세요.");
-			System.out.println("------------------------------------------------------------");
+			System.out.println("------------------------------------------------------------------------------------------------------------------------");
 			System.out.print("입력 : ");
 			String input = scan.nextLine();
 			
@@ -196,6 +203,10 @@ public class AdminTeacher {
 		
 	}
 
+	/**
+	 * 과정별 과목 출력 메소드
+	 * @param courseSeq 출력할 과정 번호
+	 */
 	private void printSubject(String courseSeq) {
 		//과정별 과목 출력하기
 		
@@ -230,11 +241,11 @@ public class AdminTeacher {
 					"                                     and oc.enddate>=ss.enddate and oc.startdate<=ss.startdate"
 					, mapInfo.get("teacherSeq"), mapInfo.get("courseSeq"));
 
-			System.out.println("[과목명]\t[과목기간]\t[교재명]\n");
+			System.out.println("[과목명]\t\t[과목기간]\t[교재명]\n");
 			rs = stat.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.printf("%13s\t%s\t%s\n",rs.getString("과목명"),rs.getString("과목기간"),rs.getString("교재명"));
+				System.out.printf("%10s\t\t%3s\t\t%s\n",rs.getString("과목명"),rs.getString("과목기간"),rs.getString("교재명"));
 //				System.out.println(rs.getString("과목명") + "\t" + rs.getString("과목기간") + "\t" + rs.getString("교재명"));
 			}
 			
@@ -257,6 +268,9 @@ public class AdminTeacher {
 		
 	}//printSubject()
 
+	/**
+	 * 교사 번호를 입력받아 정보 삭제하는 메소드
+	 */
 	private void teacherDelete() {
 		// 교사 정보 삭제
 		Connection conn = null;
@@ -301,19 +315,21 @@ public class AdminTeacher {
 				rs = stat.executeQuery(sql);
 				rs.next();
 				
-				System.out.println("[교사번호]\t[교사명]\t[전화번호]\t[강의가능과목]");
-				String reslut = rs.getString("seq") + "\t" + rs.getString("ssn") + "\t" + rs.getString("tel") + "\t" + rs.getString("avlSubject");
-				System.out.println(reslut);
+				System.out.println("[번호]\t[교사명]\t[전화번호]\t[강의가능과목]");
+				
+				System.out.printf("%2s\t%3s\t\t%13s\t%s\n",rs.getString("seq"),rs.getString("name"),rs.getString("tel"),rs.getString("avlSubject"));
+				
 				System.out.println("------------------------------------------------------------");
 				System.out.println("정말로 삭제하시겠습니까? (y/n)");
 				System.out.print("입력 : ");
 				String input = scan.nextLine();
 				
 				if(input.equals("y")) {
-					sql = String.format("update tblTeacher set teacher_seq = -teacher_seq where teacher_seq = %s", num);
+//					sql = String.format("update tblTeacher set teacher_seq = -teacher_seq where teacher_seq = %s", num);
+					sql = String.format("update tblTeacher set del = 'y' where teacher_seq = %s", num);
 					stat.executeUpdate(sql);
 					System.out.println("------------------------------------------------------------");
-					System.out.println("수정이 완료되었습니다.");
+					System.out.println("삭제가 완료되었습니다.");
 
 					stat.close();
 					conn.close();
@@ -322,7 +338,7 @@ public class AdminTeacher {
 
 				} else {
 					System.out.println("------------------------------------------------------------");
-					System.out.println("삭제가취소 되었습니다. 이전 화면으로 돌아갑니다.");
+					System.out.println("삭제가 취소 되었습니다. 이전 화면으로 돌아갑니다.");
 
 					stat.close();
 					conn.close();
@@ -342,6 +358,9 @@ public class AdminTeacher {
 		
 	}
 
+	/**
+	 * 교사 번호를 입력받아 정보를 수정하는 메소드
+	 */
 	private void teacherModify() {
 		//교사 정보 수정
 		Connection conn = null;
@@ -362,7 +381,7 @@ public class AdminTeacher {
 			String num = scan.nextLine();
 			
 			for(int i=0; i<teacherList.size(); i++) {
-				//num이 교사리스트 번호 안에 있는 번호인지 유효성 검사
+				//num이 교사리스트 번호  안에 있는 번호인지 유효성 검사
 
 				String[] array = teacherList.get(i).split("\t");
 				
@@ -378,8 +397,7 @@ public class AdminTeacher {
 				System.out.println("1. 이름");
 				System.out.println("2. 주민번호");
 				System.out.println("3. 전화번호");
-				System.out.println("4. 등록일");
-				System.out.println("5. 강의 가능 과목");
+				System.out.println("4. 강의 가능 과목");
 				System.out.println("------------------------------------------------------------");
 				System.out.print("입력 : ");
 				String input = scan.nextLine();
@@ -393,19 +411,16 @@ public class AdminTeacher {
 				}else if(input.equals("3")) {
 					System.out.println("전화번호는 '-'를 붙여서 입력해주세요.");
 					inputModify(input, num);
-				}else if(input.equals("4")) {
-					System.out.println("등록일은 YYYY-MM-DD 형식으로 기입해주세요.");
+				}else if(input.equals("1")) {
 					inputModify(input, num);
-				}else { //강의 가능 과목 추가
+				} else { //강의 가능 과목 추가
 					
 					//현재 강의 가능 과목 담을 리스트
 					ArrayList<String> subList = new ArrayList<String>();
 					
 					//현재 강의 가능 과목 출력
 					System.out.println("------------------------------------------------------------");
-					System.out.printf("%s님의 현재 강의 가능 과목 목록입니다.\n",mapInfo.get("name"));
-					
-					System.out.println("num : " + num); //**
+					System.out.printf("현재 강의 가능 과목 목록입니다.\n");
 
 					String sql = String.format(
 							"SELECT  LISTAGG(s.name, ',') WITHIN GROUP (ORDER BY s.name) as sublist " + 
@@ -420,13 +435,19 @@ public class AdminTeacher {
 					
 					rs.next();
 					
-					subList.add(rs.getString("sublist"));
-
-					String[] array = subList.get(0).split(",");
-
-					for(int i=0; i<array.length; i++) {
-						System.out.printf("%s\n", array[i]);
+					if(rs.next()) {
+						subList.add(rs.getString("sublist"));
+						
+						String[] array = subList.get(0).split(",");
+						
+						for(int i=0; i<array.length; i++) {
+							System.out.printf("%s\n", array[i]);
+						}						
+					}else {
+						System.out.println("강의 가능 과목이 없습니다.");
 					}
+					
+					rs.close();
 						
 					System.out.println("------------------------------------------------------------");
 					
@@ -437,12 +458,17 @@ public class AdminTeacher {
 					sql = "select subject_seq as seq, name as sname from tblSubject";
 					rs = stat.executeQuery(sql);
 					
-					while(rs.next()) {
-						//중복 거르기_해당 교사의 강의 가능 과목이면 출력X
-						if(subList.get(0).contains(rs.getString("sname"))) {
-							continue;
+					while(rs.next()) {	
+						
+						if(subList.size() != 0) {
+							//중복 거르기_해당 교사의 강의 가능 과목이면 출력X
+							if(subList.get(0).contains(rs.getString("sname"))) {
+								continue;
+							}else {
+								System.out.printf("%s\t%s\n",rs.getString("seq"),rs.getString("sname"));
+							}							
 						}else {
-							System.out.printf("%s\t%s\n",rs.getString("seq"),rs.getString("sname"));
+							System.out.printf("%s\t%s\n",rs.getString("seq"),rs.getString("sname"));							
 						}
 					}//while
 					
@@ -477,7 +503,11 @@ public class AdminTeacher {
 		
 	}//teacherModify()
 	
-	
+	/**
+	 * 수정하는 메소드에서 어떤 필드를 수정할지(input)와 교사번호(num)을 받아 수정 쿼리 날리는 메소드.
+	 * @param input 수정할 필드의 정보를 담은 변수
+	 * @param num 교사번호
+	 */
 	private void inputModify(String input,String num) {
 		// 수정
 		Connection conn = null;
@@ -540,8 +570,10 @@ public class AdminTeacher {
 		
 	}
 
-
-
+	/**
+	 * 교사 리스트를 저장하고, 등록하는 메소드
+	 * @param input 등록시 받는 매개변수
+	 */
 	private void teacherAccount(String input) {
 		//교사 계정 관리 + 등록
 		
@@ -553,7 +585,7 @@ public class AdminTeacher {
 			String sql = null;
 			
 			teacherList.clear();
-			sql = "select teacher_seq as seq, name, substr(ssn,8) as ssn, tel from tblTeacher where teacher_seq > 0";
+			sql = "select teacher_seq as seq, name, substr(ssn,8) as ssn, tel from tblTeacher where del = 'n' order by teacher_seq";
 			rs = stat.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -564,7 +596,7 @@ public class AdminTeacher {
 
 			case "a": //교사 계정 등록
 				System.out.println("============================================================");
-				System.out.println("			[교사 정보 등록]");
+				System.out.println("\t\t[교사 정보 등록]");
 				System.out.println("============================================================");
 				System.out.print("교사이름 : ");
 				String name = scan.nextLine();
@@ -577,7 +609,7 @@ public class AdminTeacher {
 				String answer = scan.nextLine();
 				
 				if(answer.equals("y")) {
-					sql = String.format("insert into tblTeacher values (teacher_seq.nextVal,'%s','%s','%s')", name,ssn,tel);
+					sql = String.format("insert into tblTeacher (teacher_seq,name,ssn,tel) values (teacher_seq.nextVal,'%s','%s','%s')", name,ssn,tel);
 					stat.executeUpdate(sql);					
 				}else {
 					return;

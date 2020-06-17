@@ -3,17 +3,89 @@ package com.test.DDC.admin;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
-import java.sql.*;
 import oracle.jdbc.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
 public class Manage {
+	//manege
+	/**
+		 * 과정을 조회합니다.
+		 * @return
+		 */
+		public ArrayList<String[]> procgetcourselist(){
+			
+			Connection conn = null;
+			CallableStatement stat = null;
+			ResultSet rs = null;
+			DBUtil util = new DBUtil();
+			ArrayList<String[]> row=new ArrayList<String[]>();
+			try {
+				String sql = String.format("{call procgetcourselist(?)}");
+
+				conn = util.open();
+				stat = conn.prepareCall(sql);
+				stat.registerOutParameter(1, OracleTypes.CURSOR);
+				stat.executeQuery();
+				
+				rs=(ResultSet)stat.getObject(1);
+				
+				while(rs.next()) {
+					String[] temp= {rs.getString("과정번호"),rs.getString("과정명")};
+					row.add(temp);
+				}
+				
+				stat.close();
+				conn.close();
+				return row;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return null;
+			}
+		}//procgetcourselist
+		/**
+		 * 폐지된 과정을 포함해서 출력합니다
+		 * @return
+		 */
+		public ArrayList<String[]> procgetcourselist2(){
+			
+			Connection conn = null;
+			CallableStatement stat = null;
+			ResultSet rs = null;
+			DBUtil util = new DBUtil();
+			ArrayList<String[]> row=new ArrayList<String[]>();
+			try {
+				String sql = String.format("{call procgetcourselist2(?)}");
+
+				conn = util.open();
+				stat = conn.prepareCall(sql);
+				stat.registerOutParameter(1, OracleTypes.CURSOR);
+				stat.executeQuery();
+				
+				rs=(ResultSet)stat.getObject(1);
+				
+				while(rs.next()) {
+//					System.out.println(rs.getString("개설여부"));
+					String[] temp= {rs.getString("과정번호"),rs.getString("과정명"),rs.getString("개설여부")};
+					row.add(temp);
+				}
+				
+				stat.close();
+				conn.close();
+				return row;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return null;
+			}
+		}//procgetcourselist
+
 	
 	
 	/**
@@ -118,7 +190,7 @@ public class Manage {
 			stat.executeQuery();
 			rs=(ResultSet)stat.getObject(1);
 			while(rs.next()) {
-				String str=String.format("%s-%s-%s-%s-%s-%s-%s-%s"
+				String str=String.format("%s-%s-%s-%s-%s-%s-%s-%s-%s"
 						,rs.getString(1)//PK
 						,rs.getString(2)//개설과정번호
 						,rs.getString(3)//과정명
@@ -126,7 +198,8 @@ public class Manage {
 						,rs.getString(5)//수강생
 						,rs.getString(6).substring(0,10).replace("-", "")//시작일
 						,rs.getString(7).substring(0,10).replace("-", "")//종료일
-						,rs.getString(8));//기간
+						,rs.getString(8)//기간
+						,rs.getString(9).substring(0,10).replace("-", ""));//수료일
 				String[] a=str.split("-");
 				row.add(a);
 				
@@ -155,7 +228,7 @@ public class Manage {
 	 *	(7)기간
 	 */
 	public String[] procSearchOpencourse(int num) {
-		// TODO Auto-generated method stub
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -184,9 +257,11 @@ public class Manage {
 				
 			}
 			
+			rs.close();
 			stat.close();
 			conn.close();
 			return row.get(num-1);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -611,6 +686,7 @@ public class Manage {
 		DBUtil util = new DBUtil();
 		System.out.print("삭제할 취업번호를 입력하세요 : ");
 		int pemployment_seq=scan.nextInt();
+		scan.nextLine();
 		try {
 			String sql = String.format("{call procdeleteemp(?)}");
 			
@@ -679,7 +755,9 @@ public class Manage {
 			return false;
 		}
 	}//procupdateemp
-
+	/**
+	 * 회사의 정보를 가져옵니다.
+	 */
 	public void getCmpData() {
 		Connection conn = null;
 		Statement stat = null;
@@ -704,6 +782,7 @@ public class Manage {
 			
 			String header=String.format(" %s  %s    %s   %s       %s                    %s", "번호","회사번호","회사명","연봉","번호" ,"주소");
 			System.out.println(header);
+			int page;
 			while(i<row.size()) {
 				//row[0] 회사번호 [1]사명 [2]연봉 [3]주소 [4]전화번호
 				String temp=String.format("%3d  %3s  %4s  %s  %6s  %s"
@@ -723,17 +802,23 @@ public class Manage {
 					System.out.println("3. 이전 메뉴로");//구현해야됨
 					System.out.println("-----------------------------------------------------------");
 					System.out.print("번호 입력 : ");
-					int page=scan.nextInt();//1이면 다음 5개,아니면 이전 5개
-					if(i<31&&page==2) {
-						System.out.println("이전 페이지가 없습니다.");
-						System.out.println("다음 페이지를 검색합니다.");
-						System.out.println("-----------------------------------------------------------");
-						i++;
-						continue;
-						
-					}
+					page=scan.nextInt();//1이면 다음 30개,아니면 이전 30개
+					scan.nextLine();
+					
 					if(page==2) {
-						i=i-60;
+						if(i<31) {
+							System.out.println("이전 페이지가 없습니다.");
+							System.out.println("다음 페이지를 검색합니다.");
+							System.out.println("-----------------------------------------------------------");
+							i++;
+							continue;
+							
+						}else {
+							i=i-60;
+						}
+					}
+					if(page==3) {
+						break;
 					}
 				}
 				i++;
@@ -744,5 +829,121 @@ public class Manage {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-	}
+	}//getCmpData
+	/**
+	 * 회사의 정보를 등록합니다.
+	 * @return
+	 */
+	public boolean setNewcmp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("1. 회사 이름 입력 : ");
+		String pname=scan.nextLine();
+		System.out.print("2. 연봉을 입력: ");
+		String psalary=scan.nextLine();
+		System.out.print("3. 주소 입력: ");
+		String paddress=scan.nextLine();
+		System.out.print("4. 전화번호 입력: ");
+		String ptel=scan.nextLine();
+		try {
+			String sql = String.format("{call procsetcmp(?,?,?,?)}");
+
+			conn = util.open();
+			
+			stat = conn.prepareCall(sql);
+			stat.setString(1, pname);
+			stat.setString(2, psalary);
+			stat.setString(3,paddress);
+			stat.setString(4,ptel);
+			stat.executeQuery();
+
+			System.out.println("업체 정보가 추가되었습니다.");
+			stat.close();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}//procsetcmp
+	/**
+	 * 회사 정보를 수정합니다.
+	 * @return
+	 */
+	public boolean procupdatecmp() {
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		System.out.print("1. 회사 번호 입력: ");
+		String pcompany_seq=scan.nextLine();
+		System.out.print("2. 회사 이름 입력: ");
+		String pname=scan.nextLine();
+		System.out.print("3. 연봉 입력: ");
+		String psalary=scan.nextLine();
+		System.out.print("4. 주소 입력: ");
+		String paddress=scan.nextLine();
+		System.out.print("5. 전화번호 입력: ");
+		String ptel=scan.nextLine();
+		
+		try {
+			String sql = String.format("{call procupdatecmp(?,?,?,?,?)}");
+
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1, Integer.parseInt(pcompany_seq));
+			stat.setString(2, pname.equals("")? "default":pname);
+			stat.setInt(3, psalary.equals("")? 0:Integer.parseInt(psalary));
+			stat.setString(4, paddress.equals("")? "default":paddress);
+			stat.setString(5, ptel.equals("")? "default":ptel);
+			stat.executeQuery();
+
+			stat.executeQuery();
+			System.out.println("회사 정보가 수정되었습니다.");
+			stat.close();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("정보 수정에 실패했습니다.");
+			return false;
+		}
+	}//procupdatecmp
+	/**
+	 * 회사 정보를 삭제합니다.
+	 * @return
+	 */
+	public boolean procdelcmp() {
+		System.out.print("삭제할 회사 번호 : ");
+		Scanner scan=new Scanner(System.in);
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		String pcompany_seq=scan.nextLine();
+		try {
+			String sql = String.format("{call procdelcmp(?)}");
+			
+			conn = util.open();
+			stat = conn.prepareCall(sql);
+			stat.setInt(1, Integer.parseInt(pcompany_seq));
+			
+			stat.executeQuery();
+
+			System.out.println("회사 정보가 삭제되었습니다.");
+			stat.close();
+			conn.close();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}//procdelcmp
 }

@@ -48,7 +48,8 @@ public class AdminAttandance {
 							"                                        order by oc.opencourse_seq";
 					
 					rs = stat.executeQuery(sql);
-					System.out.println("과정번호\t\t\t\t과정명\t\t\t\t\t과정기간\t\t교사명\t\t강의실");
+					System.out.println("================================================================================================================================");
+					System.out.println("[과정번호]\t\t\t\t[과정명]\t\t\t\t  [과정기간]\t[교사명]\t[강의실]");
 					while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 						
 //						String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
@@ -62,10 +63,11 @@ public class AdminAttandance {
 							
 						
 					}
+					System.out.println("================================================================================================================================");
 					
 					System.out.print("출석조회과정 : ");
 					String num = scan.nextLine();
-					System.out.print("출석조회날짜 : ");
+					System.out.print("출석조회날짜(mm-dd) : ");
 					String num2 =scan.nextLine();
 					System.out.println();
 					System.out.println();
@@ -89,20 +91,18 @@ public class AdminAttandance {
 									"                                    where to_char(ad.workon, 'MM-DD') = '%s'", num2);
 													
 							rs = stat.executeQuery(sql2);
-							System.out.println("학번\t학생명\t출근\t퇴근\t근태");
+							System.out.println("============================================================");
+							System.out.println("[학번]\t[학생명]\t[출근]\t[퇴근]\t[근태]");
 							while (rs.next()) { //학번, 학생명, 출근시간, 퇴근시간, 근태
 								
 							
-								String result = rs.getString("학번") + "\t" + rs.getString("학생명") + "\t" + rs.getString("출근시간")
+								String result = rs.getString("학번") + "\t" + rs.getString("학생명") + "\t\t" + rs.getString("출근시간")
 								+ "\t" + rs.getString("퇴근시간") + "\t"+ rs.getString("근태");
 								
-								
-						
 								System.out.println(result);
-//								System.out.println("---------------------------------------------------------");
-									
-								
 							}
+							
+							System.out.println("============================================================");
 							rs.close();							
 							conn.close();
 							stat.close();

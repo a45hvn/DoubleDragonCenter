@@ -17,24 +17,29 @@ public class AdminStudent {
 	private static DBUtil util = new DBUtil();
 	private static Scanner scan = new Scanner(System.in);
 	private static int page = 1;
+	//페이징에 쓰일 헤더+포맷
+	private static String mainHeader = "[번호]\t[이름]\t[주민번호 뒷자리]\t[전화번호]\t[등록일]\t[수강횟수]";
 	
 	private static ArrayList<String> studentList = new ArrayList<String>(505); //학생 목록 저장할 list
 	private static ArrayList<String> seqList = new ArrayList<String>(505); //학생 시퀀스 저장할 list
 	
+	/**
+	 * 학생 관리 메뉴를 출력하는 메소드
+	 */
 	public void printMain() {
 		
 		boolean loop = true;
 
 		while (loop) {
 			System.out.println("============================================================");
-			System.out.println("		[학생 관리]");
+			System.out.println("\t\t[학생 관리]");
 			System.out.println("============================================================");
-			System.out.println("1. 학생 전체 보기");
-			System.out.println("2. 학생 면접 관리");
+			System.out.println("\t\t1. 학생 전체 보기");
+			System.out.println("\t\t2. 학생 면접 관리");
 			System.out.println();
-			System.out.println("0. 뒤로가기");
+			System.out.println("\t\t0. 뒤로가기");
 			System.out.println("------------------------------------------------------------");
-			System.out.print("입력 : ");
+			System.out.print("\t\t입력 : ");
 			String input = scan.nextLine();
 			
 			
@@ -43,18 +48,19 @@ public class AdminStudent {
 			case "1":
 				//학생 전체보기
 				System.out.println("============================================================");
-				System.out.println("		[학생 관리]");
-				System.out.println("============================================================");
+				System.out.println("\t\t[학생 전체 보기]");
+				System.out.println("========================================================================================================================");
 				studentAccount("00"); //학생 리스트 저장
 				
-				paging(page,studentList);
+				paging(page,studentList,mainHeader,0);
 				printStudent();
 				
 				break;
 			case "2":
 				//학생 면접 관리
+				studentInterview();
+				continue;
 				
-				break;
 			case "0":
 				//뒤로가기
 				return;
@@ -64,6 +70,92 @@ public class AdminStudent {
 		
 	}//printMain()
 	
+	/**
+	 * 면접 본 학생의 정보를 출력하는 메소드
+	 */
+	private void studentInterview() {
+		// 학생 면접 관리
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+
+		//쿼리문 결과 담을 list
+		ArrayList<String> interviewList = new ArrayList<String>();
+		
+		try {
+
+			conn = util.open();
+			stat = conn.createStatement();
+
+
+			System.out.println("============================================================");
+			System.out.println("\t\t[학생 면접]");
+			System.out.println("============================================================");
+			
+			String sql = String.format("select s.name, to_char(iv.interviewdate,'yyyy-mm-dd') as 면접일"
+					+ ",iv.interviewresult,to_char(s.regidate,'yyyy-mm-dd') as 등록일,cll.name as 과정명 " + 
+					"from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq" + 
+					"    inner join tblInterview iv on rc.regicourse_seq = iv.regicourse_seq " + 
+					"        inner join tblOpenCourse oc on rc.opencourse_seq = oc.opencourse_seq " + 
+					"            inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq");
+			
+			rs = stat.executeQuery(sql);
+			
+			//학생명 면접일 면접결과 등록일 과정명 
+			
+			while(rs.next()) {
+				interviewList.add(String.format("%s\t%s\t%s\t%s\t%s",
+									rs.getString("name"), rs.getString("면접일"),
+									rs.getString("interviewresult"), rs.getString("등록일"), rs.getString("과정명")));
+			}
+			
+			rs.close();
+			stat.close();
+			conn.close();
+			
+			// 페이징
+			String interviewHeader = "[학생명]\t[면접일]\t[면접결과]\t[등록일]\t[과정명]";
+			
+			int pagenum = 1;
+			paging(pagenum, interviewList, interviewHeader, 3);
+			
+			while (true) {
+
+				System.out.println("a. 다음페이지");
+				System.out.println("b. 다음페이지");
+				System.out.println();
+				System.out.println("0. 뒤로가기");
+				System.out.println("------------------------------------------------------------");
+				System.out.print("입력 : ");
+				String input = scan.nextLine();
+
+				if (input.equals("0")) {
+					// 뒤로 가기
+					return;
+				} else if (input.equals("a")) {
+					// 다음페이지
+					pagenum++;
+					paging(pagenum, interviewList, interviewHeader, 3);
+
+				} else if (input.equals("b")) {
+					// 이전페이지
+					pagenum--;
+					paging(pagenum, interviewList, interviewHeader, 3);
+				}
+
+			} // while
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}//studentInterview
+
+	/**
+	 * 해당 학생 번호를
+	 */
 	private void printStudent() {
 		
 		boolean loop = true;
@@ -71,7 +163,7 @@ public class AdminStudent {
 		
 		while(true) {
 			
-			System.out.println("============================================================");
+			System.out.println("========================================================================================================================");
 			System.out.println("- 상세보기를 원하시면 해당 학생 번호를 입력해주세요.");
 			System.out.println();
 			System.out.println("a. 다음페이지");
@@ -89,18 +181,19 @@ public class AdminStudent {
 			System.out.println("============================================================");
 			
 			if(input.charAt(0) >= 'a' && input.charAt(0) <= 'f') {
+				
 				switch (input) {
 
 				case "a":
 					// 다음 페이지
 					page++;
-					paging(page, studentList);
+					paging(page, studentList, mainHeader, 0);
 					break;
 
 				case "b":
 					// 이전 페이지
 					page--;
-					paging(page, studentList);
+					paging(page, studentList, mainHeader, 0);
 					break;
 					
 				case "c":
@@ -109,7 +202,7 @@ public class AdminStudent {
 					return;
 				case "d":
 					// 교육생 검색
-
+					studentSearch();
 					return;
 				case "e":
 					// 교육생 수정
@@ -128,13 +221,169 @@ public class AdminStudent {
 			} else {
 				//교육생 상세보기
 				printCourse(input);
+				return;
 				
 			}//if
 		}//while
 
 	}
 	
-	private void paging(int page, ArrayList<String> list) {
+	private void studentSearch() {
+		//교육생 검색 메소드
+		
+		Connection conn = null;
+		Statement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		
+		
+
+		int flag = 0; //유효성 검사 변수
+		
+		try {
+
+			conn = util.open();
+			stat = conn.createStatement();
+			String sql = null;
+
+			System.out.println("============================================================");
+			System.out.println("		[학생 검색]");
+			System.out.println("============================================================");
+			System.out.println(" - 검색할 필드를 고르세요.");
+			System.out.println("1. 학생명");
+			System.out.println("2. 주민번호 뒷자리");
+			System.out.println("3. 전화번호");
+			System.out.println("4. 등록일");
+			System.out.println("5. 수료여부");
+			System.out.println();
+			System.out.println("0. 메뉴로 가기");
+			System.out.println("------------------------------------------------------------");
+			System.out.print("입력 : ");
+			String input = scan.nextLine();
+
+			if (input.equals("0")) {
+				// 메뉴로 가기
+				return;
+			} else {
+				// 필드 선택시
+				System.out.println("------------------------------------------------------------");
+				System.out.println(" - 검색할 단어를 입력하세요.");
+				System.out.println("------------------------------------------------------------");
+				System.out.print("입력 : ");
+				String word = scan.nextLine();
+
+				switch (input) { // 필드에 맞춰 검색
+
+				case "1":
+					sql = String.format(
+							"SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate "
+									+ "FROM tblStudent WHERE name like '%%%s%%'",
+							word);
+					break;
+				case "2":
+					sql = String.format(
+							"SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate "
+									+ "    FROM tblStudent WHERE ssn like '%%%s%%'",
+							word);
+					break;
+				case "3":
+					sql = String.format(
+							"SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate"
+									+ "    FROM tblStudent WHERE tel like '%%%s%%'",
+							word);
+					break;
+				case "4":
+					sql = String.format(
+							"SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate"
+									+ "    FROM tblStudent WHERE regiDate like '%%%s%%'",
+							word);
+					break;
+				case "5":
+					sql = String.format(
+							"select s.student_seq as seq, s.name as name, s.ssn as ssn, s.tel as tel, to_char(s.regiDate,'yyyy-mm-dd') as regiDate, rc.finalState as state"
+									+ "    from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq"
+									+ "        where rc.finalstate like '%%%s%%'",
+							word);
+					break;
+
+				}// switch
+				
+
+				rs = stat.executeQuery(sql);
+
+				
+				ArrayList<String> searchList = new ArrayList<String>();
+				String searchHeader = null;
+				
+				int pagenum = 1;
+				int v = 0;
+				
+				// 결과 값 출력하기
+				if (input.equals("5")) { // 수료여부 검색은 컬럼이 더 많아 따로 출력
+					System.out.println("------------------------------------------------------------------------------------------------------------------------");
+					searchHeader = "[번호]\t[이름]\t[주민번호]\t[전화번호]\t[등록일]\t[수료여부]";
+
+					while (rs.next()) {
+						
+						searchList.add(String.format("%s\t%s\t%s\t%s\t%s\t%s", rs.getString("seq"),
+								rs.getString("name"), rs.getString("ssn"), rs.getString("tel"),
+								rs.getString("regiDate"), rs.getString("state")));
+					}
+					v = 1;
+
+				} else { //수료여부 검색이 아닌 다른 필드 검색시 출력
+					System.out.println("------------------------------------------------------------------------------------------------------------------------");
+					searchHeader = "[번호]\t[이름]\t[주민번호]\t[전화번호]\t[등록일]";
+
+					while (rs.next()) {
+						searchList.add(String.format("%s\t%s\t%s\t%s\t%s", rs.getString("seq"), rs.getString("name"),
+								rs.getString("ssn"), rs.getString("tel"), rs.getString("regiDate")));
+					}
+					v = 2;
+				}
+				
+				rs.close();
+				stat.close();
+				conn.close();
+				
+				paging(pagenum, searchList, searchHeader, v);
+				
+				while (true) {
+					System.out.println("------------------------------------------------------------------------------------------------------------------------");
+					System.out.println("a. 다음 페이지");
+					System.out.println("b. 이전 페이지");
+					System.out.println();
+					System.out.println("0. 메뉴로 가기");
+					System.out.println("------------------------------------------------------------------------------------------------------------------------");
+					System.out.print("입력 : ");
+					String pInput = scan.nextLine();
+
+					switch (pInput) {
+					case "a":
+						pagenum++;
+						paging(pagenum, searchList, searchHeader, v);
+						break;
+					case "b":
+						pagenum--;
+						paging(pagenum, searchList, searchHeader, v);
+						break;
+					case "0":
+						//뒤로가기
+						return;
+					}
+
+				} // while
+
+			} // 메뉴 if
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}//studentSearch
+
+	private void paging(int page, ArrayList<String> list, String header, int select) {
 		// 페이징 메소드
 		// 페이지 출력하는 메소드
 
@@ -155,9 +404,12 @@ public class AdminStudent {
 			}
 			
 			System.out.printf("현재 %d 페이지 입니다.\n", page);
+			System.out.println();
+			
+//			System.out.println("[번호]\t[이름]\t[주민번호 뒷자리]\t[전화번호]\t[등록일]\t\t[수강횟수]");
 
-			System.out.println("[번호]\t[이름]\t[주민번호 뒷자리]\t[전화번호]\t[등록일]\t\t[수강횟수]");
-
+			System.out.println(header);
+			
 			for (int i = (page - 1) * 10; i < page * 10; i++) {
 
 				if (i >= list.size()) {
@@ -165,13 +417,33 @@ public class AdminStudent {
 
 				} else {
 
-					String[] array = studentList.get(i).split("\t");
+					String[] array = list.get(i).split("\t");
 
-					System.out.printf("%3s\t%3s\t%13s\t\t%13s\t%10s\t%2s\n"
-							, array[0], array[1], array[2], array[3], array[4], array[5]);
+					switch(select) {
+					
+					case 0 : //학생 리스트
+						System.out.printf("%3s\t%3s\t%13s\t\t%13s\t%10s\t%2s\n"
+								, array[0], array[1], array[2], array[3], array[4], array[5]);
+						break;
+					case 1 : //수료 여부 검색 
+						System.out.printf("%3s\t%4s\t%14s\t%13s\t%10s\t%2s\n"
+								, array[0],array[1],array[2],array[3],array[4],array[5]);
+						break;
+					case 2 : //다른 필드 검색
+						System.out.printf("%3s\t%4s\t%14s\t%13s\t%10s\n"
+								, array[0],array[1],array[2],array[3],array[4]);
+						
+						break;
+					case 3 : //면접
+						System.out.printf("%4s\t\t%10s\t%4s\t\t%10s\t%30s\n"
+								, array[0],array[1],array[2],array[3],array[4]);
+						break;
+					}
 
 				} // if
 			} // for
+			
+			System.out.println();
 
 		} // if
 		
@@ -192,9 +464,9 @@ public class AdminStudent {
 			conn = util.open();
 			stat = conn.createStatement();
 
-			System.out.println("============================================================");
-			System.out.println("		[학생 정보 상세보기]");
-			System.out.println("============================================================");
+			System.out.println("========================================================================================================================");
+			System.out.println("\t\t[학생 정보 상세보기]");
+			System.out.println("========================================================================================================================");
 			
 			//어떤 학생의 정보인지 출력
 			String sql = String.format("select name from tblStudent where student_seq = %s",num);
@@ -226,12 +498,12 @@ public class AdminStudent {
 								+ rs.getString("수료날짜");
 				
 				courseList.add(result);
-//				seqList.add(rs.getString("seq"));
+
 			}
 			
 			//결과 출력
-			for(int i=0; i<seqList.size(); i++) {
-				System.out.println("[번호]\t[과정명]\t\t\t\t\t[과정기간]\t[강의실]\t[수료여부]\t[수료날짜]\n");
+			for(int i=0; i<courseList.size(); i++) {
+				System.out.println("[번호]\t[과정명]\t\t\t\t\t\t[과정기간]\t\t\t[강의실]\t[수료여부]\t[수료날짜]\n");
 				
 				String[] array = courseList.get(i).split("\t");
 				
@@ -240,7 +512,7 @@ public class AdminStudent {
 			
 			System.out.println();
 			System.out.println("0. 뒤로가기");
-			System.out.println("------------------------------------------------------------");
+			System.out.println("------------------------------------------------------------------------------------------------------------------------");
 			System.out.print("입력 : ");
 			String input = scan.nextLine();
 			
@@ -272,7 +544,7 @@ public class AdminStudent {
 			int flag = 0;
 			
 			System.out.println("============================================================");
-			System.out.println("		[학생 정보 삭제]");
+			System.out.println("\t\t[학생 정보 삭제]");
 			System.out.println("============================================================");
 			System.out.print("삭제할 학생 번호 : ");
 			String num = scan.nextLine();
@@ -297,7 +569,7 @@ public class AdminStudent {
 				System.out.println("[번호]\t[이름]\t[주민번호]\t[전화번호]\t[등록일]");
 				String reslut = rs.getString("seq") + "\t" + rs.getString("name") + "\t" + rs.getString("ssn") + "\t" + rs.getString("tel") + "\t" + rs.getString("regiDate");
 				System.out.println(reslut);
-				System.out.println("------------------------------------------------------------");
+				System.out.println("------------------------------------------------------------------------------------------------------------------------");
 				System.out.println("정말로 삭제하시겠습니까? (y/n)");
 				System.out.print("입력 : ");
 				String input = scan.nextLine();
@@ -349,7 +621,7 @@ public class AdminStudent {
 			int flag = 0;
 			
 			System.out.println("============================================================");
-			System.out.println("		[학생 정보 수정]");
+			System.out.println("\t\t[학생 정보 수정]");
 			System.out.println("============================================================");
 			System.out.println("수정할 학생 번호 : ");
 			String num = scan.nextLine();
@@ -477,7 +749,7 @@ public class AdminStudent {
 			for(String seq : seqList) {
 				int i = Integer.parseInt(seq);
 				
-				sql = String.format("SELECT student_seq as seq,name,  substr(ssn,8) as ssn, tel, regiDate," + 
+				sql = String.format("SELECT student_seq as seq,name,  substr(ssn,8) as ssn, tel, to_char(regiDate,'yyyy-mm-yy') as regiDate," + 
 						"    (SELECT COUNT(*) \n" + 
 						"        FROM tblStudent s\n" + 
 						"            INNER JOIN tblRegiCourse rc\n" + 

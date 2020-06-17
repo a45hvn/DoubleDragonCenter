@@ -226,11 +226,25 @@ select  rownum, s.name as studentName, to_char(ad.workon, 'hh24:mm') as commuteT
                     on oc.opencourse_seq = rc.opencourse_seq
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
-                                where oc.opencourse_seq = 13
-                                      and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
---                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
+--                                where oc.opencourse_seq = 13
+--                                      and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
+                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
 --                                where oc.opencourse_seq = '입력받은 개설과정번호'
 --                                    and ad.workOn = to_date('입력받은 조회날짜''yyyy-mm-dd');
+
+select  rownum as 학번, s.name as 학생명, to_char(ad.workon, 'hh24:mm') as 출근시간, to_char(ad.workoff, 'hh24:mm') as 퇴근시간, ad.state as 근태
+									    from tblstudent s 
+									        inner join tblregicourse rc
+									           on s.student_seq = rc.student_seq 
+									                inner join tblopencourse oc 
+									                    on oc.opencourse_seq = rc.opencourse_seq 
+									                        inner join tblattendance ad 
+									                            on ad.regicourse_seq = rc.regicourse_seq 
+--									                                    where oc.opencourse_seq = 13 
+                                                                        where to_char(ad.workon, 'MM-DD') = '01-21';
+select * from tblattendance order by attendance_seq;                                                                        
+                                                                        
+                                                                        
 
 select * from tblopencourse;
 
@@ -259,6 +273,8 @@ SELECT rc.regiCourse_seq as enrollmentNumbers
             ON s.student_seq = rc.student_seq
                 INNER JOIN tblOpenCourse oc
                     ON oc.openCourse_seq = rc.openCourse_seq
+                        WHERE s.student_seq = '1' 
+                            AND oc.openCourse_seq = '13';                   
                         WHERE s.student_seq = '입력받은 학생 번호' 
                             AND oc.openCourse_seq = '입력받은 개설과정번호';
                             

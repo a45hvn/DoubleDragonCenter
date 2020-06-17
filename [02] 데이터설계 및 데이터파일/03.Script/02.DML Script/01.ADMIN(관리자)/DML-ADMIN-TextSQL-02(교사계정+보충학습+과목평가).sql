@@ -125,7 +125,7 @@ select cll.name, round(avg(sr.ratingScore),1) as 평균
 --3-1. 보충학습 조회
 select * from tblsupplement;
 
-select sp.suppledate, sc.scoreresult,s.name
+select sp.suppledate, sc.scoreresult,s.name, s.student_seq
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
@@ -144,7 +144,7 @@ select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
-where sc.scoreresult = '과락' and rc.opencourse_seq = '개설과정번호';
+where sc.scoreresult = '과락' and rc.opencourse_seq = '13';
 --where sc.scoreresult = '과락' and rc.opencourse_seq = 1;
 
 

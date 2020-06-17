@@ -11,70 +11,145 @@ public class ManageCourseAndSub {
 		
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String[]> row = new ArrayList<String[]>();
-		row = m.procSearchOpencourse();
-
-		String space = "              ";// 14칸
-		String header = String.format("[%2s] [%2s] %s [%s] %s [%2s] [%2s] [%s]   [%s] [%2s]", "번호", "과정번호", space,
-				"개설된 과정명", space, "강의실", "정원", "시작일", "종료일", "기간");
-		System.out.println("===========================================================");
-		System.out.println("1. 관리자 -2. 개설 과정 관리                                     ");
-		System.out.println("===========================================================");
-		System.out.println();
-		System.out.println(header);
-		int i = 0;
-		while (i < row.size()) {
-			if (i == 8) {
-				String str = String.format("%3s %7s   %35s      %3s %6s  %3s %s %s", row.get(i)[0]// PK
-						, row.get(i)[1]// 개설과정번호
-						, row.get(i)[2]// 과정명
-						, row.get(i)[3]// 강의실
-						, row.get(i)[4]// 수강생
-						, row.get(i)[5]// 시작일
-						, row.get(i)[6], row.get(i)[7]);// 기간
-				System.out.println(str);
-				i++;
-			} else {
-				String str = String.format("%3s %7s   %35s \t  %3s %6s  %3s %s %s", row.get(i)[0]// PK
-						, row.get(i)[1]// 개설과정번호
-						, row.get(i)[2]// 과정명
-						, row.get(i)[3]// 강의실
-						, row.get(i)[4]// 수강생
-						, row.get(i)[5]// 시작일
-						, row.get(i)[6], row.get(i)[7]);// 기간
-				System.out.println(str);
-				i++;
+		boolean flag=true;
+		while(flag) {
+			row = m.procSearchOpencourse();
+			String space = "              ";// 14칸
+			String header = String.format("[%2s] [%2s] %s [%s] %s [%2s] [%2s] [%s]   [%s] [%2s]", "번호", "과정번호", space,
+					"개설된 과정명", space, "강의실", "정원", "시작일", "종료일", "기간");
+			System.out.println("======================================================================================================================");
+			System.out.println("1. 관리자 -2. 개설 과정 관리                                     ");
+			System.out.println("======================================================================================================================");
+			System.out.println();
+			System.out.println(header);
+			int i = 0;
+			while (i < row.size()) {
+				if (i == 8) {
+					String str = String.format("%3s %7s   %35s      %3s %6s  %3s %s %s", row.get(i)[0]// PK
+							, row.get(i)[1]// 개설과정번호
+							, row.get(i)[2]// 과정명
+							, row.get(i)[3]// 강의실
+							, row.get(i)[4]// 수강생
+							, row.get(i)[5]// 시작일
+							, row.get(i)[6], row.get(i)[7]);// 기간
+					System.out.println(str);
+					i++;
+				} else {
+					String str = String.format("%3s %7s   %35s \t  %3s %6s  %3s %s %s", row.get(i)[0]// PK
+							, row.get(i)[1]// 개설과정번호
+							, row.get(i)[2]// 과정명
+							, row.get(i)[3]// 강의실
+							, row.get(i)[4]// 수강생
+							, row.get(i)[5]// 시작일
+							, row.get(i)[6], row.get(i)[7]);// 기간
+					System.out.println(str);
+					i++;
+				}
 			}
-		}
-		System.out.println("a. 개설과정의 과목정보 검색");
-		System.out.println("b. 개설과정의 교육생 검색");
-		System.out.println("c. 새로운 과정 만들기");
-		System.out.println("d. 과정 개설하기");
-		System.out.println("e. 과정 지우기");
-		System.out.println("f. 개설된 과정 지우기");
-		System.out.println("0. 뒤로가기");
-		System.out.print("원하는 메뉴를 입력하세요 : ");
-		String answer = scan.nextLine();
-		if (answer.toLowerCase().equals("a")) {
-			System.out.print("검색할 개설과정 번호 입력 : ");
-			int opencourseNum = scan.nextInt();
-			a(opencourseNum);
-		} else if (answer.toLowerCase().equals("b")) {
-			System.out.print("검색할 과목 번호 입력 : ");
-			int opencourseNum = scan.nextInt();
-			b(opencourseNum);
-		} else if (answer.toLowerCase().equals("c")) {
-			c();
-		} else if (answer.toLowerCase().equals("d")) {
-			d();
-		} else if (answer.toLowerCase().equals("e")) {
-			e();
-		} else if (answer.toLowerCase().equals("f")) {
-			f();
-		} else if (answer.equals("0")) {
-
+			System.out.println("a. 개설과정의 과목정보 검색");
+			System.out.println("b. 개설과정의 교육생 검색");
+			System.out.println("c. 새로운 과정 만들기");
+			System.out.println("d. 과정 개설하기");
+			System.out.println("e. 과정 지우기");
+			System.out.println("f. 개설된 과정 지우기");
+			System.out.println("0. 뒤로가기");
+			System.out.print("원하는 메뉴를 입력하세요 : ");
+			String answer = scan.nextLine();
+			if (answer.toLowerCase().equals("a")) {
+				System.out.print("검색할 개설과정 번호 입력 : ");
+				int opencourseNum = scan.nextInt();
+				scan.nextLine();
+				a(opencourseNum);
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if (answer.toLowerCase().equals("b")) {
+				System.out.print("검색할 과정 번호 입력 : ");
+				int opencourseNum = scan.nextInt();
+				scan.nextLine();
+				b(opencourseNum);
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if (answer.toLowerCase().equals("c")) {
+				c();
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if (answer.toLowerCase().equals("d")) {
+				d();
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if (answer.toLowerCase().equals("e")) {
+				e();
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if (answer.toLowerCase().equals("f")) {
+				f();System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			} else if(answer.toLowerCase().equals("g")) {
+				
+				System.out.println("1. 개설 중 과정(폐지된 과정 제외)");
+				System.out.println("2. 모든 과정");
+				String input=scan.nextLine();
+				if(input.equals("1")) {
+					g();	
+				}else if(input.equals("2")) {
+					g2();
+				}
+				
+				System.out.print("이전메뉴로 : (Enter)");
+				scan.nextLine();
+				continue;
+			}else if (answer.equals("0")) {
+				flag=false;
+				break;
+			}
 		}
 	}// main
 
+	private void g2() {
+		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		ArrayList<String[]> row=new ArrayList<String[]>();
+		System.out.println("===========================================================");
+		System.out.println("1. 관리자 -2. 개설 과정 관리 g.과정 조회하기");
+		System.out.println("===========================================================");
+		System.out.println();
+		row=m.procgetcourselist2();
+		int i=0;
+		String header =String.format("[%s]                 [%s]                     [%s]","번호","과정명","개설여부" );
+		System.out.println(header);
+		while(i<row.size()) {
+			
+			String str= String.format("%2s\t%10s\t\t\t\t%s", row.get(i)[0],row.get(i)[1],row.get(i)[2]);
+			System.out.println(str);
+			i++;
+		}
+	}
+	
+	private void g() {
+		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		ArrayList<String[]> row=new ArrayList<String[]>();
+		System.out.println("===========================================================");
+		System.out.println("1. 관리자 -2. 개설 과정 관리 g.과정 조회하기");
+		System.out.println("===========================================================");
+		System.out.println();
+		row=m.procgetcourselist();
+		int i=0;
+		String header =String.format("[%s]                 [%s]","번호","과정명" );
+		System.out.println(header);
+		while(i<row.size()) {
+			String str= String.format("%2s\t%10s", row.get(i)[0],row.get(i)[1]);
+			System.out.println(str);
+			i++;
+		}
+	}
+	
 	private static void f() {// f. 개설된 과정 지우기
 		// TODO Auto-generated method stub
 		Scanner scan=new Scanner(System.in);
@@ -82,7 +157,9 @@ public class ManageCourseAndSub {
 		System.out.println("1. 관리자 -2. 개설 과정 관리 f.단일 과정 지우기");
 		System.out.println("===========================================================");
 		System.out.println();
+		System.out.print("삭제할 과정번호 입력 : ");
 		int pcourseList_seq=scan.nextInt();
+		scan.nextLine();
 		
 		if(m.procDeleteCourseList(pcourseList_seq)) {
 			System.out.printf("%d번 과정이 삭제되었습니다.\n",pcourseList_seq);
@@ -105,6 +182,7 @@ public class ManageCourseAndSub {
 
 		System.out.printf("■ 삭제할 과정 번호 입력 : ");
 		int popencourse_seq=scan.nextInt();
+		scan.nextLine();
 		if(m.procDeleteopenCourse(popencourse_seq)) {
 			System.out.println("과정이 성공적으로 삭제되었습니다.");
 			System.out.println("-----------------------------------------------------------");
@@ -132,6 +210,7 @@ public class ManageCourseAndSub {
 		scan.skip("\r\n");
 		System.out.printf("■ 강의실 배정 : ");
 		int room=scan.nextInt();
+		scan.nextLine();
 		
 		if(m.procOpenCourse(courselist_seq, open, room)) {
 			String[] row=m.procSearchOpencourse(courselist_seq);
@@ -142,7 +221,7 @@ public class ManageCourseAndSub {
 			str=String.format("    %s    %s    %s   %s   %s       %s",row[0],row[2],row[5],row[6],row[7],row[3] );
 			System.out.println(str);
 			System.out.println("-----------------------------------------------------------");
-			System.out.println("뒤로가기 버튼 : ");
+			
 			
 			
 		}else {
@@ -179,25 +258,32 @@ public class ManageCourseAndSub {
 		System.out.printf("■ 과정에 추가할 과목 입력\n");
 		System.out.printf("1. 첫번째 과목번호 : ");
 		sub1=scan.nextInt();
+		scan.nextLine();
 		System.out.printf("2. 두번째 과목번호 : ");
 		sub2=scan.nextInt();
+		scan.nextLine();
 		System.out.printf("3. 세번째 과목번호 : ");
 		sub3=scan.nextInt();
+		scan.nextLine();
 		System.out.printf("4. 네번째 과목번호 : ");
 		sub4=scan.nextInt();
+		scan.nextLine();
 		System.out.printf("5. 다섯째 과목번호 : ");
 		sub5=scan.nextInt();
+		scan.nextLine();
 		System.out.printf("6. 마지막 과목번호 : ");
 		sub6=scan.nextInt();
+		scan.nextLine();
 		m.procNewcourseListSubject(name, sub1, sub2, sub3, sub4, sub5, sub6);
+		System.out.println("새로운 과정이 생성되었습니다.");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("뒤로가기 버튼입력");
+		
 		
 		
 	}
 
 	private static void b(int opencourseNum) {// b. 개설과정의 교육생 검색
-		// TODO Auto-generated method stub
+
 		String cCourse=m.procSearchOpencourse(opencourseNum)[2];//과정명
 		String header = String.format("[%s] [%s] [%s] [%s]   [%s] [%s]",
 				"번호", "이름", "주민번호 뒷자리", "전화번호", "등록일", "수료여부");
@@ -211,18 +297,19 @@ public class ManageCourseAndSub {
 		System.out.printf("■ \"%s\" 과정의 수강생 목록\n",cCourse);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println(header);
-		
-		while(i<Integer.parseInt(m.procSearchOpencourse(opencourseNum)[4])) {
-			String[] row=m.procgetStudentInfo(opencourseNum).get(i);//수강생 정보가져오기
+		int until=Integer.parseInt(m.procSearchOpencourse(opencourseNum)[4]);
+		ArrayList<String[]> row=m.procgetStudentInfo(opencourseNum);		
+		while(i<until) {
 			
-			String str=String.format("%3d %4s          %7s   %s %s %s",i+1,row[0],row[1].substring(6,13),row[2],row[3],row[6] );
+			
+			String str=String.format("%3d %4s          %7s   %s %s %s",i+1,row.get(i)[0],row.get(i)[1].substring(6,13),row.get(i)[2],row.get(i)[3],row.get(i)[6] );
 			System.out.println(str);
 			i++;
 		}
 		
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("뒤로가기 입력");
 		
+	
 		//학생 번호 이름 주민번호 뒷자리 전화번호 등록일 수료여부
 		
 	}
@@ -244,13 +331,13 @@ public class ManageCourseAndSub {
 		System.out.printf("■ 과목명 및 기간\n");
 		//과정명 및 기간작성
 		int i=0;
+		ArrayList<String> row2=m.procGetOpenCourseInfo(opencourseNum); 
 		while (i < 6) {// [2]과목명
-			String[] temp=m.procGetOpenCourseInfo(opencourseNum).get(i).split("-");
+			String[] temp=row2.get(i).split("-");
 			System.out.printf("%d. %s\n",i+1,temp[2]);
 			i++;
 		}
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("뒤로가기 입력");
 		
 	}
 }

@@ -46,7 +46,8 @@ public class AdminExamScore {
 						"                                        order by oc.opencourse_seq";
 				
 				rs = stat.executeQuery(sql);
-				System.out.println("과정번호\t\t\t\t과정명\t\t\t\t\t과정기간\t\t교사명\t\t강의실");
+				System.out.println("================================================================================================================================");
+				System.out.println("[과정번호]\t\t\t\t[과정명]\t\t\t\t[과정기간]\t\t[교사명]\t[강의실]");
 				while (rs.next()) { //과정번호, 과정명, 과정기간, 교사명, 강의실
 					
 //					String result = rs.getString("과정번호") + "\t" + rs.getString("과정명") + "\t" + rs.getString("과정기간")
@@ -59,9 +60,10 @@ public class AdminExamScore {
 					
 //					System.out.println("---------------------------------------------------------");
 						
-					
 				}
 				System.out.println("0\t 뒤로가기");
+				System.out.println("================================================================================================================================");
+				
 				System.out.print("입력 : ");
 				String num = scan.nextLine();
 				
@@ -97,12 +99,15 @@ public class AdminExamScore {
 								"                                            WHERE oc.openCourse_seq = %s", num);
 												
 						rs = stat.executeQuery(sql2);
-						System.out.println("과목번호\t과목명\t\t과목기간\t  성적등록여부\t  시험등록여부");
+						System.out.println("================================================================================================================================");
+						System.out.println("[과목번호]\t[과목명]\t\t[과목기간]\t[성적등록여부]\t[시험등록여부]");
 						while (rs.next()) { //과목번호, 과목명, 과목기간, 성적등록여부, 시험등록여부
 							String result = String.format("%-5s\t\t%-6s\t%-6s\t%-5s\t\t%-5s",rs.getString("과목번호"),rs.getString("과목명"),rs.getString("과목기간")
 						,rs.getString("성적등록여부"),rs.getString("시험등록여부"));
 //							String result = rs.getString("과목번호") + "\t" + rs.getString("과목명") + "\t" + rs.getString("과목기간")
 //							+ "\t" + rs.getString("성적등록여부") + "\t"+ rs.getString("시험등록여부");
+							
+							
 							
 							
 							System.out.println(result);
@@ -111,6 +116,7 @@ public class AdminExamScore {
 								
 							
 						}
+						System.out.println("================================================================================================================================");
 						rs.close();
 						
 						System.out.print("입력 : ");
@@ -148,7 +154,8 @@ public class AdminExamScore {
 									"                                                                                     WHERE oc.openCourse_seq = '%s' and ss.subjectschedule_seq = '%s'", num,num2);
 													
 							rs = stat.executeQuery(sql3);
-							System.out.println("과목명\t\t과목기간\t강의실명\t교사명\t\t교재명\t\t\t학생명\t주민번호\t필기\t실기");
+							System.out.println("================================================================================================================================");
+							System.out.println("[과목명]\t[과목기간]\t [강의실]\t[교사명]\t[교재명]\t\t[학생명]  [주민번호]\t[필기]\t[실기]");
 							while (rs.next()) {//과목명, 과목기간, 강의실명, 교사명, 교재명, 학생명, 주민번호, 필기, 실기
 								
 								String result = rs.getString("과목명") + "\t" + rs.getString("과목기간") + "\t" + rs.getString("강의실명")
@@ -160,6 +167,7 @@ public class AdminExamScore {
 								
 								
 							}
+							System.out.println("================================================================================================================================");
 							
 							conn.close();
 							stat.close();
@@ -185,19 +193,22 @@ public class AdminExamScore {
 										" inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq" + 
 										" inner join tblStudent s on rc.student_seq = s.student_seq" + 
 										" where sc.scoreresult = '과락' and rc.opencourse_seq = '13'";
-														
+
 								rs = stat.executeQuery(sql4);
-								System.out.println("보충날짜\t\t보충여부\t이름");
-								while (rs.next()) {//보충날짜, 보충여부, 이름
-									
-									String result3 = rs.getString("보충날짜") + "\t" + rs.getString("보충여부") + "\t\t" + rs.getString("학생명");
-									
-									
+								
+								System.out.println("=========================================================");
+								System.out.println("[보충날짜]\t\t[보충여부]\t[이름]");
+								while (rs.next()) {// 보충날짜, 보충여부, 이름
+
+									String result3 = rs.getString("보충날짜") + "\t" + rs.getString("보충여부") + "\t\t"
+											+ rs.getString("학생명");
+
 									System.out.println(result3);
 //									System.out.println("---------------------------------------------------------");
-									
-									
+
 								}
+								System.out.println("=========================================================");
+								
 								rs.close();
 								conn.close();
 								stat.close();

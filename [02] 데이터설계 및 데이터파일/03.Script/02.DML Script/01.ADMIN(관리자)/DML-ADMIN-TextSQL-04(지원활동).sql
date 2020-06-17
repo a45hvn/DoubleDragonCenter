@@ -1,6 +1,6 @@
 -- 1. 관리자 ? 7. 지원관리 및 조회 - a. 지원내역 - a. 일괄 조회 및 수정
 -- 번호 학생명 교사명 과정명 연락처 출석률 지원일시 상담요청 내용(출석률이면 정상만 취급하는지? 조퇴나 이런건 빼고? 아직 안정함, 출석률 빼는걸 권장)
-SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as courselistName, stu.tel as studentTel,  Ass.asdate as callasDate, Ass.asService as callasService
+SELECT ass.as_seq as 지원번호, stu.name as 학생명, t.name as 교사명, cl.name as 과정명, stu.tel as 전화번호,  Ass.asdate as 지원날짜, Ass.asService as 지원내역
     FROM tblAs ass
         INNER JOIN tblRegiCourse rc
             ON ass.regiCourse_seq = rc.regiCourse_seq
@@ -13,10 +13,16 @@ SELECT rownum, stu.name as studentName, t.name as teacherName, cl.name as course
                                         INNER JOIN tblTeacher t
                                             ON tc.teacher_seq = t.teacher_seq
                                                 INNER JOIN tblStudent stu
-                                                    ON rc.student_seq = stu.student_seq;
+                                                    ON rc.student_seq = stu.student_seq
+                                                        where ass.as_seq <= 10;
 select * from tblsubjectrating;
 select *from tblattendance;
+rollback;
+-- 지원활동 추가하기 
+insert into tblAs values (as_seq.nextVal, to_date('2021-01-26','yyyy-mm-dd'), '일자리알선', '성공적인 취업을 위한 활동', 1);
+select * from tblas;
 -- 지원요청 번호 저장(배열)
+
 SELECT as_seq FROM tblas;
 
 -- 수정하기와 삭제하기는 해당 요청날짜가 현재시간 이전은 불가능

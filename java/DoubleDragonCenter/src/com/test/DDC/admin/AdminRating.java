@@ -99,7 +99,7 @@ public class AdminRating {
 			System.out.printf("과정명 : %s\n",mapInfo.get("courseName"));
 			System.out.printf("과정평점 : %s\n",rs.getString("평균"));
 			System.out.println();
-			System.out.println("[과목명]\t[평점]\n");
+			System.out.println("[과목명]\t\t[평점]\n");
 			
 			sql = "select s.name as 과목명,round(avg(sr.ratingScore),1) as 평균\n" + 
 					"    from tblSubjectRating sr inner join tblsubjectschedule ss on sr.subjectschedule_seq = ss.subjectschedule_seq\n" + 
@@ -108,7 +108,7 @@ public class AdminRating {
 			rs = stat.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.printf("%s\t%s\n",rs.getString("과목명"),rs.getString("평균"));
+				System.out.printf("%s\t\t%s\n",rs.getString("과목명"),rs.getString("평균"));
 			}
 			
 			System.out.println();
@@ -141,7 +141,7 @@ public class AdminRating {
 			conn = util.open();
 			stat = conn.createStatement();
 
-			System.out.println("[번호]\t[과정명]\t\t\t[과정기간]\t\t[교사명]");
+			System.out.println("[번호]\t\t\t[과정명]\t\t\t\t\t[과정기간]\t\t[교사명]");
 			
 			String sql = String.format("select oc.openCourse_seq, cll.name as 과정명, oc.startDate||'~'||oc.endDate as 과정기간, t.name as 교사명" + 
 					" from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacher_seq" + 
@@ -154,7 +154,7 @@ public class AdminRating {
 			while(rs.next()) {
 				String result = rs.getString("openCourse_seq")+"\t"+rs.getString("과정명")+"\t"+rs.getString("과정기간")+"\t"+rs.getString("교사명");
 				courseList.add(result);
-				System.out.printf("%3s\t%30s\t%15s\t%3s\n"
+				System.out.printf("%3s\t%30s\t\t%15s\t %3s\n"
 						 , rs.getString("openCourse_seq")
 						 , rs.getString("과정명")
 						 , rs.getString("과정기간")
