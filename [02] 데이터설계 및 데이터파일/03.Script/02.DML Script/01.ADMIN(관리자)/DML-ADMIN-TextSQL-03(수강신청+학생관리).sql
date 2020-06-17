@@ -33,7 +33,8 @@ select * from tblattendance;
 -- a. 이름 검색
 -- 수강신청
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = '입력학생명'; -- 변수에 저장
+SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate
+FROM tblStudent WHERE name like '%김%'; -- 변수에 저장
 
 -- DTO_Student
 SELECT rownum, s.name as studentName, s.ssn as studentssn, s.tel as studentTel, s.regidate as studentRegidate, 
@@ -44,10 +45,19 @@ SELECT rownum, s.name as studentName, s.ssn as studentssn, s.tel as studentTel, 
                     WHERE s.student_seq = '위에서 변수에 저장한것을 하나씩 대입') as numberCourseRequests
                         FROM tblStudent  s
                             WHERE name = '입력학생명';
+                            
+--학생 상세정보 조회
+--과정명, 과정기간, 강의실, 수료여부, 수료날짜
+select cll.name, to_char(oc.startdate,'yyyy-mm-dd')||'~'||to_char(oc.endDate,'yyyy-mm-dd') as 과정기간, oc.room_seq||'강의실' as 강의실명, rc.finalState, to_char(rc.finaldate,'yyyy-mm-dd')
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.regicourse_seq
+    inner join tblOpenCourse oc on rc.openCourse_seq = oc.opencourse_seq
+        inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq
+            where s. student_seq = 1;
 
 -- b. 주민번호 검색
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = '입력주민번호'; -- 변수에 저장
+SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate 
+    FROM tblStudent WHERE ssn like '%입력주민번호%'; -- 변수에 저장
 
 -- DTO_Student
 SELECT student_seq, name, ssn, tel, regidate,
@@ -62,7 +72,8 @@ SELECT student_seq, name, ssn, tel, regidate,
 -- c. 전화번호 검색
 -- 수강신청
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = '입력전화번호'; -- 변수에 저장
+SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate 
+    FROM tblStudent WHERE tel like '%입력전화번호%'; -- 변수에 저장
 
 -- DTO_Student
 SELECT student_seq, name, ssn, tel, regidate,
@@ -77,7 +88,8 @@ SELECT student_seq, name, ssn, tel, regidate,
 -- d. 등록일 검색
 -- 수강신청
 -- DTO_Student
-SELECT student_seq FROM tblStudent WHERE name = '입력등록일'; -- 변수에 저장
+SELECT student_seq as seq, name, ssn, tel, to_char(regiDate,'yyyy-mm-dd') as regiDate
+    FROM tblStudent WHERE regiDate like '%입력등록일%'; -- 변수에 저장
 
 -- DTO_Student
 SELECT student_seq, name, ssn, tel, regidate,
@@ -90,6 +102,15 @@ SELECT student_seq, name, ssn, tel, regidate,
                         WHERE regidate = '입력등록일';
 
 select * from tblregicourse;
+
+--수료여부 검색
+select s.student_seq as seq, s.name, s.ssn, s.tel, to_char(regiDate,'yyyy-mm-dd') as regiDate, rc.finalState
+    from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq
+        where rc.finalstate like '%수료결과%';
+        
+select s.student_seq as seq, s.name, s.ssn, s.tel, to_char(s.regiDate,'yyyy-mm-dd') as regiDate, rc.finalState
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq 
+where rc.finalstate like '%수료%';
 
 
 
@@ -107,7 +128,7 @@ UPDATE tblStudent
 --  1. 관리자 ? 3. 학생 관리 - c. 학생 정보 검색 및 수정 ? (검색후) ? 삭제 선택시
 -- b. 삭제하기
 -- DTO_Student
-DELETE FROM tblStudent WHERE student_seq = '받아온번호값';
+update tblStudent set del = 'y' where student_seq = '삭제할 학생 번호';
 
 
 
@@ -226,25 +247,11 @@ select  rownum, s.name as studentName, to_char(ad.workon, 'hh24:mm') as commuteT
                     on oc.opencourse_seq = rc.opencourse_seq
                         inner join tblattendance ad
                             on ad.regicourse_seq = rc.regicourse_seq
---                                where oc.opencourse_seq = 13
---                                      and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
-                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
+                                where oc.opencourse_seq = 13
+                                      and to_char(ad.workon, 'YYYY-MM-DD') = '입력받은 조회날짜';
+--                                    and to_char(ad.workon, 'YYYY-MM-DD') = '2020-01-06';
 --                                where oc.opencourse_seq = '입력받은 개설과정번호'
 --                                    and ad.workOn = to_date('입력받은 조회날짜''yyyy-mm-dd');
-
-select  rownum as 학번, s.name as 학생명, to_char(ad.workon, 'hh24:mm') as 출근시간, to_char(ad.workoff, 'hh24:mm') as 퇴근시간, ad.state as 근태
-									    from tblstudent s 
-									        inner join tblregicourse rc
-									           on s.student_seq = rc.student_seq 
-									                inner join tblopencourse oc 
-									                    on oc.opencourse_seq = rc.opencourse_seq 
-									                        inner join tblattendance ad 
-									                            on ad.regicourse_seq = rc.regicourse_seq 
---									                                    where oc.opencourse_seq = 13 
-                                                                        where to_char(ad.workon, 'MM-DD') = '01-21';
-select * from tblattendance order by attendance_seq;                                                                        
-                                                                        
-                                                                        
 
 select * from tblopencourse;
 
@@ -273,8 +280,6 @@ SELECT rc.regiCourse_seq as enrollmentNumbers
             ON s.student_seq = rc.student_seq
                 INNER JOIN tblOpenCourse oc
                     ON oc.openCourse_seq = rc.openCourse_seq
-                        WHERE s.student_seq = '1' 
-                            AND oc.openCourse_seq = '13';                   
                         WHERE s.student_seq = '입력받은 학생 번호' 
                             AND oc.openCourse_seq = '입력받은 개설과정번호';
                             
@@ -287,6 +292,15 @@ inner join tblStudent s on rc.student_seq = s.student_seq
 inner join tblOpenCourse oc on rc.opencourse_seq = oc.opencourse_seq
 inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq;
                             
-                            
 
+select s.name, to_char(iv.interviewDate,'yyyy-mm-dd') as date, iv.interviewResult
+    from tblInterview iv inner join tblRegiCourse rc on iv.regicourse_seq = rc.regicourse_seq
+        inner join tblstudent s on rc.student_seq = s.student_seq;
+
+--학생명 면접일 면접결과 등록일 과정명 
+select s.student_seq, s.name, to_char(iv.interviewdate,'yyyy-mm-dd') as 면접일,iv.interviewresult,to_char(s.regidate,'yyyy-mm-dd') as 등록일,cll.name as 과정명
+from tblStudent s inner join tblRegiCourse rc on s.student_seq = rc.student_seq
+    inner join tblInterview iv on rc.regicourse_seq = iv.regicourse_seq
+        inner join tblOpenCourse oc on rc.opencourse_seq = oc.opencourse_seq
+            inner join tblCourseList cll on oc.courselist_seq = cll.courselist_seq;
                             

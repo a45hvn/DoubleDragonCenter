@@ -60,6 +60,7 @@ CREATE TABLE  tblTeacher -- 교사
 	name varchar2(30) not null,                             -- 이름
 	ssn varchar2(14) not null,                              -- 주민번호
 	tel varchar2(13) not null                               -- 전화번호
+	del varchar2(4) not null default 'n'		--삭제여부
 );
 
 create sequence teacher_seq;        
@@ -128,6 +129,7 @@ CREATE TABLE tblCourseList -- 과정목록(기초정보관리)
 	courseList_seq number primary key,              -- 과정 번호(PK)
 	name varchar2(120) not null,                     -- 과정명
 	period number not null                          -- 과정 기간
+	del varchar2(4) not null default 'n'		--삭제여부
 );
 
 create sequence courseList_seq;
@@ -282,6 +284,7 @@ create table tblStudent -- 교육생
 	ssn varchar2(14) not null, -- 교육생 주민번호
 	tel varchar2(13) not null, -- 교육생 전화번호
 	regiDate date not null -- 등록일
+	del varchar2(4) not null default 'n' --삭제여부
 );
 
 create sequence student_seq;

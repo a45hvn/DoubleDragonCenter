@@ -4,7 +4,7 @@
 --기초 정보에는 과정명, 과목명, 강의실명(정원 포함), 교재명(출판사명 포함) 등이 포함된다.
 
 --1. 교사 계정 관리(id:이름, pw:주민번호뒷자리)
-select * from tblTeacher;
+select * from tblTeacher where del = 'n';
 --1-1. 교사 정보는 교사 이름, 주민번호 뒷자리, 전화번호, 강의 가능 과목을 기본으로 등록하고, 주민번호 뒷자리는 교사 본인이 로그인시 패스워드로 사용되도록 한다.
 insert into tblTeacher values (teacher_seq.nextVal,'이름','주민번호','전화번호');
 --1-2. 교사의 강의 가능 과목은 기초 정보 과목명을 이용해서 선택적으로 추가할 수 있어야 한다.
@@ -73,8 +73,7 @@ select * from tblTeacher where teacher_seq = '입력받은 번호' ;
 --교사 정보 수정
 update tblTeacher set name='값',ssn='값',tel='값' where teacher_seq = '수정할 번호';
 --교사 정보 삭제
---delete from tblTeacher where teacher_seq = '삭제할 교사번호';
-update tblTeacher set teacher_seq = -teacher_seq where teacher_seq = '삭제할 교사번호';
+update tblTeacher set del = 'y' where teacher_seq = '삭제할 교사번호';
 
 --교사 정보 입력
 insert into tblTeacher (teacher_seq,name,ssn,tel) values (teacher_seq.nextVal, '이름','주민번호','전화');
@@ -125,7 +124,7 @@ select cll.name, round(avg(sr.ratingScore),1) as 평균
 --3-1. 보충학습 조회
 select * from tblsupplement;
 
-select sp.suppledate, sc.scoreresult,s.name, s.student_seq
+select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
@@ -144,7 +143,7 @@ select sp.suppledate, sc.scoreresult,s.name
 from tblSupplement sp inner join tblScore sc on sp.score_seq=sc.score_seq
 inner join tblRegiCourse rc on sc.regicourse_seq = rc.regiCourse_seq
 inner join tblStudent s on rc.student_seq = s.student_seq
-where sc.scoreresult = '과락' and rc.opencourse_seq = '13';
+where sc.scoreresult = '과락' and rc.opencourse_seq = '개설과정번호';
 --where sc.scoreresult = '과락' and rc.opencourse_seq = 1;
 
 
