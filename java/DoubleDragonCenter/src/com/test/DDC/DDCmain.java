@@ -66,8 +66,8 @@ public class DDCmain {
 					break;
 					
 				case "0" : // 프로그램 종료
-					System.out.println("============================================================");
-					System.out.println("Double Dragon Center 시스템을 종료합니다.");
+					System.out.println("\t\t\t\t============================================================");
+					System.out.println("\t\t\t\t\tDouble Dragon Center 시스템을 종료합니다.");
 					
 					System.out.print("");
 					
