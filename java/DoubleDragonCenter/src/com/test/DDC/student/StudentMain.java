@@ -11,17 +11,22 @@ import java.util.Scanner;
 import com.test.DDC.DBUtil;
 import com.test.DDC.DDCmain;
 
-
+/**
+ * 
+ * @author 이예지
+ *
+ */
 public class StudentMain {
 	
 	private static Scanner scan = new Scanner(System.in);
 	private static String mnum = null;
 	
-//	public static void main(String[] args) {
-//		StudentLogin();
-//	}
+
 	
-	//로그인
+	/**
+	 * 학생으로 로그인을 할 수 있다.
+	 * id는 학생명, pwd는 주민등록번호의 뒷자리이다.
+	 */
 	public static void StudentLogin() {
 	
 
@@ -65,7 +70,6 @@ public class StudentMain {
 				idList.add(rs.getString("name"));
 				pwdList.add(rs.getString("ssn"));
 				
-				//System.out.println(result);
 			}
 			
 			for(int i=0; i<idList.size(); i++) {
@@ -124,6 +128,11 @@ public class StudentMain {
 	}
 
 
+	/**
+	 * 학생으로 로그인 하면 나오는 메뉴화면
+	 * [학생명, 주민번호, 전화번호, 등록일, 과정명, 시작일, 종료일, 강의실명]이 헤더로 출력된다.
+	 * 메뉴에는 [과정 및 과목 조회, 출결 조회, 성적 조회, 보충 학습 조회, 과목 평가] 가 있다.
+	 */
 	private static void menu() {
 		
 		DBUtil util = new DBUtil();
@@ -243,6 +252,10 @@ public class StudentMain {
 	}
 
 	
+	/**
+	 *  학생이 실시한 보충 학습을 조회할 수 있다.
+	 *  번호, 날짜, 과목명, 필기점수, 실기점수
+	 */
 	
 	private static void stSup() { //보충 학습
 		
@@ -298,6 +311,10 @@ public class StudentMain {
 		
 		
 	}
+	
+	/**
+	 * 학생이 수강한 과목을 평가하고 조회할 수 있는 메뉴
+	 */
 
 	private static void stRatingMenu() { //과목 평가 메뉴
 		boolean flag=true;
@@ -341,7 +358,12 @@ public class StudentMain {
 		}//while
 	}
 
-	private static void stWrRating() { //과목 평가 하기 -- 수강신청번호(363) 고정
+	/**
+	 * 학생이 수강한 과목을 평가할 수 있는 메뉴이다.
+	 * 과목스케줄번호, 평점, 평가내용을 입력 받고 그 값을 반영시킨다.
+	 */
+	
+	private static void stWrRating() { //과목 평가 하기 
 		
 		DBUtil util = new DBUtil();
 		
@@ -421,6 +443,11 @@ public class StudentMain {
 		
 		
 	}
+	
+	/**
+	 *  학생이 과목 평가했던 내용을 조회할 수 있다.
+	 *  과목명, 평점, 평가내용이 출력된다.
+	 */
 
 	private static void stRating() { //과목 평가 조회
 		
@@ -477,6 +504,11 @@ public class StudentMain {
 		
 	}
 
+	
+	/**
+	 *  학생이 봤던 시험의 성적을 조회할 수 있다.
+	 *  [과목번호,과목명,시험번호,학생번호,필기배점,실기배점,출결배점,필기,실기,출결,결과,시험날짜,시험문제]가 출력된다.
+	 */
 	
 	private static void stScore() { //성적 조회
 		
@@ -538,6 +570,11 @@ public class StudentMain {
 		}
 		
 	}
+	
+	/**
+	 *  학생의 출결과 관련된 메뉴이다.
+	 *  근태 관리(입실, 퇴실)와 출결 조회를 할 수 있다.
+	 */
 
 	private static void stAttendanceMenu() { //출결 메뉴
 		
@@ -592,6 +629,10 @@ public class StudentMain {
 		}
 		
 	}
+	
+	/**
+	 *  일(ex.0120)을 입력 받으면 그 날짜의 출결 상태를 출력한다.
+	 */
 
 	private static void datetStAd() { //일별 출결 조회 
 		
@@ -625,7 +666,7 @@ public class StudentMain {
 			
 			
 			System.out.println("학생번호\t입실시간\t\t\t\t퇴실시간\t\t\t\t출결상태");
-			System.out.println("---------------------------------------------------------");
+			System.out.println("------------------------------------------------------------------------------------------------------------------");
 			
 			while (rs.next()) { // 학생번호, 입실시간, 퇴실시간, 출결상태
 				
@@ -633,7 +674,7 @@ public class StudentMain {
 				
 				
 				System.out.println(result);
-				System.out.println("---------------------------------------------------------");
+				System.out.println("------------------------------------------------------------------------------------------------------------------");
 			}
 
 			stat.close();
@@ -644,6 +685,10 @@ public class StudentMain {
 		}
 		
 	}
+	
+	/**
+	 * 월(ex.01)을 입력 받으면 그 월의 출결을 전부 출력한다.
+	 */
 
 	private static void monthStAd() { //월별 출결 조회
 		
@@ -698,6 +743,10 @@ public class StudentMain {
 		
 	}
 
+	/**
+	 *  학생의 출결 상태를 전부 출력한다.
+	 */
+	
 	private static void allStAd() { //전체 출결 조회
 		
 		DBUtil util = new DBUtil();
@@ -748,6 +797,9 @@ public class StudentMain {
 		
 	}
 
+	/**
+	 *  학생의 입실, 퇴실과 관련된 메뉴이다.
+	 */
 	
 	private static void stAd() { //근태 관리
 		
@@ -789,6 +841,10 @@ public class StudentMain {
 			}
 		}
 	}
+	
+	/**
+	 *  퇴실하기를 선택하면 퇴실이 됨과 동시에 결석,지각,조퇴,정상출석 중 하나로 데이터가 입력된다.
+	 */
 
 	private static void adOff() { //퇴실
 		
@@ -852,6 +908,10 @@ public class StudentMain {
 		
 	}
 
+	/**
+	 * 입실하기를 선택하면 학생이 현재시각으로 입실한 것이 된다.
+	 */
+	
 	private static void adOn() { //입실
 		
 		DBUtil util = new DBUtil();
@@ -907,8 +967,12 @@ public class StudentMain {
 		}
 		
 		
-		
 	}
+	
+	/**
+	 *  학생이 듣는 과정명이 위에 먼저 출력되고,
+	 *  [학생번호, 과목번호, 과목명, 과목기간, 교재명]이 아래쪽에 추가로 출력된다.
+	 */
 
 	private static void stCourse() { //과정 및 과목 조회
 		
