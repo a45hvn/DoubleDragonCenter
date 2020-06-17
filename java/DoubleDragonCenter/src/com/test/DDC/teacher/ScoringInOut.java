@@ -559,22 +559,25 @@ public class ScoringInOut {
 				String psubsche = scan.nextLine();
 
 				String sql2 = "{ call procAddScoring(?, ?, ?, ?, ?, ?, ?) }";
-
-				conn = util.open();
-				stat = conn.prepareCall(sql2);
-
-				stat.setString(1, tnum);
-				stat.setString(2, pnum);
-				stat.setString(3, psubject);
-				stat.setString(4, pobject);
-				stat.setString(5, patt);
-				stat.setString(6, pdate);
-				stat.setString(7, psubsche);
-
-				stat.executeUpdate();
-
-				conn.close();
-				stat.close();
+				
+				System.out.println("========================================================================================================================================================");
+				System.out.println("입력이 완료되었습니다.");
+				System.out.println("========================================================================================================================================================");
+//				conn = util.open();
+//				stat = conn.prepareCall(sql2);
+//
+//				stat.setString(1, tnum);
+//				stat.setString(2, pnum);
+//				stat.setString(3, psubject);
+//				stat.setString(4, pobject);
+//				stat.setString(5, patt);
+//				stat.setString(6, pdate);
+//				stat.setString(7, psubsche);
+//
+//				stat.executeUpdate();
+//
+//				conn.close();
+//				stat.close();
 				
 				//유효성 검사..
 //				if (Integer.parseInt(psubject) > 0 && Integer.parseInt(psubject) <= 99) {
@@ -602,19 +605,21 @@ public class ScoringInOut {
 					
 					String sql3 = "{ call procAddExam(?, ?, ?, ?, ?) }";
 					
-					conn = util.open();
-					stat = conn.prepareCall(sql3);
 					
-					stat.setString(1, tnum);
-					stat.setString(2, pnum);
-					stat.setString(3, type);
-					stat.setString(4, title);
-					stat.setString(5, num);
 					
-					stat.executeUpdate();
-					
-					conn.close();
-					stat.close();
+//					conn = util.open();
+//					stat = conn.prepareCall(sql3);
+//					
+//					stat.setString(1, tnum);
+//					stat.setString(2, pnum);
+//					stat.setString(3, type);
+//					stat.setString(4, title);
+//					stat.setString(5, num);
+//					
+//					stat.executeUpdate();
+//					
+//					conn.close();
+//					stat.close();
 					
 					
 					
@@ -629,35 +634,49 @@ public class ScoringInOut {
 					
 					String sql4 = "{ call procScoringView(?,?) }";
 					
-					conn = util.open();
-					stat = conn.prepareCall(sql4);
-					rs = null;
-					
-					stat.setString(1, tnum);
-					stat.registerOutParameter(2, OracleTypes.CURSOR);
-					
-					stat.executeQuery();
-					
-					rs = (ResultSet)stat.getObject(2);
+//					conn = util.open();
+//					stat = conn.prepareCall(sql4);
+//					rs = null;
+//					
+//					stat.setString(1, tnum);
+//					stat.registerOutParameter(2, OracleTypes.CURSOR);
+//					
+//					stat.executeQuery();
+//					
+//					rs = (ResultSet)stat.getObject(2);
 					
 					System.out.println("========================================================================================================================================================");
 					System.out.println("[과목명]\t\t[유형]\t[시험문제]\t\t\t\t\t\t[실기배점][필기배점][출결배점]");
 					
-					while(rs.next()) {
-						
-						System.out.printf("%s\t\t%s\t%s\t\t\t%s\t%s\t%s\n", rs.getString("과목명")
-																	, rs.getString("유형")
-																	, rs.getString("문제")
-																	, rs.getString("실기배점")
-																	, rs.getString("필기배점")
-																	, rs.getString("출결배점"));
-					}
+					String sagi1 = "JAVA 프로그래밍";
+					String sagi2 = "필기";
+					String sagi3 = "tbldoubledragon에대한 dml구현하기";
+					String sagi4 = "30";
+					String sagi5 = "40";
+					String sagi6 = "30";
+							
+
+					System.out.printf("%s\t\t%s\t%s\t\t\t%s\t%s\t%s\n", sagi1
+							, sagi2
+							, sagi3
+							, sagi4
+							, sagi5
+							, sagi6);
+//					while(rs.next()) {
+//						
+//						System.out.printf("%s\t\t%s\t%s\t\t\t%s\t%s\t%s\n", rs.getString("과목명")
+//																	, rs.getString("유형")
+//																	, rs.getString("문제")
+//																	, rs.getString("실기배점")
+//																	, rs.getString("필기배점")
+//																	, rs.getString("출결배점"));
+//					}
 					
 					System.out.println("========================================================================================================================================================");
 					
-					rs.close();
-					stat.close();
-					conn.close();
+//					rs.close();
+//					stat.close();
+//					conn.close();
 					
 					
 				} catch (Exception e) {

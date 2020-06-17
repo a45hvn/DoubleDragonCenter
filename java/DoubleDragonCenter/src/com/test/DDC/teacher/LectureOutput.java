@@ -40,14 +40,17 @@ public class LectureOutput {
 			System.out.println("===============================================================================================");
 			System.out.println("현재 강재지 교사님의 강의 상태입니다.");
 			System.out.println();
-			System.out.println("[교사명]\t\t\t[과정명]\t\t\t[과정기간]\t\t\t[진행상태]");
+			System.out.println("[교사명]\t\t\t\t[과정명]\t\t\t\t\t[과정기간]\t\t[진행상태]");
 
 			while (rs.next()) {
 
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", rs.getString("교사명"), rs.getString("과정명"),
+//				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", rs.getString("교사명"), rs.getString("과정명"),
+//						rs.getString("과정기간"), rs.getString("진행상태"));
+				
+				String result = String.format("%-5s\t\t%-43s\t%-15s\t%-6s", rs.getString("교사명"), rs.getString("과정명"),
 						rs.getString("과정기간"), rs.getString("진행상태"));
 
-
+				System.out.println(result);
 			}
 			
 			
@@ -82,12 +85,18 @@ public class LectureOutput {
 				System.out.println("===============================================================================================");
 				System.out.println("\t\t\t\t\t강의 스케줄 조회");
 				System.out.println("===============================================================================================");
-				System.out.println("[과정번호]\t\t[과정명]\t\t\t\t[과정기간]\t\t[강의실]");
+				System.out.println("[과정번호]\t\t\t[과정명]\t\t\t\t\t[과정기간]\t\t[강의실]");
 
 				while (rs.next()) {
 
-					System.out.printf("%s\t\t%s\t\t%10s\t%s\n", rs.getString("과정번호"), rs.getString("과정명"),
+//					System.out.printf("%s\t\t%s\t\t%10s\t%s\n", rs.getString("과정번호"), rs.getString("과정명"),
+//							rs.getString("과정기간"), rs.getString("강의실명"));
+					
+					String result = String.format("%-5s\t\t%-43s\t%-15s\t%-6s", rs.getString("과정번호"), rs.getString("과정명"),
 							rs.getString("과정기간"), rs.getString("강의실명"));
+
+					System.out.println(result);
+					
 				}
 				System.out.println("===============================================================================================");
 
@@ -116,13 +125,16 @@ public class LectureOutput {
 						System.out.println("===============================================================================================");
 						System.out.println("\t\t\t\t\t강의 스케줄 조회");
 						System.out.println("===============================================================================================");
-						System.out.println("[과목명]\t\t[과목기간]\t\t\t[교재명]\t[교육생인원]");
+						System.out.println("[과목명]\t\t\t[과목기간]\t   [교육생인원]\t\t[교재명]");
 						while (rs.next()) {
 
-							System.out.printf("%s\t\t%20s\t\t%s\t%s\n", rs.getString("과목명"), rs.getString("과목기간"),
-									rs.getString("교재명"), rs.getString("교육생인원"));
+//							System.out.printf("%s\t\t%20s\t\t%-30s\t%-5s\n", rs.getString("과목명"), rs.getString("과목기간"),
+//									rs.getString("교재명"), rs.getString("교육생인원"));
+							System.out.printf("%s\t\t%20s\t\t%-5s\t%-30s\n", rs.getString("과목명"), rs.getString("과목기간"),
+									rs.getString("교육생인원"),rs.getString("교재명"));
 						}
-
+						
+					
 						System.out.println("===============================================================================================");
 						rs.close();
 						conn.close();
