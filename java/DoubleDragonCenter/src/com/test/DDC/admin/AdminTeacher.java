@@ -423,7 +423,7 @@ public class AdminTeacher {
 							"            ON t.teacher_seq = a.teacher_seq " + 
 							"                    INNER JOIN tblSubject s" + 
 							"                        ON a.subject_seq = s.subject_seq" + 
-							"                             where t.teacher_Seq = %s", num);
+							"                             where t.teacher_Seq = %s and t.del = 'n'", num);
 					
 					rs = stat.executeQuery(sql);
 					
