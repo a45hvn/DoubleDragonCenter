@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
+/**
+ * 오라클 DB 연결해주는 클래스
+ * @author DB1조
+ *
+ */
 public class DBUtil {
 
 	private Connection conn = null;

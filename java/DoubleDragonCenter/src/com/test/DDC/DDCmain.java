@@ -6,6 +6,11 @@ import com.test.DDC.admin.AdminMain;
 import com.test.DDC.student.StudentMain;
 import com.test.DDC.teacher.TeacherLogin;
 
+/**
+ * 메인 화면 구현 클래스
+ * @author 전혜원, 윤대웅
+ *
+ */
 public class DDCmain {
 	
 	public static void main(String[] args)  {
@@ -14,6 +19,9 @@ public class DDCmain {
 		
 	}
 
+	/**
+	 * 메인화면 출력 메소드
+	 */
 	public static void printMain() {
 		
 		Scanner scan = new Scanner(System.in);
