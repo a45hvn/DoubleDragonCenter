@@ -7,6 +7,8 @@
 # SEDU Center
 
 ![메인](https://user-images.githubusercontent.com/65211288/84998018-3e79e300-b18a-11ea-957e-80b2acba867a.png)
+![관리자](https://user-images.githubusercontent.com/65211288/84998831-500fba80-b18b-11ea-8693-5bf7ed5c55e1.gif)
+
 
 
 ### 👋 Introduction
@@ -72,8 +74,10 @@
     <tr>
         <th><img width="266" src="asset/sedu-center-task-student.gif"></th>
         <th><img width="266" src="asset/sedu-center-teacher.gif"></th>
-        ![관리자](https://user-images.githubusercontent.com/65211288/84998831-500fba80-b18b-11ea-8693-5bf7ed5c55e1.gif)
-</th>
+        <th><img width="266" src="asset/sedu-center-task-admin.gif"></th>
+     
+     ![관리자](https://user-images.githubusercontent.com/65211288/84998831-500fba80-b18b-11ea-8693-5bf7ed5c55e1.gif)
+
     </tr>
 </table>
 
