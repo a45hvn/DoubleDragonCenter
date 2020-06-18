@@ -1,0 +1,459 @@
+-------------------------------------------------------------------------------
+--                             4.개설 과정 관리
+-------------------------------------------------------------------------------
+--과정 정보는 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실 정보를 입력한다. -> 테이블 작성을 말하는 듯하다. 완료
+--강의실 정보는 기초 정보 강의실명에서 선택적으로 추가할 수 있어야 한다. -> 추가한다는 것은 뭔말?
+--개설 과정 정보 출력시 개설 과정명, 개설 과정기간(시작 년월일, 끝 년월일), 강의실명, 개설 과목 등록 여부, 교육생 등록 인원(등록인원???)을 출력한다.->완료
+--(정보 입력이 있으니 프로시저로)특정 개설 과정 선택시 개설 과정에 등록된 개설 과목 정보(과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 교사명) 및 등록된 교육생 정보(교육생 이름, 주민번호 뒷자리, 전화번호, 등록일, 수료 및 중도탈락)을 확인할 수 있어야 한다. -> 완료
+--(정보 입력이 있으니 프로시저로)특정 개설 과정이 수료한 경우 등록된 교육생 전체에 대해서 수료날짜를 지정할 수 있어야 한다. 단, 중도 탈락자는 제외한다
+--개설 과정 정보에 대한 입력, 출력, 수정, 삭제 기능을 사용할 수 있어야 한다. -> (입력,출력 완료) 삭제는 pk *-1 출력시 pk>0 조건 필요?
+
+-------------------------------------------------------------------------------
+--4.1 관리자는 여러 개의 개설 과정을 등록 및 관리할 수 있어야 한다.
+-------------------------------------------------------------------------------
+
+-----------------------과정번호와 그 기간(view)-------------------------------
+create view vwsubjectperiod as
+(select c.courselist_seq as subject_seq,sum(s.period) as period from tblsubject s
+    inner join tblCoursesubject c
+        on s.subject_seq=c.subject_seq
+            group by c.courselist_seq);
+------------------------------------------------------------------------------
+
+-------------------과목 조회하기
+create or replace procedure procsearchsubject(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+    open presult for
+    select*from tblSubject;
+end;
+---------------------------------
+
+-----------------------새로운 과정 만들기-------------------------------------
+
+    
+create or replace procedure procNewcourseListSubject(
+    pname varchar2,
+    psub1 number,--과목 추가, 6개,기간을 더해서 종료일 계산... 근데 주말은???
+    psub2 number,
+    psub3 number,
+    psub4 number,
+    psub5 number,
+    psub6 number
+)
+is
+    vnum number;
+begin
+    insert into tblCourselist values ((select max(COURSELIST_SEQ)+1 from tblCourseList),pname,'n');
+    select max(CourseList_seq) into vnum from tblcourselist;
+    
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub1);
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub2);
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub3);
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub4);
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub5);
+    insert into tblCourseSubject values ((select max(COURSESUBJECT_SEQ)+1 from tblcoursesubject),vnum,psub6);
+end;
+
+------------------------------------------------------------------------------
+
+-----------------------개설된 과정 지우기-------------------------------------
+create sequence del_seq;
+create or replace procedure procDeleteopenCourse(--개설과정번호 입력
+    popencourse_seq number
+)
+is
+begin
+    update tblopencourse set openCourse_seq=-(del_seq.nextval) where openCourse_seq=popencourse_seq;
+end;
+
+------------------------------------------------------------------------------
+-----------------------과정목록 조회하기-------------------------------
+create or replace procedure procgetcourselist(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+    open presult for
+        select courselist_seq 과정번호,name 과정명 from tblcourselist where del='n' order by courselist_seq;
+end;
+
+create or replace procedure procgetcourselist2(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+    open presult for
+        select courselist_seq 과정번호,name 과정명, (case when del='n' then '개설' else '폐지' end) 개설여부 from tblcourselist order by courselist_seq;
+end;
+
+-----------------------과정 목록 지우기--------------------------------
+create or replace procedure procDeleteCourseList(--과정 목록 지우기 번호와 과정명
+    pcourseList_seq number
+)
+is
+begin
+    update tblcourselist set del='y' where courseList_seq=pcourseList_seq;
+end;
+
+    
+    
+
+
+-----------------------새로운 과정 열기---------------------------------------
+--시작일에는 항상 평일을 넣어야만 한다
+create or replace procedure procOpenCourse(
+    pcourselist_seq number,
+    popen varchar2,
+    proom number
+)
+is
+begin
+
+    insert into tblOpenCourse values((select max(opencourse_seq)+1 from tblopencourse),
+                                        pcourselist_seq,
+                                        to_date(popen,'yyyymmdd'),
+                                        (select openday from tblopenday
+                                                    where openday_seq=
+                                                    (select
+                                                        openday_seq+(select period from vwsubjectperiod where subject_seq=pcourselist_seq)
+                                                     from tblopenday
+                                                        where openday=to_date(popen,'yyyymmdd'))),
+                                        (case
+                                            when proom in (1,2,3) then 30
+                                            when proom in (4,5,6) then 26
+                                        end),
+                                        proom);
+end;
+------------------------------------------------------------------------------
+
+--4.1end
+
+
+-----------------------과목별 기간 찾아내기-----------------------------------
+
+
+-----------------------개설과정정보출력 --------------------------------------
+--개설 과정 정보 출력시 과정정보번호, 개설 과정번호, 개설 과정명,강의실명,교육생 등록 인원(등록인원???), 개설 과정기간(시작 년월일, 끝 년월일),기간,모든 과목 출력한다.
+create or replace procedure procSearchOpencourse(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+open presult for
+select  oc.opencourse_seq 번호,oc.courselist_seq 과정번호, cl.name 과정명, oc.room_seq 강의실, nvl(cnt,0) 수강생, oc.startdate 시작일,oc.enddate 종료일,period 기간, nvl(fiday,to_date(20000101,'yyyymmdd')) 수료일 from tblopencourse oc
+    left outer join tblcourselist cl
+        on oc.courselist_seq=cl.courselist_seq
+            left outer join (select courselist_seq c_seq, sum(period) period from tblcoursesubject cs
+                                inner join tblsubject s
+                                    on cs.subject_seq=s.subject_seq
+                                    group by cs.courselist_seq) --기간과 개설과정번호
+                    on c_seq=cl.courselist_seq
+                        left outer join (select opencourse_seq rs, count(*) cnt from tblregicourse group by opencourse_seq)
+                            on rs=oc.opencourse_seq
+                                left outer join (select distinct opencourse_seq o_seq,finaldate fiday from tblregicourse where state='완료')
+                                    on o_seq=oc.opencourse_seq
+                    where oc.opencourse_seq>0
+                    order by oc.opencourse_seq;
+end;
+
+create or replace procedure procSearchOpencourse2(
+    presult out SYS_REFCURSOR,
+    pnum number
+)
+is
+begin
+open presult for
+select  oc.opencourse_seq 번호,oc.courselist_seq 과정번호, cl.name 과정명, oc.room_seq 강의실, nvl(cnt,0) 수강생, oc.startdate 시작일,oc.enddate 종료일,period 기간, nvl(fiday,to_date(20000101,'yyyymmdd')) 수료일 from tblopencourse oc
+    left outer join tblcourselist cl
+        on oc.courselist_seq=cl.courselist_seq
+            left outer join (select courselist_seq c_seq, sum(period) period from tblcoursesubject cs
+                                inner join tblsubject s
+                                    on cs.subject_seq=s.subject_seq
+                                    group by cs.courselist_seq) --기간과 개설과정번호
+                    on c_seq=cl.courselist_seq
+                        left outer join (select opencourse_seq rs, count(*) cnt from tblregicourse group by opencourse_seq)
+                            on rs=oc.opencourse_seq
+                                left outer join (select distinct opencourse_seq o_seq,finaldate fiday from tblregicourse where state='완료')
+                                    on o_seq=oc.opencourse_seq
+                    where cl.courselist_seq=pnum
+                    order by oc.opencourse_seq;
+end;
+
+------------------------------------------------------------------------------
+
+-----------------------과정선택후 개설과목 정보가져오기-----------------------
+
+
+-------------------과정명 입력해서 과목정보받기-------------------------------
+--(과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 교사명)
+
+create or replace procedure procGetOpenCourseInfo
+(
+    popenCourse_seq number,
+    vresult out sys_refCursor
+)
+is
+begin
+    open vresult for
+    select sch.subjectschedule_seq ,s.name ,sch.startdate ,sch.enddate ,개설과정번호 ,sd ,ed ,선생이름 from tblsubjectSchedule sch
+        inner join tblsubject s
+            on s.subject_seq=sch.subject_seq
+                inner join tblBook b
+                    on b.book_seq=s.book_seq--과목스케쥴번호, 과목 번호, 시작일, 종료일, 개설과정번호, 과목번호, 과목이름, 기간, 책번호, 책이름
+                       inner join (select oc.opencourse_seq 개설과정번호,oc.courselist_seq as seq, t.teacher_seq,oc.startdate sd,oc.enddate ed ,t.name 선생이름 from tblOpencourse oc
+                              inner join tblteacherCourse tc
+                                on oc.opencourse_seq=tc.opencourse_seq
+                                    inner join tblteacher t
+                                        on tc.teacher_seq=t.teacher_seq -- 개설과정번호, 과정번호, 선생번호, 이름
+                                       )
+                                            on sch.opencourse_seq=개설과정번호
+                       where 개설과정번호=popenCourse_seq
+                        order by 개설과정번호, sch.startdate;
+                             
+end;
+------------------------------------------------------------------------------
+-------------------과정명 입력해서 학생정보받기-------------------------------
+--(교육생 이름, 주민번호 뒷자리, 전화번호, 등록일, 등록과정,수료 및 중도탈락)
+
+create or replace procedure procgetStudentInfo(
+    popencourse_seq number,
+    vresult out sys_refCursor
+)
+is
+begin
+    open vresult for
+    select s.name as name, s.ssn as ssn,s.tel as tel,s.regidate as regidate,rc.opencourse_seq as opencourse_seq,cl.name as cname,rc.state as state from tblRegiCourse rc
+        inner join tblstudent s
+            on rc.student_seq=s.student_seq
+             inner join tblOpenCourse oc
+                on oc.opencourse_seq = rc.opencourse_seq
+                inner join tblCourseList cl
+                    on cl.courselist_seq = oc.courselist_seq
+             where rc.openCourse_seq=popencourse_seq 
+             order by rc.opencourse_seq;
+             
+end;
+
+------------------------------------------------------------------------------
+
+
+-------------------과정명 입력해서 수료날짜 지정-----------------------------
+--(정보 입력이 있으니 프로시저로)특정 개설 과정이 수료한 경우 등록된 교육생 전체에 대해서 수료날짜를 지정할 수 있어야 한다. 단, 중도 탈락자는 제외한다
+create or replace procedure procAssignFinaldate(
+    popenCourse_Seq number,
+    pfinaldate varchar2
+)
+is
+begin
+    update tblRegicourse set finaldate=to_date(pfinaldate,'yyyymmdd') where openCourse_Seq=popenCourse_Seq and state='완료';
+end;
+
+------------------------------------------------------------------------------
+
+---------------------------날짜 계산기(function)------------------------------
+select*from tblOpenday;
+create or replace function fncdate(
+    pdate date,
+    pperiod number
+)return date
+is
+    day date;
+begin
+    select openday into day from tblOpenday where openday_seq=((select openday_seq from tblOpenday where openday=pdate)+pperiod);
+    return day;
+end;
+------------------------------------------------------------------------------
+select*from tblSubjectRating;
+select*from tblSubjectSchedule;
+select distinct ratingcontents from tblSubjectRating;
+select*from tblSubjectRating;
+
+select*From tblcourselist;
+--------------과목평가----------------------------
+create or replace procedure procAddSubjectRating
+(
+    pratingScore number,
+    pRatingContents varchar2,
+    pregiCourse_seq number,
+    psubjectSchedule_seq number
+)
+is
+begin
+    insert into tblsubjectrating values((select max(subjectRating_seq)+1 from tblsubjectrating),pratingscore,pratingcontents,pregicourse_seq,psubjectschedule_seq);
+end;
+--------------------------------------------------------
+
+
+
+--배점 검색                        
+create or replace procedure procSearchRating2
+(
+    pstudent_seq number,
+    vresult out sys_refcursor
+)
+is
+begin
+    open vresult for
+   select sub.name,sr.ratingscore,sr.ratingcontents from tblSubjectRating sr
+    inner join tblRegiCourse rc
+        on sr.regiCourse_seq=rc.regiCourse_seq
+            inner join tblStudent st
+                on st.student_seq=rc.student_seq
+                    inner join tblSubjectSchedule sch
+                        on sch.subjectSchedule_seq=sr.subjectSchedule_seq
+                            inner join tblSubject sub
+                                on sub.subject_seq=sch.subject_seq
+    where rc.regiCourse_seq=pstudent_seq;
+end;
+
+
+-- 취업자 정보 검색
+create or replace procedure procemployee(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+open presult for
+select rc.regicourse_seq 수강신청번호, st.student_seq 학생번호,st.name 학생이름, cmp.company_seq 회사번호,cmp.name 회사이름,cmp.salary 연봉,to_char(emp.employmentdate,'yyyymmdd') 취직일 from tblemployment emp
+    inner join tblcompany cmp
+        on cmp.company_seq=emp.company_seq
+            inner join tblregicourse rc
+                on rc.regicourse_seq=emp.regicourse_seq
+                    inner join tblstudent st
+                        on st.student_seq=rc.student_seq
+                        where rc.asstate='취업';
+
+end;
+
+--과정번호로 취업자 검색
+create or replace procedure procempbycourse(
+    popencourse_seq number,
+    presult out SYS_REFCURSOR
+)
+is
+begin
+open presult for
+select rc.regicourse_seq 수강신청번호, st.student_seq 학생번호,st.name 학생이름, cmp.company_seq 회사번호,cmp.name 회사이름,cmp.salary 연봉,to_char(emp.employmentdate,'yyyymmdd') 취직일 from tblemployment emp
+    inner join tblcompany cmp
+        on cmp.company_seq=emp.company_seq
+            inner join tblregicourse rc
+                on rc.regicourse_seq=emp.regicourse_seq
+                    inner join tblstudent st
+                        on st.student_seq=rc.student_seq
+            where rc.opencourse_seq=popencourse_seq and rc.asstate='취업' and emp.employment_seq>0;
+
+end;
+
+--이름으로 취업자 검색
+create or replace procedure procempbyname(
+    pname varchar2,
+    presult out SYS_REFCURSOR
+)
+is
+begin
+open presult for
+select rc.regicourse_seq 수강신청번호, st.student_seq 학생번호,st.name 학생이름, cmp.company_seq 회사번호,cmp.name 회사이름,cmp.salary 연봉,to_char(emp.employmentdate,'yyyymmdd') 취직일 from tblemployment emp
+    inner join tblcompany cmp
+        on cmp.company_seq=emp.company_seq
+            inner join tblregicourse rc
+                on rc.regicourse_seq=emp.regicourse_seq
+                    inner join tblstudent st
+                        on st.student_seq=rc.student_seq
+            where st.name=pname and rc.asstate='취업';
+
+end;
+
+--취업자로 정보 변경
+create or replace procedure procsetemp(
+    pregicourse_seq number,
+    pcompany number,
+    pday varchar2,
+    presult out SYS_REFCURSOR
+)
+is
+begin
+    insert into tblemployment values((select max(employment_seq)+1 from tblemployment),to_date(pday,'yyyymmdd'),pcompany,pregicourse_seq);
+    open presult for
+    select rc.regicourse_seq 수강신청번호, st.student_seq 학생번호,st.name 학생이름, cmp.company_seq 회사번호,cmp.name 회사이름,cmp.salary 연봉,to_char(emp.employmentdate,'yyyymmdd') 취직일 from tblemployment emp
+    inner join tblcompany cmp
+        on cmp.company_seq=emp.company_seq
+            inner join tblregicourse rc
+                on rc.regicourse_seq=emp.regicourse_seq
+                    inner join tblstudent st
+                        on st.student_seq=rc.student_seq
+            where rc.regicourse_seq=pregicourse_seq;
+end;
+
+--취업자 정보 삭제
+create or replace procedure procdeleteemp(
+    pregicourse_seq number    
+)
+is
+begin
+    update tblemployment set employment_seq=-employment_seq where regicourse_seq=pregicourse_seq;
+end;
+
+
+--취업자 정보 수정
+create or replace procedure procupdateemp(
+pregicourse_seq number,
+pemploymentdate number,
+pcompany_seq number
+)
+is
+begin
+    update tblemployment set employmentdate=(case when pemploymentdate is null then to_date(employmentdate,'yyyymmdd') else to_date(pemploymentdate,'yyyymmdd') end),
+                             company_seq=(case when pcompany_seq is null then company_seq else pcompany_seq end)
+    where regicourse_seq=pregicourse_seq;
+end;
+--새로운 회사정보 추가
+create or replace procedure procsetcmp(
+    pname varchar2,
+    psalary number,
+    paddress varchar2,
+    ptel varchar2
+)
+is
+begin
+    insert into tblCompany values((select max(company_seq)+1 from tblCompany), pname, psalary,paddress,ptel);
+end;
+--회사번호 입력받아 회사정보 수정
+create or replace procedure procupdatecmp(
+    pcompany_seq number,
+    pname varchar2,
+    psalary number,
+    paddress varchar2,
+    ptel varchar2
+)
+is
+begin
+    update tblcompany set name=(case when pname is null then name when pname is not null then pname end),
+                          salary=(case when psalary is null then salary when psalary is not null then psalary end),
+                          address=(case when paddress is null then address when paddress is not null then paddress end),
+                          tel=(case when ptel is null then tel when ptel is not null then ptel end) where company_seq=pcompany_seq;
+end;
+
+--회사번호 입력받아 회사정보 삭제
+create or replace procedure procdelcmp
+(
+    pcompany_seq number
+)
+is
+begin
+    update tblCompany set COMPANY_SEQ= -company_seq where company_seq=pcompany_seq;
+end;
+
+--과목 정보 출력
+create or replace procedure procSubject(
+    presult out SYS_REFCURSOR
+)
+is
+begin
+    open presult for
+    select subject_seq 번호, name 이름, period 기간 from tblsubject where subject_seq>0;
+end;
+
+
