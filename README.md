@@ -10,7 +10,7 @@
 <table>
     <tr>
         <th>프로젝트명</th>
-        <th>SEDU Center</th>
+        <th>DoubleDragonCenter Center</th>
         <th>개발 기간</th>
         <th>2020.05.29. ~ 2020.06.17.</th>
     </tr>
