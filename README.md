@@ -68,7 +68,7 @@
         <th>윤대웅</th><th>전혜원</th><th>이예지</th><th>강경원</th><th>유민정</th><th>최재성</th>
     </tr>
     <tr>
-        <th>프로젝트 기획</th>
+        <th>프로젝트기획</th>
         <th colspan="2">개요작성</th>
         <th colspan="4">회의, 의견제안</th>
     </tr>
