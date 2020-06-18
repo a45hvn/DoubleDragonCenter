@@ -10,7 +10,7 @@
 <table>
     <tr>
         <th>프로젝트명</th>
-        <th>DoubleDragonCenter Center</th>
+        <th>DoubleDragonCenter</th>
         <th>개발 기간</th>
         <th>2020.05.29. ~ 2020.06.17.</th>
     </tr>
@@ -62,10 +62,10 @@
 ### 📑 Role & Member
 
 <table> 
-    <tr>
+    
         <th>업무/구성원</th>
         <th> 윤대웅 <th>전혜원 <th>이예지<th>강경원<th>유민정<th>최재성
-    </tr>
+    
     <tr>
         <th>프로젝트 기획</th>
         <th>개요작성</th>
