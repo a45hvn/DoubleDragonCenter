@@ -90,10 +90,11 @@
         <th>관리자</th>
         <th>교육생</th>
         <th>관리자</th>
-        <th colspan="2">교사</th>
-        
+        <th colspan="2">교사</th>     
         
     </tr>
+</table>
+<table>
     <tr>
         <th>소스(코딩)</th>
         <th>관리자 부분 <br>개발 및 화면<br>설계, 관리자</th>소스 취합</th>
