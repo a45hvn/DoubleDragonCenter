@@ -22,12 +22,7 @@
         <th>세미 프로젝트</th>
         <th>개발 인원</th>
         <th>팀 / 6명<br>
-          (<a href="https://github.com/chanmi-kim">KCM</a>,
-          <a href="https://github.com/SeHoonBae">BSH</a>,
-          <a href="https://github.com/daahyunee">LDH</a>,
-          <a href="https://github.com/AlfredCho">JSB</a>,
-          <a href="https://github.com/jubi93">YJY</a>,
-          <a href="https://github.com/popcon4199">CYN</a>)
+          (윤대웅, 전혜원, 이예지...)
       </th>
     </tr>
       <tr>
