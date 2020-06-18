@@ -15,14 +15,14 @@
         <th>프로젝트명</th>
         <th>SEDU Center</th>
         <th>개발 기간</th>
-        <th>2019.04.05. ~ 2019.04.19.</th>
+        <th>2020.05.29. ~ 2020.06.17.</th>
     </tr>
     <tr>
         <th>프로젝트 성격</th>
         <th>세미 프로젝트</th>
         <th>개발 인원</th>
         <th>팀 / 6명<br>
-          (윤대웅, 전혜원, 이예지...)
+          (윤대웅 ｜전혜원 ｜이예지｜강경원｜유민정｜최재성)
       </th>
     </tr>
       <tr>
@@ -80,12 +80,7 @@
 <table>
     <tr>
         <th>업무/구성원</th>
-        <th><a href="https://github.com/daahyunee">LDH</a></th>
-        <th><a href="https://github.com/chanmi-kim">KCM</a></th>
-        <th><a href="https://github.com/SeHoonBae">BSH</a></th>
-        <th><a href="https://github.com/AlfredCho">JSB</a></th>
-        <th><a href="https://github.com/jubi93">YJY</a></th>
-        <th><a href="https://github.com/popcon4199">CYN</a></th>
+        (윤대웅 ｜전혜원 ｜이예지｜강경원｜유민정｜최재성)
     </tr>
     <tr>
         <th>프로젝트 기획</th>
