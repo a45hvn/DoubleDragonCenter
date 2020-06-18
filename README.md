@@ -82,8 +82,8 @@
     </tr>
     <tr>
         <th>기능명세서</th>
-        <th>문서작성</th>
-        <th colspan="5">문서작성</th>
+        <th colspan="2">문서작성,회의</th>
+        <th colspan="4">회의, 의견제안</th>
     </tr>
     <tr>
         <th>화면설계</th>
