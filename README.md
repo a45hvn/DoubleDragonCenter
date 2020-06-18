@@ -90,7 +90,7 @@
         <th>교육생</th>
         <th colspan="2">교사</th>  
         <th>관리자</th>
-           
+         
         
     </tr>
 </table>
