@@ -61,11 +61,10 @@
 
 ### 📑 Role & Member
 
-<table> 
-    
+<table>     
     <tr>
         <th>업무/구성원</th>
-        <th> 윤대웅 <th>전혜원 <th>이예지<th>강경원<th>유민정<th>최재성<th>
+        <th> 윤대웅 전혜원이예지강경원유민정최재성<th>
     </tr>
     <tr>
         <th>프로젝트 기획</th>
