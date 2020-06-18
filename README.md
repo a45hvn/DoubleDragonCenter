@@ -1,11 +1,5 @@
 # DoubleDragonCenter
 
-## 2020-06
- - 화면설계
-
-
-# SEDU Center
-
 ![메인](https://user-images.githubusercontent.com/65211288/84998018-3e79e300-b18a-11ea-957e-80b2acba867a.png)
 
 
@@ -25,7 +19,7 @@
         <th>세미 프로젝트</th>
         <th>개발 인원</th>
         <th>팀 / 6명<br>
-          (윤대웅 ｜전혜원 ｜이예지｜강경원｜유민정｜최재성)
+          (윤대웅｜전혜원｜이예지｜강경원｜유민정｜최재성)
       </th>
     </tr>
       <tr>
@@ -59,22 +53,11 @@
 
 관계형 데이터베이스 기반의 SW 교육센터 운영 프로그램입니다.
 
- ### 👋 
+ ### 👋 Admin
  ![관리자](https://user-images.githubusercontent.com/65211288/84998831-500fba80-b18b-11ea-8693-5bf7ed5c55e1.gif)
-<table>
-    <tr>
-        <th colspan="3">Task</th>
-    </tr>
-    <tr>
-        <th colspan="3"><img width="600" src="asset/sedu-center-task.png"></th>
-    </tr>
-    <tr>
-       <th>Student</th>
-       <th>Teacher</th>
-       <th>Admin</th>
-    </tr>
+ ### 👋 Student
  
-</table>
+ ### 👋 Teacher
 
 ### 📑 Role & Member
 
@@ -103,11 +86,12 @@
     </tr>
     <tr>
         <th>화면설계</th>
-        <th>학생</th>
-        <th>교사</th>
         <th>관리자</th>
-        <th>교사</th>
-        <th colspan="2">관리자</th>
+        <th>관리자</th>
+        <th>교육생</th>
+        <th colspan="2">교사</th>
+        <th>관리자</th>
+        
     </tr>
     <tr>
         <th>소스(코딩)</th>
