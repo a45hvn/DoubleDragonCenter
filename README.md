@@ -95,6 +95,34 @@
 </table>
 <table>
     <tr>
+        <th>업무/구성원</th>
+        <th>윤대웅</th> <th>전혜원</th><th>이예지</th><th>강경원</th><th>유민정</th><th>최재성</th>
+    </tr>
+    <tr>
+        <th>프로젝트 기획</th>
+        <th>개요작성</th>
+        <th colspan="5">회의, 의견제안</th>
+    </tr>
+    <tr>
+        <th>요구분석</th>
+        <th colspan="6">회의, 의견제안, 문서작성</th>
+    </tr>
+    <tr>
+        <th>데이터설계</th>
+        <th colspan="6">회의, 의견제안, 문서작성</th>
+    </tr>
+    <tr>
+        <th>기능명세서</th>
+        <th>문서정리</th>
+        <th colspan="5">문서작성</th>
+    </tr>
+    <tr>
+        <th>화면설계</th>
+        <th colspan="2">관리자</th>        
+        <th>교육생</th>
+        <th colspan="2">교사</th>  
+        <th>관리자</th>    
+    <tr>
         <th>소스(코딩)</th>
         <th>관리자부분 <br>개발 및 화면<br>설계, 전체<br>소스 수정</th>
         <th>관리자부분 <br>개발 및 화면<br>설계, 전체<br>소스 취합</th>
