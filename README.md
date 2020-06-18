@@ -32,7 +32,7 @@
         <th>Windows10</th>
     </tr>
     <tr>
-        <th colspan="4">사용한 Skill 또는 지식</th>
+        <th colspan="5">사용한 Skill 또는 지식</th>
     </tr>  
     <tr>
         <th>개발언어</th>
