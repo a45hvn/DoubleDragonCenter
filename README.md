@@ -74,11 +74,13 @@
     </tr>
     <tr>
         <th>요구분석</th>
-        <th colspan="6">회의, 의견제안, 문서작성</th>
+        <th colspan="2">문서작성,회의</th>
+        <th colspan="4">회의, 의견제안</th>
     </tr>
     <tr>
         <th>데이터설계</th>
-        <th colspan="6">회의, 의견제안, 문서작성</th>
+        <th colspan="2">문서작성,회의</th>
+        <th colspan="4">회의, 의견제안</th>
     </tr>
     <tr>
         <th>기능명세서</th>
