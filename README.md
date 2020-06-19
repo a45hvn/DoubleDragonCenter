@@ -1,3 +1,8 @@
+머리1 | 머리2 | 머리3 | 뚝배기
+---- | ---- | ---- | ----
+다리 | 다리1 | 다리2 | 뚝배기깹니다
+금 | 의 | 환 | 향
+
 # DoubleDragonCenter
 
 ![메인](https://user-images.githubusercontent.com/65211288/84998018-3e79e300-b18a-11ea-957e-80b2acba867a.png)
