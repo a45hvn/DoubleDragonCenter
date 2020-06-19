@@ -9,13 +9,13 @@
 
 <table>
     <tr>
-        <th>ProjectName</th>
+        <th>프로젝트 명</th>
         <th>DoubleDragonCenter</th>
         <th>개발기간</th>
         <th>2020.05.29. ~ 2020.06.17.</th>
     </tr>
     <tr>
-        <th>ProjectType</th>
+        <th>프로젝트 성격/th>
         <th>세미 프로젝트</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
@@ -23,7 +23,7 @@
       </th>
     </tr>
       <tr>
-        <th>ProjectObj</th>
+        <th>프로젝트 개요</th>
         <th>교육센터 운영 프로그램</th>
         <th>개발환경&nbsp;</th>
         <th>Windows10</th>
