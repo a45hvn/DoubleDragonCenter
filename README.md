@@ -58,7 +58,7 @@
  ### 👋 Student
  ![교육생](https://user-images.githubusercontent.com/65211288/85092567-e0e6a480-b224-11ea-8ae1-5c6f002032cb.gif)
  ### 👋 Teacher
-
+![교사](https://user-images.githubusercontent.com/65211288/85092653-1f7c5f00-b225-11ea-8242-c6f5def17d17.gif)
 ### 📑 Role & Member
 
 
