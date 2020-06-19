@@ -56,7 +56,7 @@
  ### 👋 Admin
  ![관리자](https://user-images.githubusercontent.com/65211288/84998831-500fba80-b18b-11ea-8693-5bf7ed5c55e1.gif)
  ### 👋 Student
- 
+ ![교육생](https://user-images.githubusercontent.com/65211288/85092567-e0e6a480-b224-11ea-8ae1-5c6f002032cb.gif)
  ### 👋 Teacher
 
 ### 📑 Role & Member
