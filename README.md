@@ -29,7 +29,7 @@
         <th>Windows10</th>
     </tr>
     <tr>
-        <th colspan="5">사용한 Skill 또는 지식</th>
+        <th colspan="5">사용 도구</th>
     </tr>  
     <tr>
         <th>개발언어</th>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <th>형상관리</th>
-        <th colspan="3">Github, Git Bash, Source Tree</th>
+        <th colspan="3">Github, Git , Source Tree</th>
     </tr>
     <tr>
         <th>개발도구</th>
