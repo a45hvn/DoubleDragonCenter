@@ -1,7 +1,7 @@
 # DoubleDragonCenter
 
 ![메인](https://user-images.githubusercontent.com/65211288/84998018-3e79e300-b18a-11ea-957e-80b2acba867a.png)
-![메인용](https://user-images.githubusercontent.com/65211288/85094790-9831ea00-b22a-11ea-9338-dad6d1eb500a.png)
+
 
 
 
