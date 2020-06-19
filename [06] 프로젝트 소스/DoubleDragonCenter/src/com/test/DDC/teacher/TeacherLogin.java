@@ -5,20 +5,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-/**
- * 교사 로그인 화면 클래스입니다.
- * @author 강경원
- *
- */
 public class TeacherLogin {
 
 //	public static void main(String[] args) throws InterruptedException {
 //		teacherPrint();
 //	}
 
-	/**
-	 * 메인화면에서 교사로 들어왔을 때 출력되는 로그인 화면 메소드입니다.
-	 */
 	public void teacherPrint() {
 		
 		Scanner scan = new Scanner(System.in);

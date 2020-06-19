@@ -7,12 +7,6 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
-
-/**
- * 지원활동 관리 클래스
- * @author 윤대웅
- *
- */
 public class AdminAs {
 	private static Connection conn = null;
 	private static Statement stat = null;
@@ -20,9 +14,6 @@ public class AdminAs {
 	private static DBUtil util = new DBUtil();
 	private static Scanner scan = new Scanner(System.in);
 	
-	/**
-	 * 지원활동 관련 출력 메소드
-	 */
 	public void printAs() {
 		boolean loop = true;
 		

@@ -7,12 +7,6 @@ import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
 
-
-/**
- * 관리자 시험 성적 관리 클래스
- * @author 윤대웅
- *
- */
 public class AdminExamScore {
 	
 	private static Connection conn = null;
@@ -21,9 +15,6 @@ public class AdminExamScore {
 	private static DBUtil util = new DBUtil();
 	private static Scanner scan = new Scanner(System.in);
 	
-	/**
-	 * 시험 성적 관련 출력 메소드
-	 */
 	public void printExamScore() {
 		
 		boolean loop = true;

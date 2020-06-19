@@ -2,19 +2,12 @@ package com.test.DDC.teacher;
 
 
 	import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.test.DDC.DBUtil;
-
-/**
- * 교육생 출결 관리를 하는 클래스입니다.
- * @author 유민정
- *
- */
 public class TeacherAttendance {
 	
 
@@ -29,11 +22,6 @@ public class TeacherAttendance {
 			ArrayList<String> stuAtt = new ArrayList<String>();
 			ArrayList<String> stuAtt2 = new ArrayList<String>();
 			
-			
-			/**
-			 * 교사 번호를 입력받아 교육생 출결 관리를 하는 메소드입니다.
-			 * @param 교사번호
-			 */
 			public void printAttandance(String tnum) {
 				
 				boolean loop = true;

@@ -9,17 +9,8 @@ import com.test.DDC.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
-/**
- * 강의 스케줄 조회 클래스입니다.
- * @author 강경원
- *
- */
 public class LectureOutput {
 
-	/**
-	 * 교사 번호를 받아서 강의 스케줄 조회를하는 메소드입니다.
-	 * @param 교사번호
-	 */
 	public void lectureView(String tnum) {
 
 		Connection conn = null;
