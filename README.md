@@ -25,7 +25,7 @@
       <tr>
         <th>프로젝트개요</th>
         <th>교육센터 운영 프로그램</th>
-        <th>개발환경&nbsp;</th>
+        <th>개발환경</th>
         <th>Windows10</th>
     </tr>
     <tr>
