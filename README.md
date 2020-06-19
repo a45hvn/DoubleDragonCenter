@@ -15,7 +15,7 @@
         <th>2020.05.29. ~ 2020.06.17.</th>
     </tr>
     <tr>
-        <th>Projecttype</th>
+        <th>ProjectType</th>
         <th>세미 프로젝트</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
