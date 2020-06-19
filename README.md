@@ -1,10 +1,3 @@
-프로젝트 명 | DoubleDragonCenter | 개발기간 | 2020.05.28 ~2020.06.17
----- | ---- | ---- | ----
-
-
-
-
-
 # DoubleDragonCenter
 
 ![메인](https://user-images.githubusercontent.com/65211288/84998018-3e79e300-b18a-11ea-957e-80b2acba867a.png)
