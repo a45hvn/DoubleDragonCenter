@@ -66,6 +66,7 @@
     <tr>
         <th>업무 / 구성원</th>
         <th>윤대웅</th><th>전혜원</th><th>이예지</th><th>강경원</th><th>유민정</th><th>최재성</th>
+         (<a href="https://github.com/moods2">윤대웅｜<a href="https://github.com/prohwww">전혜원</a>｜이예지｜강경원｜유민정｜최재성)
     </tr>
     <tr>
         <th>프로젝트 기획</th>
