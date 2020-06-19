@@ -19,7 +19,7 @@
         <th>세미 프로젝트</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
-          (<a href="https://github.com/prohwww">윤대웅｜<a href="https://github.com/prohwww">전혜원</a>｜이예지｜강경원｜유민정｜최재성)
+          (<a href="https://github.com/moods2">윤대웅｜<a href="https://github.com/prohwww">전혜원</a>｜이예지｜강경원｜유민정｜최재성)
       </th>
     </tr>
       <tr>
