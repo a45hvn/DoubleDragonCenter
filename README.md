@@ -21,7 +21,7 @@
         <th>세미 프로젝트</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
-          (<a href="https://github.com/moods2">윤대웅｜<a href="https://github.com/prohwww">전혜원</a>｜<a href="https://github.com/gsdldpwl">이예지</a>｜<a href="https://github.com/Kang-KyoungWon">강경원</a>｜<a href="https://github.com/lisamj0077">유민정</a>｜<a href="https://github.com/a45hvn">최재성</a>)
+          (<a href="https://github.com/moods2">윤대웅｜<a href="https://github.com/prohwww">전혜원</a>｜<a href="https://github.com/gsdldpwl">이예지</a>｜<a href="https://github.com/Kang-KyoungWon">강경원</a>｜<a href="https://github.com/lisamj-persimmon">유민정</a>｜<a href="https://github.com/a45hvn">최재성</a>)
       </th>
     </tr>
       <tr>
